@@ -16,6 +16,7 @@ import { ReporteGeneralComponent } from './admin/pages/estadisticasMENU/reporte-
 import { ReporteSucursalComponent } from './admin/pages/estadisticasMENU/reporte-sucursal/reporte-sucursal.component';
 import { VentanillaComponent } from './vendedor/pages/ventanilla/ventanilla.component';
 import { CarritoComponent } from './vendedor/pages/carrito/carrito.component';
+import { NoImagePipe } from './pipes/no-image.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CarritoComponent } from './vendedor/pages/carrito/carrito.component';
     ReporteGeneralComponent,
     ReporteSucursalComponent,
     VentanillaComponent,
-    CarritoComponent
+    CarritoComponent,
+    NoImagePipe
   ],
   imports: [
     BrowserModule,
