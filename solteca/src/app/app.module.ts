@@ -17,6 +17,9 @@ import { ReporteSucursalComponent } from './admin/pages/estadisticasMENU/reporte
 import { VentanillaComponent } from './vendedor/pages/ventanilla/ventanilla.component';
 import { CarritoComponent } from './vendedor/pages/carrito/carrito.component';
 import { NoImagePipe } from './pipes/no-image.pipe';
+import { HeaderOpcionesComponent } from './components/admin/header/header-opciones/header-opciones.component';
+import { HeaderVoidComponent } from './components/admin/header/header-void/header-void.component';
+import { HeaderVentanillaComponent } from './components/admin/header/header-ventanilla/header-ventanilla.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { NoImagePipe } from './pipes/no-image.pipe';
     ReporteSucursalComponent,
     VentanillaComponent,
     CarritoComponent,
-    NoImagePipe
+    NoImagePipe,
+    HeaderOpcionesComponent,
+    HeaderVoidComponent,
+    HeaderVentanillaComponent
   ],
   imports: [
     BrowserModule,
