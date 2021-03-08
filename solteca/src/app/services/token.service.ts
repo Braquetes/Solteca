@@ -17,9 +17,9 @@ export class TokenService {
   constructor(private http: HttpClient) { }
 
   log(login: Login): Observable<Request>{
-    let direccion = this.URL + 'auth.php';
-    return this.http.post<Request>(direccion,login);
-    // return this.http.post<Request>(`${this.URL}login.php`, JSON.stringify(login));
+    // let direccion = this.URL + 'auth.php';
+    // return this.http.post<Request>(direccion,login);
+    return this.http.post<Request>(`${this.URL}login.php`, JSON.stringify(login));
   }
 
 }
