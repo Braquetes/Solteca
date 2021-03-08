@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MenuComponent } from './admin/pages/menu/menu.component';
-import { EmpleadosComponent } from './admin/pages/empleados/empleados.component';
-import { EstadisticasComponent } from './admin/pages/estadisticas/estadisticas.component';
-import { PreciosComponent } from './admin/pages/precios/precios.component';
-import { SucursalComponent } from './admin/pages/sucursal/sucursal.component';
+import { EmpleadosComponent } from './admin/pages/empleadosCRUD/empleados/empleados.component';
+import { EstadisticasComponent } from './admin/pages/estadisticasMENU/estadisticas/estadisticas.component';
+import { PreciosComponent } from './admin/pages/preciosCRUD/precios/precios.component';
+import { SucursalComponent } from './admin/pages/sucursalCRUD/sucursal/sucursal.component';
 import { FormEmpleadoComponent } from './admin/pages/empleadosCRUD/form-empleado/form-empleado.component';
 import { FormSucursalComponent } from './admin/pages/sucursalCRUD/form-sucursal/form-sucursal.component';
 import { FormPreciosComponent } from './admin/pages/preciosCRUD/form-precios/form-precios.component';
@@ -19,7 +19,10 @@ import { CarritoComponent } from './vendedor/pages/carrito/carrito.component';
 import { NoImagePipe } from './pipes/no-image.pipe';
 import { HeaderOpcionesComponent } from './components/admin/header/header-opciones/header-opciones.component';
 import { HeaderVoidComponent } from './components/admin/header/header-void/header-void.component';
-import { HeaderVentanillaComponent } from './components/admin/header/header-ventanilla/header-ventanilla.component';
+import { HeaderVentanillaComponent } from './components/vendedor/header/header-ventanilla/header-ventanilla.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,9 @@ import { HeaderVentanillaComponent } from './components/admin/header/header-vent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
