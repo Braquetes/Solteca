@@ -24,8 +24,8 @@
                         <input class="contraseña" name="pass" type="password" placeholder="*************" [(ngModel)]="login.pass">
                     </div>
                     <div class="campos">
-                        <label for="">Selecciona la terminal</label>
-                        <select name="option" id="" class="elige">
+                        <label>Selecciona la terminal</label>
+                        <select name="option" [(ngModel)]="login.option" id="" class="elige">
                         <option value="disabled selected">Elige tu sucursal</option>
                         <option value="1">Opcion 1</option>
                         <option value="2">Opcion 2</option>

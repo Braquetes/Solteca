@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+    --fondo: #f6f6f6 ;
+    --rojo: #e71d19 ;
+    --rojohover: #f8130f ;
+    --principal: #4e5c81 ;
+    --verde: #3ad138 ;
+    --verdehover: #09e205;
+    --verdeasiento: #1bcf0e;
+    --rojoasiento: #1bcf0e;
+    --blanco: #ffffff;
+    --negro:#000000;
+    --hover-menu:#3a4767;
+    --morado: #5254c2;
+    --moradohover: #4445af;
+
+
+}
+body{
+    background-color: var(--fondo);
+    font-family: 'Muli', sans-serif;
+    padding: 0;
+    margin: 0;
+}

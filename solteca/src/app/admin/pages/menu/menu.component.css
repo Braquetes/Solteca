@@ -1,0 +1,133 @@
+/*ESTILOS GENERALES*/
+
+:root {
+    --fondo: #f6f6f6;
+    --rojo: #e71d19;
+    --rojohover: #f8130f;
+    --principal: #4e5c81;
+    --verde: #3ad138;
+    --verdehover: #09e205;
+    --verdeasiento: #1bcf0e;
+    --rojoasiento: #1bcf0e;
+    --blanco: #ffffff;
+    --negro: #000000;
+    --hover-menu: #3a4767;
+    --morado: #5254c2;
+    --moradohover: #4445af;
+}
+
+body {
+    background-color: #f6f6f6;
+    font-family: 'Muli', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+
+/*ESTILOS BOTONES*/
+
+.btn {
+    width: 150px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.btn-salir {
+    background-color: #e71d19;
+    color: #ffffff;
+}
+
+.btn-salir:hover {
+    color: #ffffff;
+    background-color: #f8130f;
+}
+
+.btn-ir-menu {
+    background-color: #5254c2;
+    color: #ffffff;
+}
+
+.btn-ir-menu:hover {
+    background-color: #4445af;
+    color: #ffffff;
+}
+
+
+/*ESTILOS BARRA DE NAVEGACION*/
+
+nav {
+    background-color: #5254c2 !important;
+    padding: 10px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #ffffff;
+}
+
+.opcion {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.opcion:hover {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #4445af;
+    border-radius: 10px;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+
+/*ESTILOS MENU PRINCIPAL*/
+
+.container {
+    margin-top: 10px;
+    text-align: center;
+    padding: 20px;
+    height: 100%;
+}
+
+.container-menu {
+    width: 100%;
+    text-align: center;
+    margin-left: 5%;
+}
+
+.card-menu {
+    width: 15rem;
+    height: 20rem;
+    text-align: center;
+    padding: 20px;
+    border: none;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px 1px rgba(0, 0, 0, 0.15);
+}
+
+.icon-menu {
+    text-align: center;
+    width: 100px;
+}
+
+.imagen-card img {
+    padding: 5px;
+    width: 140px;
+}
+
+.titulo-menu {
+    font-weight: 700;
+    font-size: 25px;
+}

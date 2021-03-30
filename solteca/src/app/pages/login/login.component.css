@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+.nav-enlace {
+    display: inline-block;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    padding: 20px 30px;
+    text-decoration: none;
+}
+
+nav {
+    background-color: #5254c1;
+}
+
+.container {
+    padding-top: 2%;
+    padding-left: 15%;
+    padding-bottom: 2%;
+}
+
+.general {
+    width: 80%;
+    height: auto;
+    display: grid;
+    gap: 3em;
+    grid-template-columns: 40% 60%;
+    background-color: #fff;
+    border-radius: 25px;
+    -webkit-box-shadow: 3px 3px 17px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 3px 3px 17px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 3px 17px 0px rgba(0, 0, 0, 0.2);
+}
+
+.imagen {
+    width: 100%;
+    background-image: url("../../../assets/img/solteca1.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.fondo-blanco {
+    background-color: white;
+    height: 100%;
+    opacity: 0.4;
+}
+
+.encabezado {
+    padding-top: 2rem;
+    text-align: center;
+    width: 75%;
+}
+
+.encabezado h1 {
+    color: #000;
+    font-size: 50px;
+    padding-bottom: 2px;
+    font-weight: 900;
+}
+
+.encabezado h3 {
+    color: #5254c1;
+    font-size: 30px;
+    font-weight: 800;
+    padding-bottom: 2px;
+}
+
+.encabezado p {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.formulario {
+    padding-top: 10px;
+    width: 100%;
+}
+
+.campos {
+    width: 75%;
+    padding: 1rem;
+    display: grid;
+    grid-auto-rows: 30px;
+}
+
+label {
+    font-weight: 600;
+}
+
+input {
+    height: 25px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #9e9e9e;
+}
+
+select {
+    height: 35px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #9e9e9e;
+}
+
+.usuario {
+    background-image: url("../../../assets/icons/user.png");
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding-left: 40px;
+}
+
+.contraseña {
+    background-image: url("../../../assets/icons/passwird.png");
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding-left: 40px;
+}
+
+.boton {
+    padding: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 75%;
+    text-align: center;
+}
+
+
+/*ESTILO GENERAL PARA LOS BOTONES*/
+
+.btn {
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50px;
+    padding: 15px 10px;
+    width: 200px;
+    display: inline-block;
+}
+
+.btn-ingresar {
+    color: #fff;
+    background-color: #5254c1;
+}
+
+.btn-ingresar:hover {
+    background-color: #4143db;
+}
+
+.btn-ingresar:active {
+    background-color: #5254c1;
+}
+
+aside {
+    background-color: #5254c1;
+}
+
+
+/* .ingresar {
+    border: none;
+    background-color: #5254c1;
+    width: 150px;
+    height: 30px;
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+}
+
+.ingresar a{
+    width: 150px;
+    color: white;
+    text-decoration: none;
+}
+ */

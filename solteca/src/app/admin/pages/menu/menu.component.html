@@ -1,1 +1,150 @@
-<p>menu works!</p>
+<app-link></app-link>
+<nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+        <a class="navbar-brand logo" href="#">La Solteca</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link opcion" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link opcion" href="empleados/tablaempleados.html">Empleados</a>
+                </li>
+                <li class="nav-item item">
+                    <a class="nav-link opcion" href="estadisticas/estadisticas.html">Estadisticas</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <a class="btn btn-salir" (click)="logout()" type="submit"><i class="fas fa-sign-out-alt"></i> Salir</a>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div class="container">
+    <div class="container-menu">
+        <div class=" container-cartas">
+            <div class="row justify-content-center">
+                <div class="col-sm text-center">
+                    <div class="card card-menu text-center">
+                        <div class="imagen-card">
+                            <img src="../../../../assets/img/sucursal1.png" class="card-img-top img-fluid" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title titulo-menu">Registro de taquilla</h5>
+                            <a [routerLink]="['/sucursal']" class="btn btn-ir-menu">Ir <i class="icon ion-md-arrow-round-forward"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card card-menu text-center">
+                        <div class="imagen-card">
+                            <img src="../../../../assets/img/empleados.png" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title titulo-menu">Registro de usuarios</h5>
+                            <a [routerLink]="['/empleados/form']" class="btn btn-ir-menu">Ir <i class="icon ion-md-arrow-round-forward"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card card-menu text-center">
+                        <div class="imagen-card">
+                            <img src="../../../../assets/img/empleado.png" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title titulo-menu">Ver <br> empleados</h5>
+                            <a [routerLink]="['/empleados']" class="btn btn-ir-menu">Ir <i class="icon ion-md-arrow-round-forward"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center p-4">
+                <div class="col-4">
+                    <div class="card card-menu text-center">
+                        <div class="imagen-card">
+                            <img src="../../../../assets/img/estadisticas.png" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title titulo-menu">Estadisticas</h5>
+                            <a [routerLink]="['/estadisticas']" class="btn btn-ir-menu">Ir <i class="icon ion-md-arrow-round-forward"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card card-menu text-center">
+                        <div class="imagen-card">
+                            <img src="../../../../assets/img/precios.png" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title titulo-menu">Precios</h5>
+                            <a [routerLink]="['/precios']" class="btn btn-ir-menu">Ir <i class="icon ion-md-arrow-round-forward"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  <div class="row justify-content-around text-center">
+          <div class="col-sm">
+            <div class="card card-menu text-center" >
+                <div class="imagen-card">
+                    <img src="/img/sucursal1.png" class="card-img-top img-fluid" alt="...">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title titulo-menu">Registro de sucursales</h5>
+                  <a href="#" class="btn btn-ir-menu">Ir <i class="icon ion-md-arrow-round-forward"></i></a>
+                </div>
+              </div>
+          </div>
+          <div class="col-sm">
+            <div class="card card-menu text-center" >
+                <div class="imagen-card">
+                    <img src="/img/empleados.png" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title titulo-menu">Registro de usuarios</h5>
+                  <a href="#" class="btn btn-ir-menu">Ir <i class="icon ion-md-arrow-round-forward"></i></a>
+                </div>
+              </div>
+          </div>
+          <div class="col-sm">
+            <div class="card card-menu text-center" >
+                <div class="imagen-card">
+                    <img src="/img/empleado.png" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title titulo-menu">Ver <br> empleados</h5>
+                  <a href="#" class="btn btn-ir-menu">Ir <i class="icon ion-md-arrow-round-forward"></i></a>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="row justify-content-center p-4">
+            <div class="col-4">
+                <div class="card card-menu text-center" >
+                    <div class="imagen-card">
+                        <img src="/img/estadisticas.png" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title titulo-menu">Estadisticas</h5>
+                      <a href="#" class="btn btn-ir-menu">Ir <i class="icon ion-md-arrow-round-forward"></i></a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-4">
+                <div class="card card-menu text-center" >
+                    <div class="imagen-card">
+                        <img src="/img/precios.png" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title titulo-menu">Precios</h5>
+                      <a href="#" class="btn btn-ir-menu">Ir <i class="icon ion-md-arrow-round-forward"></i></a>
+                    </div>
+                  </div>
+            </div>
+          </div> -->
+    </div>

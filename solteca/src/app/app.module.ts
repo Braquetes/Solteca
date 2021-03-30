@@ -23,6 +23,9 @@ import { HeaderVentanillaComponent } from './components/vendedor/header/header-v
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { LinkComponent } from './extras/link/link.component';
+import { FooterComponent } from './extras/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,9 @@ import { FormsModule } from '@angular/forms';
     NoImagePipe,
     HeaderOpcionesComponent,
     HeaderVoidComponent,
-    HeaderVentanillaComponent
+    HeaderVentanillaComponent,
+    LinkComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

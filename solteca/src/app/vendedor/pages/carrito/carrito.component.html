@@ -1,1 +1,532 @@
-<p>carrito works!</p>
+<app-link></app-link>
+<div class="body">
+    <div class="d-flex" id="content-wrapper">
+
+        <!-- BARRA LATERAL -->
+        <div id="sidebar-container" class="">
+            <div class="logo">
+                <img src="../../../../assets/img/user1.png" alt="">
+                <h3 class="d-block  p-1 border-0">Vendedor</h3>
+                <p class="d-block  p-1 border-0">Nombre Vendedor</p>
+                <p class="d-block  p-1 border-0">Turno</p>
+            </div>
+            <div class="menu">
+                <a href="venta.html" class="d-block  p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
+                Ventas</a>
+                <a href="reportes/reportes.html" class="d-block  p-3 border-0"><i class="icon ion-md-analytics lead mr-2"></i>
+                    Reportes</a>
+                <a href="#" class="d-block  p-3 border-0"><i class="icon ion-md-qr-scanner lead mr-2"></i>
+                    Imprimir</a>
+                <a href="masinfo/masinfo.html" class="d-block  p-3 border-0"><i class="icon ion-md-information-circle-outline lead mr-2"></i>
+                    Mas información</a>
+            </div>
+        </div>
+        <!-- FIN BARRA LATERAL -->
+
+        <div class="w-100">
+            <nav class="header">
+                <div class="dato">
+                    <a type="button" [routerLink]="['/ventanilla']" class="btn btn-seguir"><i class="fas fa-arrow-left"></i> Seguir Comprando </a>
+                </div>
+                <div class="dato">
+                    <h1>Boletaje de venta</h1>
+                </div>
+                <div class="dato">
+                    <h5>Fecha: <span class="badge badge-light">00/00/00</span></h5>
+                </div>
+                <div class="dato">
+                    <h5>Hora: <span class="badge badge-light">00:00:00</span></h5>
+                </div>
+            </nav>
+
+            <!-- CONTENIDO PRINCIPAL -->
+            <div id="content" class=" w-100">
+                <div class="contenedor-general">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="card-table">
+
+
+                                    <table class="table ">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Tipo</th>
+                                                <th scope="col">Precio</th>
+                                                <th scope="col">N° Boletos</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Tipo de boleto</th>
+                                                <td>$$$$</td>
+                                                <td>20</td>
+                                                <td><button class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button></td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <th scope="row" class="total">Total:</th>
+                                                <td colspan="3" class="total">$ 000.00</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="botones-compra">
+                                        <div class="row">
+                                            <div class="col">
+                                                <a class="btn btn-cancelar"><i class="fas fa-times-circle"></i> Cancelar</a>
+                                            </div>
+                                            <div class="col">
+                                                <a class="btn btn-agregar"><i class="fas fa-check"></i> Generar Compra</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="card">
+                                    <div class="card-bus">
+                                        <div class="titlebus">
+                                            <h5>Selecciona el asiento.</h5>
+                                        </div>
+                                        <div class="container disponibles">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <img class="disponible" src="../../../../assets/img/seat.png" alt="">
+                                                    <h6>Disponible</h6>
+                                                </div>
+                                                <div class="col">
+                                                    <img class="nodisponible" src="../../../../assets/img/seat.png" alt="">
+                                                    <h6>No disponible</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="container-autobus">
+                                            <div class="img-autobus">
+                                                <div class="containerbus">
+                                                    <!-- Squared ONE -->
+                                                    <div class="autobus">
+
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento1" name="check" />
+                                                                    <label for="asiento1"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento2" name="check" />
+                                                                    <label for="asiento2"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento3" name="check" />
+                                                                    <label for="asiento3"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento4" name="check" />
+                                                                    <label for="asiento4"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento5" name="check" />
+                                                                    <label for="asiento5"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento6" name="check" />
+                                                                    <label for="asiento6"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento7" name="check" />
+                                                                    <label for="asiento7"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento8" name="check" />
+                                                                    <label for="asiento8"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento9" name="check" />
+                                                                    <label for="asiento9"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento10" name="check" />
+                                                                    <label for="asiento10"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento11" name="check" />
+                                                                    <label for="asiento11"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento12" name="check" />
+                                                                    <label for="asiento12"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento13" name="check" />
+                                                                    <label for="asiento13"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento14" name="check" />
+                                                                    <label for="asiento14"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento15" name="check" />
+                                                                    <label for="asiento15"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento16" name="check" />
+                                                                    <label for="asiento16"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento17" name="check" />
+                                                                    <label for="asiento17"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento18" name="check" />
+                                                                    <label for="asiento18"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento19" name="check" />
+                                                                    <label for="asiento19"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento20" name="check" />
+                                                                    <label for="asiento20"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento21" name="check" />
+                                                                    <label for="asiento21"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento22" name="check" />
+                                                                    <label for="asiento22"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento23" name="check" />
+                                                                    <label for="asiento23"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento24" name="check" />
+                                                                    <label for="asiento24"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento25" name="check" />
+                                                                    <label for="asiento25"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento26" name="check" />
+                                                                    <label for="asiento26"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento27" name="check" />
+                                                                    <label for="asiento27"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento28" name="check" />
+                                                                    <label for="asiento28"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento29" name="check" />
+                                                                    <label for="asiento29"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento30" name="check" />
+                                                                    <label for="asiento30"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento31" name="check" />
+                                                                    <label for="asiento31"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento32" name="check" />
+                                                                    <label for="asiento32"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento33" name="check" />
+                                                                    <label for="asiento33"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento34" name="check" />
+                                                                    <label for="asiento34"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento35" name="check" />
+                                                                    <label for="asiento35"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento36" name="check" />
+                                                                    <label for="asiento36"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento37" name="check" />
+                                                                    <label for="asiento37"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento38" name="check" />
+                                                                    <label for="asiento38"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento39" name="check" />
+                                                                    <label for="asiento39"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento40" name="check" />
+                                                                    <label for="asiento40"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento41" name="check" />
+                                                                    <label for="asiento41"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento42" name="check" />
+                                                                    <label for="asiento42"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento43" name="check" />
+                                                                    <label for="asiento43"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento44" name="check" />
+                                                                    <label for="asiento44"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento45" name="check" />
+                                                                    <label for="asiento45"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento46" name="check" />
+                                                                    <label for="asiento46"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento47" name="check" />
+                                                                    <label for="asiento47"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento48" name="check" />
+                                                                    <label for="asiento48"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fila">
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento49" name="check" />
+                                                                    <label for="asiento49"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento50" name="check" />
+                                                                    <label for="asiento50"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seccion">
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento51" name="check" />
+                                                                    <label for="asiento51"></label>
+                                                                </div>
+                                                                <div class="asiento">
+                                                                    <input type="checkbox" value="None" id="asiento52" name="check" />
+                                                                    <label for="asiento52"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="autobus">
+                                    <div class="fondoautobus">
+                                        <div class="asientos">
+                                            <div class="tarjetaasientos">
+                                                <div class="col-asientos">
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A2</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A3</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A4</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A5</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A6</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A7</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A8</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A9</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A10</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                     <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                    <div class="col-asiento">
+                                                        <button class="btn btn-asiento">A1</button>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

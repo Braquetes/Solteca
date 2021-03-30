@@ -1,1 +1,105 @@
-<p>form-precios works!</p>
+<app-link></app-link>
+<!-- BARRA DE NAVEGACION -->
+     <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+          <a class="navbar-brand logo" href="/administrador/menu.html">La Solteca</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            
+            </ul>
+            <form class="d-flex">
+              <a class="btn btn-salir" href="precios.html" type="submit"><i class="fas fa-chevron-left"></i> Volver</a>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <div class="container ">
+        <div class="contenedor-general">
+        <!--   <div class="titulo">
+              <h1>Registro de sucursales</h1>
+          </div>
+          <div class="agregar ">
+              <a class="btn btn-agregar" href="agregarsucursal.html">Agregar sucursal <i class="icon ion-md-add"></i></a>
+          </div> -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item h5"><a href="precios.html">Precios</a></li>
+              <li class="breadcrumb-item active h5" aria-current="page">Agregar boleto</li>
+            </ol>
+          <div class="container pt-4 w-50">
+              <div class="card">
+                <div class="titulo">
+                    <h1>Agregar boleto</h1>
+                    <p>Rellene los campos para añadir un nuevo boleto</p>
+                </div>
+                <div class="formulario">
+                    <form action="">
+                        <div class="row">
+                            <div class="col-sm col1">
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Tipo de boleto</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm col1">
+                                <label for="exampleInputEmail1" class="form-label">Precio de boleto</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">$</span>
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <span class="input-group-text">.00</span>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm col1">
+                                <label for="exampleInputEmail1" class="form-label">Descuento</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">$</span>
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <span class="input-group-text">.00</span>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm col2 text-center ">
+                                <div class="input-group col22 ">
+                                    <span class="input-group-text input-precio" id="inputGroup-sizing-lg">Precio total:</span>
+                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                                  </div>
+                            </div>
+                        </div>
+                       
+                       <div class="botones">
+                        <a type="button" href="precios.html" class="btn-cancelar btn-lg"><i class="fas fa-times"></i> Cancelar</a>
+                        <button type="button" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Registrar</button>
+                        
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title fw-bold" id="exampleModalLabel">Operación exitosa</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body fw-bold">
+                                 El boleto se ha agregado correctamente.
+                                </div>
+                                <div class="modal-footer">
+                                  <a type="button" href="precios.html" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Aceptar</a>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                       </div>
+                    </form>
+                </div>
+              </div>
+          </div>
+        </div>
+       
+
+    </div>

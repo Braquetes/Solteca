@@ -1,0 +1,103 @@
+.btn{
+    width: 150px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+.btn-salir{
+    background-color: var(--rojo);
+    color: var(--blanco);
+}
+.btn-salir:hover{
+    color: var(--blanco);
+    background-color: var(--rojohover);
+}
+.btn-agregar{
+    background-color: var(--verde);
+    width: 230px;
+    font-weight: 600;
+    color: var(--blanco);
+}
+
+.btn-agregar:hover{
+    background-color: var(--verdehover);
+    color: var(--blanco);
+}
+.btn-editar{
+    background-color: var(--verde);
+    color: var(--blanco);
+    width: 50px;
+    border: none;
+    padding: 2px;
+    margin: 2px;
+}
+.btn-editar:hover{
+    background-color: var(--verdehover);
+    color: var(--blanco);
+}
+.btn-eliminar{
+    background-color: var(--rojo);
+    color: var(--blanco);
+    width: 50px;
+    border: none;
+    padding: 2px;
+    margin: 2px;
+}
+.btn-eliminar:hover{
+    background-color: var(--rojo);
+    color: var(--blanco);
+}
+/*ESTILOS BARRA DE NAVEGACION*/
+nav {
+    background-color: var(--morado) !important;
+    padding: 10px;
+}
+nav a{
+    color: var(--blanco);
+    text-decoration: none;
+}
+nav  a:hover{
+    color: var(--blanco);
+}
+.opcion{
+    font-size: 20px;
+    color: var(--blanco);
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 20px;
+}
+.opcion:hover{
+    text-decoration: none;
+    color: var(--blanco);
+    background-color: var(--moradohover);
+    border-radius: 10px;
+}
+ .logo{
+    font-size: 30px;
+    font-weight: 600;
+}
+/*ESTILOS CONTENIDO PRINCIPAL*/
+.contenedor-general{
+    margin: 20px;
+    text-align: center;
+}
+.titulo h1{
+    text-align: center;
+    font-weight: 800;
+}
+.agregar{
+    text-align: right;
+}
+.card{
+    width: 100%;
+    box-shadow: 4px 4px 10px 1px rgba(0, 0, 0, 0.05);
+
+}
+/*ESTILOS TABLA*/
+.card-header{
+    background-color: var(--morado);
+    color: var(--blanco);
+    font-weight: 900;
+    font-size: 18px;
+}

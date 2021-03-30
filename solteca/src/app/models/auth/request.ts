@@ -1,4 +1,8 @@
 export interface Request {
-    status: string;
-    response: string;
-    }
+    dataUser: {
+        id: number;
+        user: string;
+        access_token: string;
+    };
+}
+

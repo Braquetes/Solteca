@@ -1,0 +1,170 @@
+/*ESTILOS BOTONES*/
+.btn{
+    width: 150px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+.btn-salir{
+    background-color: var(--rojo);
+    color: var(--blanco);
+}
+.btn-salir:hover{
+    color: var(--blanco);
+    background-color: var(--rojohover);
+}
+.btn-agregar{
+    background-color: var(--verde);
+    width: 230px;
+    font-weight: 600;
+    color: var(--blanco);
+}
+
+.btn-agregar:hover{
+    background-color: var(--verdehover);
+    color: var(--blanco);
+}
+.btn-editar{
+    background-color: var(--verde);
+    color: var(--blanco);
+    width: 50px;
+    border: none;
+    padding: 2px;
+    margin: 2px;
+}
+.btn-editar:hover{
+    background-color: var(--verdehover);
+    color: var(--blanco);
+}
+.btn-eliminar{
+    background-color: var(--rojo);
+    color: var(--blanco);
+    width: 50px;
+    border: none;
+    padding: 2px;
+    margin: 2px;
+}
+.btn-eliminar:hover{
+    background-color: var(--rojo);
+    color: var(--blanco);
+}
+.btn-buscar{
+    background-color: var(--verde);
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 20px;
+    width: 220px;
+    color: var(--blanco);
+    margin: 10px;
+}
+.btn-buscar:hover{
+    color: var(--blanco);
+    background-color: var(--verdehover);
+}
+/*ESTILOS BARRA DE NAVEGACION*/
+nav {
+    background-color: var(--morado) !important;
+    padding: 30px;
+}
+nav a{
+    color: var(--blanco);
+    text-decoration: none;
+}
+nav  a:hover{
+    color: var(--blanco);
+}
+.opcion{
+    font-size: 20px;
+    color: var(--blanco);
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 20px;
+}
+.opcion:hover{
+    text-decoration: none;
+    color: var(--blanco);
+    background-color: var(--moradohover);
+    border-radius: 10px;
+}
+ .logo{
+    font-size: 30px;
+    font-weight: 600;
+}
+/*ESTILOS CONTENIDO PRINCIPAL*/
+.container{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.titulo h1{
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+/*ESTILOS 3 CARTAS ESTADISTICAS*/
+.tarjetas{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.carta{
+    width: 90%;
+    padding-top: 25px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px 1px rgba(0, 0, 0, 0.15);
+}
+.img-card img{
+    margin: 18px;
+    width: 100px;
+}
+.info-card{
+    text-align: left;
+}
+.info-card h4{
+    font-size: 20px;
+    color: var(--negro);
+    font-weight: 800;
+}
+.info-card p{
+    color: var(--morado);
+    font-weight: 800;
+    font-size: 30px;
+}
+/*ESTILOS ESTADISTICAS POR SUCURSAL*/
+.card-reportes{
+    margin-bottom: 30px;
+    background-color: var(--blanco);
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px 1px rgba(0, 0, 0, 0.15);
+}
+.card-reportes h4{
+    font-weight: 800;
+}
+.inputs{
+    text-align: left;
+}
+.col2{
+    margin: 10px;
+    margin-bottom: 20px;
+    display: block;
+}
+.col2 label{
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+.col2 input{
+    border: 2px solid var(--morado);
+    border-radius: 5px;
+    padding: 5px;
+    width: 300px;
+    height: 35px;
+    outline: none;
+    font-weight: 400;
+}
+.col2 select{
+    width: 300px;
+    border: 2px solid var(--morado);
+    border-radius: 5px;
+    font-weight: 400;
+    outline: none;
+}

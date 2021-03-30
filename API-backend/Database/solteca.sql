@@ -17,7 +17,11 @@ create table empleados (
 
 create table sucursal (
     Id_sucursal int (11) PRIMARY KEY AUTO_INCREMENT,
-    Lugar varchar (50) NOT NULL
+    Nombre varchar (100) NOT NULL,
+    Direccion varchar (50) NOT NULL,
+    Telefono varchar (10) NOT NULL,
+    Director varchar (50) NOT NULL,
+    Unidades varchar (25) NOT NULL
 );
 
 create table boletos (
@@ -50,7 +54,8 @@ create table carrito (
     Fecha_salida date,
     Hora_salida time,
     Telefono varchar (10) NOT NULL,
-    Asiento int (11) NOT NULL
+    Asiento int (11) NOT NULL,
+    Id_venta int (11) NOT NULL
 );
 
 create table ventaPendiente(
@@ -78,8 +83,7 @@ create table vendidos(
 create table estadisticas(
     Id_estadistica int (11) PRIMARY KEY AUTO_INCREMENT,
     Sucursal int (11) NOT NULL,
-    Fecha_incio date,
-    Fecha_fin date,
+    Fecha date,
     Ruta varchar (35) NOT NULL,
     Cantidad int (11) NOT NULL,
     Vendedor varchar (30) NOT NULL,

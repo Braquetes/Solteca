@@ -1,0 +1,126 @@
+/*ESTILOS BOTONES*/
+.btn{
+    width: 150px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+.btn-salir{
+    background-color: var(--rojo);
+    color: var(--blanco);
+}
+.btn-salir:hover{
+    color: var(--blanco);
+    background-color: var(--rojohover);
+}
+.btn-lg{
+    border-radius: 25px;
+    width: 200px;
+    border: none;
+    margin: 10px;
+}
+.btn-cancelar{
+    background-color: var(--rojo);
+    color: var(--blanco);
+    font-weight: 800;
+    text-decoration: none;
+}
+.btn-cancelar:hover{
+    background-color: var(--rojohover);
+    text-decoration: none;
+    color: var(--blanco);
+}
+.btn-registrar{
+    background-color: var(--verde);
+    text-decoration: none;
+    color: var(--blanco);
+    font-weight: 800;
+}
+.btn-registrar:hover{
+    background-color: var(--verdehover);
+    text-decoration: none;
+    color: var(--blanco);
+}
+/*ESTILOS BARRA DE NAVEGACION*/
+nav {
+    background-color: var(--morado) !important;
+    padding: 30px;
+}
+nav a{
+    color: var(--blanco);
+    text-decoration: none;
+}
+nav  a:hover{
+    color: var(--blanco);
+}
+.opcion{
+    font-size: 20px;
+    color: var(--blanco);
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 20px;
+}
+.opcion:hover{
+    text-decoration: none;
+    color: var(--blanco);
+    background-color: var(--moradohover);
+    border-radius: 10px;
+}
+ .logo{
+    font-size: 30px;
+    font-weight: 600;
+}
+/*ESTILOS CONTENIDO PRINCIPAL*/
+.contenedor-general{
+    margin: 20px;
+    text-align: center;
+}
+.titulo{
+    text-align: left;
+}
+.titulo h1{
+    font-weight: 900;
+    font-size: 30px;
+}
+.titulo p{
+    font-size: 20px;
+    font-weight: 500;
+}
+.agregar{
+    text-align: right;
+}
+
+.card{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 4px 4px 10px 1px rgba(0, 0, 0, 0.05);
+}
+/*ESTILOS FORMULARIO DE SUCURSAÑ*/
+.formulario{
+    margin-top: 40px;
+}
+
+.col1{
+    text-align: left;
+    margin-bottom: 45px;
+    padding-left: 20px;
+    padding-right: 20px
+}
+.col1 label{
+    font-weight: 900;
+    font-size: 18px
+}
+.col1 input{
+    border: 1px solid var(--morado);
+   
+}
+.col1 .unidades{
+    background-color: var(--morado);
+    color: var(--blanco);
+}
+.botones{
+    margin-bottom: 50px;
+}

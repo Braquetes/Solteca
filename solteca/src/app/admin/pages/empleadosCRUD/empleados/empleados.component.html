@@ -1,1 +1,87 @@
-<p>empleados works!</p>
+<app-link></app-link>
+<!-- BARRA DE NAVEGACION -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+        <a class="navbar-brand logo" href="/administrador/menu.html">La Solteca</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link opcion" href="/administrador/menu.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link opcion" href="#">Empleados</a>
+            </li>
+            <li class="nav-item item">
+              <a
+                class="nav-link opcion"
+                href="../estadisticas/estadisticas.html"
+                >Estadisticas</a
+              >
+            </li>   
+          </ul>
+          <form class="d-flex">
+            <a class="btn btn-salir" href="../../login.html" type="submit"
+              ><i class="fas fa-sign-out-alt"></i> Salir</a
+            >
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="container-fluid">
+      <div class="contenedor-general">
+        <div class="titulo">
+          <h1>Registro de empleados</h1>
+        </div>
+        <div class="agregar">
+          <a class="btn btn-agregar" [routerLink]="['/empleados/form']"
+            >Agregar empleado <i class="icon ion-md-add"></i
+          ></a>
+        </div>
+        <div class="container-fluid pt-4">
+          <div class="card">
+            <table class="table">
+              <thead class="card-header">
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellidos</th>
+                  <th scope="col">Sexo</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">Contraseña</th>
+                  <th scope="col">Terminal</th>
+                  <th scope="col">Cargo</th>
+                  <th scope="col">Opciones</th>
+                </tr>
+              </thead>
+              <tbody class="card-body">
+                <tr>
+                  <th scope="row">Nombre</th>
+                  <td>Apellidos</td>
+                  <td>Sexo</td>
+                  <td>Usuario</td>
+                  <td>Contraseña</td>
+                  <td>Terminal</td>
+                  <td>Cargo</td>
+                  <td>
+                    <div class="d-grid gap-1 d-md-block">
+                      <a
+                        class="btn-editar"
+                        href="editarempleado.html"
+                        type="button"
+                        ><i class="fas fa-pen"></i
+                      ></a>
+                      <a class="btn-eliminar" href="" type="button"
+                        ><i class="fas fa-trash"></i
+                      ></a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
