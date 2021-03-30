@@ -1,7 +1,7 @@
 <app-link></app-link>
 <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
-          <a class="navbar-brand logo" href="/administrador/menu.html">La Solteca</a>
+          <a class="navbar-brand logo" [routerLink]="['/menu']">La Solteca</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -10,7 +10,7 @@
             
             </ul>
             <form class="d-flex">
-              <a class="btn btn-salir" href="tablaempleados.html" type="submit"><i class="fas fa-chevron-left"></i> Volver</a>
+              <a class="btn btn-salir" [routerLink]="['/empleados']" type="submit"><i class="fas fa-chevron-left"></i> Volver</a>
             </form>
           </div>
         </div>
@@ -34,45 +34,45 @@
                     <p>Rellene los campos para añadir un nuevo empleado</p>
                 </div>
                 <div class="formulario">
-                    <form action="">
+                    <form>
                         <div class="row">
                             <div class="col-sm col1">
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
+                                    <label class="form-label">Nombre</label>
+                                    <input name="mensaje" [(ngModel)]="empleados.mensaje" type="text" class="form-control" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
                                   </div>
                             </div>
                             <div class="col-sm col1">
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Apellidos</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
+                                    <label class="form-label">Apellidos</label>
+                                    <input type="text" class="form-control" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
                                   </div>
                             </div>
                             <div class="col-sm col1">
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Sexo</label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Ingresa numero telefonico de la terminal" aria-describedby="emailHelp">
+                                    <label class="form-label">Sexo</label>
+                                    <input type="number" class="form-control" placeholder="Ingresa numero telefonico de la terminal" aria-describedby="emailHelp">
                                   </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm col1">
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
+                                    <label class="form-label">Usuario</label>
+                                    <input type="text" class="form-control" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
                                   </div>
                             </div>
                             <div class="col-sm col1">
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Contraseña</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
+                                    <label class="form-label">Contraseña</label>
+                                    <input type="text" class="form-control" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
                                   </div>
                             </div>
                             <div class="col-sm col1">
                                 <div class="mb-3">
                                     <div class="input-group mt-4 pt-2">
                                         <label class="input-group-text unidades" for="inputGroupSelect01">Cargo</label>
-                                        <select class="form-select" id="inputGroupSelect01">
+                                        <select class="form-select">
                                           <option selected>Selecciona el cargo</option>
                                           <option value="1">Administrador</option>
                                           <option value="2">Vendedor</option>
@@ -88,7 +88,7 @@
                                 <div class="mb-3">
                                     <div class="input-group mt-4 pt-2">
                                         <label class="input-group-text unidades" for="inputGroupSelect01">Terminal</label>
-                                        <select class="form-select" id="inputGroupSelect01">
+                                        <select class="form-select">
                                           <option selected>Selecciona la terminal</option>
                                           <option value="1">Terminal 1</option>
                                           <option value="2">Terminal 2</option>
@@ -101,8 +101,8 @@
                             </div>
                         </div>
                        <div class="botones">
-                        <a type="button" href="tablaempleados.html" class="btn-cancelar btn-lg"><i class="fas fa-times"></i> Cancelar</a>
-                        <button type="button" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Registrar</button>
+                        <a type="button" [routerLink]="['/empleados']" class="btn-cancelar btn-lg"><i class="fas fa-times"></i> Cancelar</a>
+                        <button (click)="enviar()" type="button" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Registrar</button>
                         
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -115,7 +115,7 @@
                                  El empleado se ha agregado correctamente.
                                 </div>
                                 <div class="modal-footer">
-                                  <a type="button" href="tablasucursal.html" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Aceptar</a>
+                                  <a type="button" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Aceptar</a>
 
                                 </div>
                               </div>
@@ -127,6 +127,8 @@
               </div>
           </div>
         </div>
-       
-
+    </div>
+    <div class="col-md-4">
+    <div class="card-body text-center">
+        <h3 class="card-title">{{empleados.mensaje}}</h3>
     </div>

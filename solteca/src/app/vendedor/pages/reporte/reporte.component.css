@@ -1,0 +1,173 @@
+/*ESTILOS BOTONES*/
+.dato .btn-seguir {
+  background-color: var(--verde);
+  color: var(--blanco);
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.dato .btn-seguir:hover {
+  color: var(--blanco);
+  background-color: var(--verdehover);
+}
+
+.dato .btn-terminar {
+  background-color: var(--rojo);
+  color: var(--blanco);
+  outline: none;
+  border: none;
+  width: 200px;
+  font-size: 18px;
+  border-radius: 15px;
+  font-weight: 600;
+}
+
+.dato .btn-terminar:hover {
+  color: var(--blanco);
+  background-color: var(--rojohover);
+}
+
+/*ESTILOS BARRA LATERAL*/
+#sidebar-container {
+  padding-top: 10px;
+  color: var(--blanco);
+  text-align: center;
+  min-height: 100vh;
+  background-color: var(--principal);
+}
+
+#sidebar-container .logo {
+  padding: 0.875rem 1.25rem;
+}
+
+#sidebar-container .menu {
+  width: 15rem;
+}
+
+#content {
+  overflow-y: auto;
+  height: 100vh;
+  padding-bottom: 3rem;
+}
+
+.logo img {
+  width: 100px;
+  padding: 10px;
+}
+
+.logo h1 {
+  font-weight: 900;
+  font-size: 30px;
+}
+
+.logo p {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.logo h2 {
+  font-size: 30px;
+}
+
+.menu a {
+  color: var(--blanco);
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.menu a:hover {
+  background-color: var(--hover-menu);
+  text-decoration: none;
+  color: var(--blanco);
+}
+
+/*ESTILOS DE BARRA DE NAVEGACION*/
+.header {
+  background-color: var(--blanco);
+  display: grid;
+  padding: 10px;
+  width: 100%;
+  grid-template-columns: 25% 25% 25% 25%;
+  text-align: center;
+  box-shadow: 0px 4px 15px 1px rgba(0, 0, 0, 0.18);
+
+}
+
+.dato {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dato h1 {
+  color: var(--principal);
+  font-weight: 900;
+  font-size: 30px;
+}
+
+.dato p {
+  padding-top: 5px;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+/*ESTILOS CONTENIDO GENERAL*/
+.contenedor-general {
+  /*     border: 2px solid red;
+ */
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+/*ESTILOS TARJETAS CONTENEDORAS*/
+.card {
+  margin: 15px;
+  background-color: var(--blanco);
+  box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.10);
+}
+
+/*ESTILOS CARTA DE SELECCIONAR FECHAS*/
+.selecciona {
+  text-align: center;
+}
+
+.selecciona label {
+  font-weight: 700;
+}
+
+.selecciona input {
+  padding: 2px;
+  border: 2px solid var(--morado);
+}
+
+.selecciona select {
+  padding: 2px;
+  border: 2px solid var(--morado);
+  height: 35px;
+}
+
+.selecciona a {
+  margin: 25px;
+  background-color: var(--verde);
+  color: var(--blanco);
+  outline: none;
+  width: 200px;
+  font-size: 18px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.selecciona a:hover {
+  background-color: var(--verdehover);
+  color: var(--blanco);
+}
+
+/*ESTILOS TABLA ESTADISTICAS*/
+thead {
+  background-color: var(--principal);
+  color: var(--blanco);
+  font-weight: 700;
+  font-size: 18px;
+}

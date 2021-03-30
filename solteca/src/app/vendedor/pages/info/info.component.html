@@ -1,0 +1,209 @@
+<app-link></app-link>
+<div class="d-flex" id="content-wrapper">
+
+        <!-- BARRA LATERAL -->
+        <div id="sidebar-container" class="">
+            <div class="logo">
+                <img src="../../../../assets/img/user1.png" alt="">
+                <h3 class="d-block  p-1 border-0">Vendedor</h3>
+                <p class="d-block  p-1 border-0">Nombre Vendedor</p>
+                <p class="d-block  p-1 border-0">Turno</p>
+            </div>
+            <div class="menu">
+                <a [routerLink]="['/ventanilla']" class="d-block  p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
+                Ventas</a>
+                <a [routerLink]="['/reporte']" class="d-block  p-3 border-0"><i class="icon ion-md-analytics lead mr-2"></i>
+                    Reportes</a>
+                <a href="#" class="d-block  p-3 border-0"><i class="icon ion-md-qr-scanner lead mr-2"></i>
+                    Imprimir</a>
+                <a [routerLink]="['/info']" class="d-block  p-3 border-0"><i class="icon ion-md-information-circle-outline lead mr-2"></i>
+                    Mas información</a>
+            </div>
+        </div>
+        <!-- FIN BARRA LATERAL -->
+
+        <div class="w-100">
+            <nav class="header">
+                <div class="dato">
+                    <a (click)="salir()" type="button" class="btn btn-terminar"><i class="fas fa-sign-out-alt"></i> Terminar Turno</a>
+              </div>
+                <div class="dato">
+                  <h1>Más Información</h1>
+                </div>
+              <div class="dato">
+                <h5>Fecha: <span class="badge badge-light">00/00/00</span></h5>
+              </div>
+              <div class="dato">
+                <h5>Hora: <span class="badge badge-light">00:00:00</span></h5>
+              </div>
+            </nav>
+       
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div id="content" class=" w-100">
+            <div class="contenedor-general">
+               <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                                <div class="card card-table">
+                                    <div class="tabla">
+                                        <table class="table">
+                                         <div class="title-table">
+                                             <h4>Tipos de boletos</h4>
+                                           </div>
+                                           <thead class="thead">
+                                            <tr>
+                                                <th class="columna1" >Tipo</th>
+                                                <th>Normal</th>
+                                                <th>Discapacitados</th>
+                                                <th>Niños</th>
+                                                <th>Maestros</th>
+                                                <th>Estudiantes</th>
+                                                <th>INSEN</th>
+                                            </tr>
+                                           </thead>
+                                            <tr>
+                                                <td class="columna1">Precio</td>
+                                                <td>$250</td>
+                                                <td>$250</td>
+                                                <td>$250</td>
+                                                <td>$250</td>
+                                                <td>$250</td>
+                                                <td>$250</td>
+                                            </tr>
+                                            <tr>
+                                                 <td class="columna1">Comprados</td>
+                                                 <td>19</td>
+                                                 <td>10</td>
+                                                 <td>1</td>
+                                                 <td>20</td>
+                                                 <td>20</td>
+                                                 <td>20</td>
+                                              </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card card1">
+                                <ul class="list-group">
+                                    <li class="list-group-item encabezado" aria-current="true">Horario de Atención</li>
+                                    <li class="list-group-item"><strong>Lunes: </strong>6:00 - 22:00</li>
+                                    <li class="list-group-item"><strong>Martes: </strong>6:00 - 22:00</li>
+                                    <li class="list-group-item"><strong>Miercoles: </strong>6:00 - 22:00</li>
+                                    <li class="list-group-item"><strong>Jueves: </strong>6:00 - 22:00</li>
+                                    <li class="list-group-item"><strong>Viernes: </strong>6:00 - 22:00</li>
+                                    <li class="list-group-item"><strong>Sabado: </strong>6:00 - 22:00</li>
+                                    <li class="list-group-item"><strong>Domingo: </strong>6:00 - 22:00</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="card card2">
+                                <li class="list-group-item encabezado" aria-current="true">Destinos</li>
+
+                               <div class="card-body destinos">
+                                   <div class="row">
+                                       <div class="col">
+                                        <ul class="list-group">
+                                            <li class="list-group-item bg-light" aria-current="true"><strong><i class="fas fa-location-arrow"></i> Sola de Vega</strong></li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 5:30 am</li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 8:15 am</li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 12:00 pm</li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 3:00 pm</li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 11:00 pm</li>
+                                          </ul>
+                                       </div>
+                                       <div class="col">
+                                        <ul class="list-group">
+                                            <li class="list-group-item bg-light" aria-current="true"><strong><i class="fas fa-location-arrow"></i> Puerto Escondido</strong></li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 7:00 am</li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 9:00 am</li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 10:00 am</li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 11:20 pm</li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 1:00 pm</li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 4:00 pm</li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 6:00 pm</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <ul class="list-group">
+                                            <li class="list-group-item bg-light" aria-current="true"><strong><i class="fas fa-location-arrow"></i> Río Grande</strong></li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 8:00 am</li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 10:00 am</li>
+                                            <li class="list-group-item"><i class="far fa-clock"></i> 11:00 pm</li>
+                                            
+                                        </ul>
+                                    </div>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="card card3">
+                        <li class="list-group-item encabezado" aria-current="true">Empleados</li>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card card-empleado">
+                                    <div class="img-card">
+                                        <img src="../../../../assets/img/user.png" alt="">
+                                    </div>
+                                    <div class="card-header">
+                                        <strong>Nombre: </strong> User
+                                      </div>
+                                      <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><strong>Edad</strong></li>
+                                        <li class="list-group-item"><strong>Puesto</strong></li>
+                                        <li class="list-group-item"><strong>Telefono</strong></li>
+                                        <li class="list-group-item"><strong>Campo Extra</strong></li>
+                                      </ul>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card card-empleado">
+                                    <div class="img-card">
+                                        <img src="../../../../assets/img/user.png" alt="">
+                                    </div>
+                                    <div class="card-header">
+                                        <strong>Nombre: </strong> User
+                                      </div>
+                                      <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><strong>Edad</strong></li>
+                                        <li class="list-group-item"><strong>Puesto</strong></li>
+                                        <li class="list-group-item"><strong>Telefono</strong></li>
+                                        <li class="list-group-item"><strong>Campo Extra</strong></li>
+                                      </ul>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card card-empleado">
+                                    <div class="img-card">
+                                        <img src="../../../../assets/img/user.png" alt="">
+                                    </div>
+                                    <div class="card-header">
+                                        <strong>Nombre: </strong> User
+                                      </div>
+                                      <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><strong>Edad</strong></li>
+                                        <li class="list-group-item"><strong>Puesto</strong></li>
+                                        <li class="list-group-item"><strong>Telefono</strong></li>
+                                        <li class="list-group-item"><strong>Campo Extra</strong></li>
+                                      </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </div>

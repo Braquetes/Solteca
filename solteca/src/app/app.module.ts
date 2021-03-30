@@ -26,6 +26,8 @@ import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { LinkComponent } from './extras/link/link.component';
 import { FooterComponent } from './extras/footer/footer.component';
+import { ReporteComponent } from './vendedor/pages/reporte/reporte.component';
+import { InfoComponent } from './vendedor/pages/info/info.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { FooterComponent } from './extras/footer/footer.component';
     HeaderVoidComponent,
     HeaderVentanillaComponent,
     LinkComponent,
-    FooterComponent
+    FooterComponent,
+    ReporteComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,

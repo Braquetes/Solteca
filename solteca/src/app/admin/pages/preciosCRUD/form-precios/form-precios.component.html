@@ -2,7 +2,7 @@
 <!-- BARRA DE NAVEGACION -->
      <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
-          <a class="navbar-brand logo" href="/administrador/menu.html">La Solteca</a>
+          <a class="navbar-brand logo" [routerLink]="['/menu']">La Solteca</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -11,7 +11,7 @@
             
             </ul>
             <form class="d-flex">
-              <a class="btn btn-salir" href="precios.html" type="submit"><i class="fas fa-chevron-left"></i> Volver</a>
+              <a [routerLink]="['/precios']" class="btn btn-salir" [routerLink]="['/precios']" type="submit"><i class="fas fa-chevron-left"></i> Volver</a>
             </form>
           </div>
         </div>
@@ -25,7 +25,7 @@
               <a class="btn btn-agregar" href="agregarsucursal.html">Agregar sucursal <i class="icon ion-md-add"></i></a>
           </div> -->
             <ol class="breadcrumb">
-              <li class="breadcrumb-item h5"><a href="precios.html">Precios</a></li>
+              <li class="breadcrumb-item h5"><a [routerLink]="['/precios']">Precios</a></li>
               <li class="breadcrumb-item active h5" aria-current="page">Agregar boleto</li>
             </ol>
           <div class="container pt-4 w-50">
@@ -74,7 +74,7 @@
                         </div>
                        
                        <div class="botones">
-                        <a type="button" href="precios.html" class="btn-cancelar btn-lg"><i class="fas fa-times"></i> Cancelar</a>
+                        <a type="button" [routerLink]="['/precios']" class="btn-cancelar btn-lg"><i class="fas fa-times"></i> Cancelar</a>
                         <button type="button" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Registrar</button>
                         
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -88,7 +88,7 @@
                                  El boleto se ha agregado correctamente.
                                 </div>
                                 <div class="modal-footer">
-                                  <a type="button" href="precios.html" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Aceptar</a>
+                                  <a type="button" [routerLink]="['/precios']" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Aceptar</a>
 
                                 </div>
                               </div>

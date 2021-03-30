@@ -1,3 +1,5 @@
+import { ReporteComponent } from './vendedor/pages/reporte/reporte.component';
+import { InfoComponent } from './vendedor/pages/info/info.component';
 import { ReporteSucursalComponent } from './admin/pages/estadisticasMENU/reporte-sucursal/reporte-sucursal.component';
 import { ReporteGeneralComponent } from './admin/pages/estadisticasMENU/reporte-general/reporte-general.component';
 import { NgModule } from '@angular/core';
@@ -14,78 +16,89 @@ import { LoginComponent } from './pages/login/login.component';
 import { CarritoComponent } from './vendedor/pages/carrito/carrito.component';
 import { VentanillaComponent } from './vendedor/pages/ventanilla/ventanilla.component';
 import { FormPreciosComponent } from './admin/pages/preciosCRUD/form-precios/form-precios.component';
+import { FormsGuard } from './guards/forms.guard';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'ventanilla',
     component: VentanillaComponent,
-    canActivate: [VigilanteGuard]
+    canActivate: [VigilanteGuard],
   },
   {
     path: 'carrito',
     component: CarritoComponent,
-    canActivate: [VigilanteGuard]
+    canActivate: [VigilanteGuard],
   },
   {
     path: 'sucursal',
     component: SucursalComponent,
-    canActivate: [VigilanteGuard]
+    canActivate: [VigilanteGuard],
   },
   {
     path: 'sucursal/form',
     component: FormSucursalComponent,
-    canActivate: [VigilanteGuard]
+    canActivate: [VigilanteGuard],
   },
   {
     path: 'sucursal/reporte-general',
     component: ReporteGeneralComponent,
-    canActivate: [VigilanteGuard]
+    canActivate: [VigilanteGuard],
   },
   {
     path: 'sucursal/reporte-sucursal',
     component: ReporteSucursalComponent,
-    canActivate: [VigilanteGuard]
+    canActivate: [VigilanteGuard],
   },
   {
     path: 'menu',
-    component:  MenuComponent,
-    canActivate: [VigilanteGuard]
+    component: MenuComponent,
+    canActivate: [VigilanteGuard],
   },
   {
     path: 'empleados',
     component: EmpleadosComponent,
-    canActivate: [VigilanteGuard]
+    canActivate: [VigilanteGuard],
   },
   {
     path: 'empleados/form',
     component: FormEmpleadoComponent,
-    canActivate: [VigilanteGuard]
+    canActivate: [VigilanteGuard],
+    canDeactivate: [FormsGuard]
   },
   {
     path: 'estadisticas',
     component: EstadisticasComponent,
-    canActivate: [VigilanteGuard]
+    canActivate: [VigilanteGuard],
   },
   {
     path: 'precios',
     component: PreciosComponent,
-    canActivate: [VigilanteGuard]
+    canActivate: [VigilanteGuard],
   },
   {
     path: 'precios/form',
     component: FormPreciosComponent,
-    canActivate: [VigilanteGuard]
+    canActivate: [VigilanteGuard],
+  },
+  {
+    path: 'info',
+    component: InfoComponent,
+    canActivate: [VigilanteGuard],
+  },
+  {
+    path: 'reporte',
+    component: ReporteComponent,
+    canActivate: [VigilanteGuard],
   },
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: 'login'
+    redirectTo: 'login',
   },
-
 ];
 
 @NgModule({

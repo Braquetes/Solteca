@@ -2,7 +2,7 @@
 <!-- BARRA DE NAVEGACION -->
     <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
-          <a class="navbar-brand logo" href="/administrador/menu.html">La Solteca</a>
+          <a class="navbar-brand logo">La Solteca</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -11,7 +11,7 @@
               
             </ul>
             <form class="d-flex">
-              <button class="btn btn-salir" type="submit"><i class="fas fa-chevron-left"></i> <a href="estadisticas.html"> Volver</a></button>
+              <button [routerLink]="['/estadisticas']" class="btn btn-salir" type="submit"><i class="fas fa-chevron-left"></i> <a> Volver</a></button>
             </form>
           </div>
         </div>
@@ -19,7 +19,7 @@
 
       <div class="container pt-4">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item h5"><a href="estadisticas.html">Estadisticas</a></li>
+            <li class="breadcrumb-item h5"><a [routerLink]="['/estadisticas']">Estadisticas</a></li>
             <li class="breadcrumb-item active h5" aria-current="page">Estadisticas generales</li>
           </ol>
       </div>

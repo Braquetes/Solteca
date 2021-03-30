@@ -2,7 +2,7 @@
 <!-- BARRA DE NAVEGACION -->
      <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
-          <a class="navbar-brand logo" href="/administrador/menu.html">La Solteca</a>
+          <a class="navbar-brand logo">La Solteca</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -10,7 +10,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
             <form class="d-flex">
-              <a class="btn btn-salir" href="tablasucursal.html" type="submit"><i class="fas fa-chevron-left"></i> Volver</a>
+              <a class="btn btn-salir" [routerLink]="['/sucursal']" type="submit"><i class="fas fa-chevron-left"></i> Volver</a>
             </form>
           </div>
         </div>
@@ -24,7 +24,7 @@
               <a class="btn btn-agregar" href="agregarsucursal.html">Agregar sucursal <i class="icon ion-md-add"></i></a>
           </div> -->
             <ol class="breadcrumb">
-              <li class="breadcrumb-item h5"><a href="tablasucursal.html">Sucursales</a></li>
+              <li class="breadcrumb-item h5"><a [routerLink]="['/sucursal']">Sucursales</a></li>
               <li class="breadcrumb-item active h5" aria-current="page">Agregar Sucursal</li>
             </ol>
           <div class="container pt-4 d-flex justify-content-center">
@@ -77,7 +77,7 @@
                             </div>
                         </div>
                        <div class="botones">
-                        <a type="button" href="tablasucursal.html" class="btn-cancelar btn-lg"><i class="fas fa-times"></i> Cancelar</a>
+                        <a type="button" [routerLink]="['/sucursal']" class="btn-cancelar btn-lg"><i class="fas fa-times"></i> Cancelar</a>
                         <button type="button" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Registrar</button>
                         
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -91,7 +91,7 @@
                                  La sucursal se ha registrado correctamente
                                 </div>
                                 <div class="modal-footer">
-                                  <a type="button" href="tablasucursal.html" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Aceptar</a>
+                                  <a type="button" [routerLink]="['/sucursal']" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Aceptar</a>
 
                                 </div>
                               </div>

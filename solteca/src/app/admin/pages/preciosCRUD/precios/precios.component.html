@@ -2,24 +2,24 @@
 <!-- BARRA DE NAVEGACION -->
     <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
-          <a class="navbar-brand logo" href="/administrador/menu.html">La Solteca</a>
+          <a class="navbar-brand logo">La Solteca</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link opcion" href="/administrador/menu.html">Inicio</a>
+                <a class="nav-link opcion" [routerLink]="['/menu']">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link opcion" href="../empleados/tablaempleados.html">Empleados</a>
+                <a class="nav-link opcion" [routerLink]="['/empleados']">Empleados</a>
               </li>
               <li class="nav-item item">
-                <a class="nav-link opcion" href="../estadisticas/estadisticas.html">Estadisticas</a>
+                <a class="nav-link opcion" [routerLink]="['/estadisticas']">Estadisticas</a>
               </li>
             </ul>
             <form class="d-flex">
-              <button class="btn btn-salir" type="submit"><i class="icon ion-md-sync"></i> <a href="../../login.html">Salir</a></button>
+              <button (click)="salir()" class="btn btn-salir" type="submit"><i class="icon ion-md-sync"></i> <a>Salir</a></button>
             </form>
           </div>
         </div>
@@ -51,8 +51,8 @@
                             <td>Precio con descuento</td>
                             <td>
                                 <div class="d-grid gap-1 d-md-block">
-                                    <a class="btn-editar " href="editarprecio.html" type="button"><i class="fas fa-pen"></i></a>
-                                    <a class="btn-eliminar " href="" type="button"><i class="fas fa-trash"></i></a>
+                                    <a class="btn-editar " [routerLink]="['/precios/form']" type="button"><i class="fas fa-pen"></i></a>
+                                    <a class="btn-eliminar" type="button"><i class="fas fa-trash"></i></a>
                                   </div>
                             </td>
                           </tr>

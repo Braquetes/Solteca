@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdministradorService {
+  constructor(private CS: CookieService, private router: Router) {}
 
-  constructor() { }
+  logout(): void {
+    this.CS.deleteAll();
+    this.router.navigate(['/']);
+  }
+
 }

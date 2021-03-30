@@ -1,3 +1,4 @@
+import { AdministradorService } from './../../../services/administrador.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -5,18 +6,15 @@ import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
+  constructor(private CS: CookieService, private router: Router, private AS: AdministradorService) {}
 
-  constructor(private CS: CookieService, private router: Router) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  logout(): void{
-    this.CS.deleteAll();
-    this.router.navigate(['/']);
+  salir(): void {
+    this.AS.logout();
   }
 
 }

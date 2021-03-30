@@ -12,14 +12,14 @@
                 <a class="nav-link opcion" href="/administrador/menu.html">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link opcion" href="/administrador/empleados/tablaempleados.html">Empleados</a>
+                <a class="nav-link opcion" [routerLink]="['/empleados']">Empleados</a>
               </li>
               <li class="nav-item item">
-                <a class="nav-link opcion" href="../estadisticas/estadisticas.html">Estadisticas</a>
+                <a class="nav-link opcion" [routerLink]="['/estadisticas']">Estadisticas</a>
               </li>
             </ul>
             <form class="d-flex">
-              <a class="btn btn-salir" href="../../login.html" type="submit"><i class="fas fa-sign-out-alt"></i> Salir</a>
+              <a class="btn btn-salir" (click)="salir()" type="submit"><i class="fas fa-sign-out-alt"></i> Salir</a>
             </form>
           </div>
         </div>

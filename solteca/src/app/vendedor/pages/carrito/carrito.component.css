@@ -1,381 +1,306 @@
-/*ESTILOS GENERALES*/
-
-:root {
-    --fondo: #f6f6f6;
-    --rojo: #e71d19;
-    --rojohover: #f8130f;
-    --principal: #4e5c81;
-    --verde: #3ad138;
-    --verdehover: #09e205;
-    --verdeasiento: #1bcf0e;
-    --rojoasiento: #1bcf0e;
-    --blanco: #ffffff;
-    --negro: #000000;
-    --hover-menu: #3a4767;
-    --morado: #5254c2;
-    --moradohover: #4445af;
-}
-
-.body {
-    background-color: #f6f6f6;
-    overflow: hidden;
-    font-family: 'Muli', sans-serif;
-    font-weight: 300;
-}
-
-
 /*ESTILOS BOTONES*/
-
 .dato .btn-seguir {
-    background-color: #3ad138;
-    color: #ffffff;
-    outline: none;
-    border: none;
-    width: 200px;
-    border-radius: 15px;
-    font-weight: 700;
+  background-color: var(--verde);
+  color: var(--blanco);
+  outline: none;
+  border: none;
+  width: 200px;
+  border-radius: 15px;
+  font-weight: 700;
 }
 
 .dato .btn-seguir:hover {
-    color: #ffffff;
-    background-color: #09e205;
+  color: var(--blanco);
+  background-color: var(--verdehover);
 }
 
 .verificar .btn-agregar {
-    color: #ffffff;
-    font-weight: 600;
-    outline: none;
-    border: none;
-    width: 200px;
-    border-radius: 15px;
-    background-color: #5254c2;
+  color: var(--blanco);
+  font-weight: 600;
+  outline: none;
+  border: none;
+  width: 200px;
+
+  border-radius: 15px;
+  background-color: var(--morado);
 }
 
 .verificar .btn-agregar:hover {
-    color: #ffffff;
-    background-color: #4445af;
+  color: var(--blanco);
+  background-color: var(--moradohover);
 }
 
-
 /*ESTILOS BARRA LATERAL*/
-
 #sidebar-container {
-    padding-top: 10px;
-    color: #ffffff;
-    text-align: center;
-    min-height: 100vh;
-    background-color: #4e5c81;
+  padding-top: 10px;
+  color: var(--blanco);
+  text-align: center;
+  min-height: 100vh;
+  background-color: var(--principal);
 }
 
 #sidebar-container .logo {
-    padding: 0.875rem 1.25rem;
+  padding: 0.875rem 1.25rem;
 }
 
 #sidebar-container .menu {
-    width: 15rem;
+  width: 15rem;
 }
 
 #content {
-    overflow-y: auto;
-    height: 100vh;
-    padding-bottom: 3rem;
+  overflow-y: auto;
+  height: 100vh;
+  padding-bottom: 3rem;
 }
 
 .logo img {
-    width: 100px;
-    padding: 10px;
+  width: 100px;
+  padding: 10px;
 }
 
 .logo h1 {
-    font-weight: 900;
-    font-size: 30px;
+  font-weight: 900;
+  font-size: 30px;
 }
 
 .logo p {
-    font-weight: 500;
-    font-size: 20px;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .logo h2 {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .menu a {
-    color: #ffffff;
-    font-weight: 400;
-    font-size: 20px;
+  color: var(--blanco);
+  font-weight: 400;
+  font-size: 20px;
 }
 
 .menu a:hover {
-    background-color: #3a4767;
-    text-decoration: none;
-    color: #ffffff;
+  background-color: var(--hover-menu);
+  text-decoration: none;
+  color: var(--blanco);
 }
 
-
 /*ESTILOS DE BARRA DE NAVEGACION*/
-
 .header {
-    background-color: #ffffff;
-    display: grid;
-    padding: 10px;
-    width: 100%;
-    grid-template-columns: 25% 25% 25% 25%;
-    text-align: center;
-    box-shadow: 0px 4px 15px 1px rgba(0, 0, 0, 0.18);
+  background-color: var(--blanco);
+  display: grid;
+  padding: 10px;
+  width: 100%;
+  grid-template-columns: 25% 25% 25% 25%;
+  text-align: center;
+  box-shadow: 0px 4px 15px 1px rgba(0, 0, 0, 0.18);
+
 }
 
 .dato {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dato h1 {
-    color: #4e5c81;
-    font-weight: 900;
-    font-size: 30px;
+  color: var(--principal);
+  font-weight: 900;
+  font-size: 30px;
 }
 
 .dato p {
-    padding-top: 5px;
-    font-weight: 500;
-    font-size: 20px;
+  padding-top: 5px;
+  font-weight: 500;
+  font-size: 20px;
 }
-
 
 /*ESTILOS CONTENIDO GENERAL*/
-
 .contenedor-general {
-    /*     border: 2px solid red;
+  /*     border: 2px solid red;
  */
-    padding-top: 25px;
-    padding-bottom: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
-
 
 /*ESTILOS TARJETAS CONTENEDORAS*/
-
 .card {
-    padding: 5px;
-    margin-bottom: 15px;
-    background-color: #ffffff;
-    box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.10);
+  padding: 5px;
+  margin-bottom: 15px;
+  background-color: var(--blanco);
+  box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.10);
 }
-
 
 /*ESTILOS TARJETA DE TABLA DE BOLETOS*/
 
 .card-table {
-    padding: 5px;
-    margin-bottom: 15px;
-    background-color: #ffffff;
-    box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.10);
+  padding: 5px;
+  margin-bottom: 15px;
+  background-color: var(--blanco);
+  box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.10);
 }
 
 tr .total {
-    font-weight: 700;
-    font-size: 20px;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .botones-compra {
-    text-align: center;
-    padding: 10px;
+  text-align: center;
+  padding: 10px;
 }
 
 .botones-compra .btn-agregar {
-    background-color: #3ad138;
-    border: none;
-    border-radius: 15px;
-    color: #ffffff;
-    font-weight: 700;
-    outline: none;
-    width: 200px;
-    font-size: 18px;
+  background-color: var(--verde);
+  border: none;
+  border-radius: 15px;
+  color: var(--blanco);
+  font-weight: 700;
+  outline: none;
+  width: 200px;
+  font-size: 18px;
+
 }
 
 .botones-compra .btn-agregar:hover {
-    background-color: #09e205;
-    color: #ffffff;
+  background-color: var(--verdehover);
+  color: var(--blanco);
 }
 
 .botones-compra .btn-cancelar {
-    background-color: #e71d19;
-    border: none;
-    border-radius: 15px;
-    color: #ffffff;
-    font-weight: 700;
-    outline: none;
-    width: 200px;
-    font-size: 18px;
+  background-color: var(--rojo);
+  border: none;
+  border-radius: 15px;
+  color: var(--blanco);
+  font-weight: 700;
+  outline: none;
+  width: 200px;
+  font-size: 18px;
 }
 
 .botones-compra .btn-cancelar:hover {
-    background-color: #f8130f;
-    color: #ffffff;
+  background-color: var(--rojohover);
+  color: var(--blanco);
 }
 
-
 /*ESTILOS TARJETA AUTOBUS*/
-
 .titlebus h5 {
-    text-align: center;
-    font-weight: 700;
+  text-align: center;
+  font-weight: 700;
 }
 
 .disponibles {
-    text-align: center;
+  text-align: center;
 }
 
 .disponibles h6 {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .disponibles .disponible {
-    width: 50px;
-    background-color: #1bcf0e;
-    border-radius: 10px;
-    border: 6px solid #1bcf0e;
+  width: 50px;
+  background-color: var(--verdeasiento);
+  border-radius: 10px;
+  border: 6px solid var(--verdeasiento);
 }
 
 .disponibles .nodisponible {
-    width: 50px;
-    background-color: #e71d19;
-    border-radius: 10px;
-    border: 6px solid #e71d19;
+  width: 50px;
+  background-color: var(--rojo);
+  border-radius: 10px;
+  border: 6px solid var(--rojo);
 }
 
-
 /*ESTILOS AUTOBUS ASIENTOS*/
-
 .container-autobus {
-    height: 80vh;
-    background-image: url("../../../../assets/img/bus1.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    border: 2px solid rgba(255, 255, 255, 0);
+  height: 80vh;
+  background-image: url("../../../../assets/img/bus1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 2px solid rgba(255, 255, 255, 0);
 }
 
 .img-autobus {
-    width: 50%;
-    margin-left: 6vw;
-    margin-top: 14vh;
+
+  width: 50%;
+  margin-left: 6vw;
+  margin-top: 14vh;
 }
 
 input[type=checkbox] {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .containerbus {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .autobus {
-    margin-left: 5%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 160px;
-    height: 200px;
+  margin-left: 5%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 160px;
+  height: 200px;
 }
 
 .fila {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .seccion {
-    display: flex;
-    width: 40%;
-    justify-content: space-between;
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
 }
 
 .asiento {
-    width: 21px;
-    height: 21px;
-    color: white;
-    font-size: 10;
-    text-align: center;
-    background: #fcfff4;
-    background: linear-gradient(#fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-    margin: 5px auto;
-    box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
-    position: relative;
+  width: 21px;
+  height: 21px;
+  color: white;
+  font-size: 10;
+  text-align: center;
+  background: #fcfff4;
+  background: linear-gradient(#fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  margin: 5px auto;
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
 }
 
 .asiento label {
-    cursor: pointer;
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    left: 3px;
-    top: 3px;
-    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
-    background: linear-gradient(#222 0%, #45484d 100%);
+  cursor: pointer;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: 3px;
+  top: 3px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
+  background: linear-gradient(#222 0%, #45484d 100%);
 }
 
 .asiento label:after {
-    filter: alpha(opacity=0);
-    opacity: 0;
-    content: '';
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: #00bf00;
-    background: linear-gradient(#0895d3 0%, #0966a8 100%);
-    top: 0px;
-    left: 0px;
-    box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+  filter: alpha(opacity=0);
+  opacity: 0;
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #00bf00;
+  background: linear-gradient(#0895d3 0%, #0966a8 100%);
+  top: 0px;
+  left: 0px;
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .asiento label:hover::after {
-    filter: alpha(opacity=30);
-    opacity: 0.3;
+  filter: alpha(opacity=30);
+  opacity: 0.3;
 }
 
 .asiento input[type=checkbox]:checked+label:after {
-    filter: alpha(opacity=100);
-    opacity: 1;
+  filter: alpha(opacity=100);
+  opacity: 1;
 }
-
-
-/* 
-.fondoautobus{
-    text-align: center;
-    width: 100%;
-    height: 100vh;
-    background-image: url("/img/bustop1.png   ");
-    background-repeat: no-repeat;
-    background-position: top;
-    background-size: cover;
-    border: 2px solid rgba(255, 0, 0, 0);
-}
-
-.asientos{
-    border: 4px solid #09e20500;
-    margin:15%;
-}
-.tarjetaasientos{
-    border: 3px solid rgba(247, 0, 255, 0);
-    margin-top: 75%;
-    width: 100%;
-
-}
-.col-asientos{
-    text-align: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 1em;
-    justify-items: center;
-    align-items: flex-start;
-}
-.col-asiento .btn-asiento{
-    width: 50px;
-    font-size: 12px;
-    font-weight: 800;
-    background-color: var(--verdeasiento);
-}
- */

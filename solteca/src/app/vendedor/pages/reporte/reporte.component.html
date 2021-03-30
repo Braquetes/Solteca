@@ -1,0 +1,119 @@
+<app-link></app-link>
+<div class="d-flex" id="content-wrapper">
+
+        <!-- BARRA LATERAL -->
+        <div id="sidebar-container" class="">
+            <div class="logo">
+                <img src="../../../../assets/img/user1.png" alt="">
+                <h3 class="d-block  p-1 border-0">Vendedor</h3>
+                <p class="d-block  p-1 border-0">Nombre Vendedor</p>
+                <p class="d-block  p-1 border-0">Turno</p>
+            </div>
+            <div class="menu">
+                <a [routerLink]="['/ventanilla']" class="d-block  p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
+                Ventas</a>
+                <a [routerLink]="['/reportess']"class="d-block  p-3 border-0"><i class="icon ion-md-analytics lead mr-2"></i>
+                    Reportes</a>
+                <a class="d-block  p-3 border-0"><i class="icon ion-md-qr-scanner lead mr-2"></i>
+                    Imprimir</a>
+                <a [routerLink]="['/info']" class="d-block  p-3 border-0"><i class="icon ion-md-information-circle-outline lead mr-2"></i>
+                    Mas información</a>
+            </div>
+        </div>
+        <!-- FIN BARRA LATERAL -->
+
+        <div class="w-100">
+            <nav class="header">
+                <div class="dato">
+                    <a type="button" (click)="salir()" class="btn btn-terminar"><i class="fas fa-sign-out-alt"></i> Terminar Turno</a>
+              </div>
+                <div class="dato">
+                  <h1>Reportes de ventas</h1>
+                </div>
+              <div class="dato">
+                <h5>Fecha: <span class="badge badge-light">00/00/00</span></h5>
+              </div>
+              <div class="dato">
+                <h5>Hora: <span class="badge badge-light">00:00:00</span></h5>
+              </div>
+            </nav>
+       
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div id="content" class=" w-100">
+            <div class="contenedor-general">
+               <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card ">
+                                <h5 class="card-header">
+                                    Selecciona la <strong>fecha inicial</strong>, la <strong>fecha final</strong> y la <strong>sucursal</strong> correspondiente para generar el reporte de ventas
+                                </h5>
+                                <div class="card-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col selecciona">
+                                                <label for="">Fecha de inicio</label>
+                                                <input type="date">
+                                            </div>
+                                            <div class="col selecciona">
+                                                <label for="">Fecha de inicio</label>
+                                                <input type="date">
+                                            </div>
+                                            <div class="col selecciona">
+                                                <label for="">Selecciona la sucursal</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Selecciona la sucursal</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                  </select>
+                                            </div>
+                                            <div class="col selecciona">
+                                                <a type="submit" class="btn btn-agregar mb-3"> <i class="fas fa-check"></i> Generar Reporte</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <table class="table">
+                                    <thead class="">
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Hora</th>
+                                        <th scope="col">Partida</th>
+                                        <th scope="col">Destino</th>
+                                        <th scope="col">Chofer</th>
+                                        <th scope="col">Cliente</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>00/00/00</td>
+                                        <td>00:00:00</td>
+                                        <td>Partida</td>
+                                        <td>Destino</td>
+                                        <td>Chofer</td>
+                                        <td>Cliente</td>
+                                      </tr>
+                                     
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </div>

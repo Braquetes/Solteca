@@ -124,4 +124,3 @@ create table auditoria(
     
 );
 
-Nombre del cliente (Variable: Nombre), Apellido p. (Variable: Apellido_paterno), Apellido m. (Variable: Apellido_materno), sexo (Variable: Sexo), Usuario
