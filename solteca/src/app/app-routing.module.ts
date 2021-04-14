@@ -17,6 +17,7 @@ import { CarritoComponent } from './vendedor/pages/carrito/carrito.component';
 import { VentanillaComponent } from './vendedor/pages/ventanilla/ventanilla.component';
 import { FormPreciosComponent } from './admin/pages/preciosCRUD/form-precios/form-precios.component';
 import { FormsGuard } from './guards/forms.guard';
+import { ProofComponent } from './pages/proof/proof.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
     path: 'ventanilla',
     component: VentanillaComponent,
     canActivate: [VigilanteGuard],
+    canDeactivate: [FormsGuard],
   },
   {
     path: 'carrito',
@@ -42,6 +44,7 @@ const routes: Routes = [
     path: 'sucursal/form',
     component: FormSucursalComponent,
     canActivate: [VigilanteGuard],
+    canDeactivate: [FormsGuard],
   },
   {
     path: 'sucursal/reporte-general',
@@ -67,7 +70,7 @@ const routes: Routes = [
     path: 'empleados/form',
     component: FormEmpleadoComponent,
     canActivate: [VigilanteGuard],
-    canDeactivate: [FormsGuard]
+    canDeactivate: [FormsGuard],
   },
   {
     path: 'estadisticas',
@@ -83,6 +86,7 @@ const routes: Routes = [
     path: 'precios/form',
     component: FormPreciosComponent,
     canActivate: [VigilanteGuard],
+    canDeactivate: [FormsGuard],
   },
   {
     path: 'info',
@@ -93,6 +97,10 @@ const routes: Routes = [
     path: 'reporte',
     component: ReporteComponent,
     canActivate: [VigilanteGuard],
+  },
+  {
+    path: 'proof',
+    component: ProofComponent,
   },
   {
     path: '**',

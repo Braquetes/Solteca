@@ -1,5 +1,40 @@
-/*ESTILOS BOTONES*/
+.clockdate-wrapper {
+  background-color: #333;
+  padding: 25px;
+  max-width: 350px;
+  width: 100%;
+  text-align: center;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 15%;
+}
 
+#clock {
+  background-color: #333;
+  font-family: sans-serif;
+  font-size: 60px;
+  text-shadow: 0px 0px 1px #fff;
+  color: #fff;
+}
+
+#clock span {
+  color: #888;
+  text-shadow: 0px 0px 1px #333;
+  font-size: 30px;
+  position: relative;
+  top: -27px;
+  left: -10px;
+}
+
+#date {
+  letter-spacing: 10px;
+  font-size: 14px;
+  font-family: arial, sans-serif;
+  color: #fff;
+}
+
+
+/*ESTILOS BOTONES*/
 .dato .btn-terminar {
   background-color: var(--rojo);
   color: var(--blanco);
@@ -210,7 +245,7 @@
 }
 
 .inputprecio {
-  background-image: url("../../../../assets/icons/dollar.png");
+  background-image: url("../../../assets/icons/dollar.png");
   background-position: 10px 5px;
   background-repeat: no-repeat;
   background-size: 20px;
@@ -273,7 +308,7 @@
 
 .container-autobus {
   height: 80vh;
-  background-image: url("../../../../assets/img/bus1.jpg");
+  background-image: url("../../../assets/img/bus1.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -314,6 +349,14 @@ input[type=checkbox] {
   display: flex;
   width: 40%;
   justify-content: space-between;
+  padding: 5px;
+}
+
+.seccion {
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+  padding: 5px;
 }
 
 .asiento {
@@ -323,7 +366,7 @@ input[type=checkbox] {
   font-size: 10;
   text-align: center;
   background: #fcfff4;
-  background: linear-gradient(flex,#fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background: linear-gradient(flex, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
   margin: 5px auto;
   box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
   position: relative;
@@ -337,7 +380,7 @@ input[type=checkbox] {
   left: 3px;
   top: 3px;
   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
-  background: linear-gradient(flex,#222 0%, #45484d 100%);
+  background: linear-gradient(flex, #222 0%, #45484d 100%);
 }
 
 .asiento label:after {
@@ -348,7 +391,7 @@ input[type=checkbox] {
   width: 15px;
   height: 15px;
   background: #00bf00;
-  background: linear-gradient(flex,#0895d3 0%, #0966a8 100%);
+  background: linear-gradient(flex, #0895d3 0%, #0966a8 100%);
   top: 0px;
   left: 0px;
   box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
@@ -363,6 +406,9 @@ input[type=checkbox] {
   filter: alpha(opacity=100);
   opacity: 1;
 }
+
+
+
 
 .asiento1 {
   width: 21px;

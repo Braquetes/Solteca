@@ -1,0 +1,54 @@
+/*ESTILOS BARRA DE NAVEGACION*/
+
+nav {
+  background-color: #5254c2 !important;
+  padding: 30px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #ffffff;
+}
+
+.opcion {
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.opcion:hover {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #4445af;
+  border-radius: 10px;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+/*ESTILOS BOTONES*/
+
+.btn {
+    width: 150px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.btn-salir {
+    background-color: #e71d19;
+    color: #ffffff;
+}
+
+.btn-salir:hover {
+    color: #ffffff;
+    background-color: #f8130f;
+}

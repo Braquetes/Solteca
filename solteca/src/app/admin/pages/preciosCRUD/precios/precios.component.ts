@@ -11,8 +11,4 @@ export class PreciosComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  salir(): void {
-    this.AS.logout();
-  }
-
 }

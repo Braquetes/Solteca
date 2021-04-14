@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header-void',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-void.component.css']
 })
 export class HeaderVoidComponent implements OnInit {
-
+  @Input() ruta: any;
   constructor() { }
 
   ngOnInit(): void {

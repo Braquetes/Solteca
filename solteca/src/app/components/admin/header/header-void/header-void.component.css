@@ -1,0 +1,53 @@
+/*ESTILOS BARRA DE NAVEGACION*/
+nav {
+  background-color: var(--morado) !important;
+  padding: 30px;
+}
+
+nav a {
+  color: var(--blanco);
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: var(--blanco);
+}
+
+.opcion {
+  font-size: 20px;
+  color: var(--blanco);
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.opcion:hover {
+  text-decoration: none;
+  color: var(--blanco);
+  background-color: var(--moradohover);
+  border-radius: 10px;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+/*ESTILOS BOTONES*/
+.btn {
+  width: 150px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 20px;
+
+}
+
+.btn-salir {
+  background-color: var(--rojo);
+  color: var(--blanco);
+}
+
+.btn-salir:hover {
+  color: var(--blanco);
+  background-color: var(--rojohover);
+}

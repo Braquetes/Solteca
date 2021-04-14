@@ -11,6 +11,7 @@ export class FormEmpleadoComponent implements OnInit, PuedeDesactivar {
   empleados = {
     mensaje: ''
   };
+  ruta = 'empleados';
   constructor() {}
 
   enviar(): void{

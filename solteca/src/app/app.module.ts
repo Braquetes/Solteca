@@ -28,6 +28,7 @@ import { LinkComponent } from './extras/link/link.component';
 import { FooterComponent } from './extras/footer/footer.component';
 import { ReporteComponent } from './vendedor/pages/reporte/reporte.component';
 import { InfoComponent } from './vendedor/pages/info/info.component';
+import { ProofComponent } from './pages/proof/proof.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { InfoComponent } from './vendedor/pages/info/info.component';
     LinkComponent,
     FooterComponent,
     ReporteComponent,
-    InfoComponent
+    InfoComponent,
+    ProofComponent
   ],
   imports: [
     BrowserModule,

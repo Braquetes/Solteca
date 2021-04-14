@@ -106,7 +106,7 @@ create table factura(
 create table choferes(
     Id_chofer int (11) PRIMARY KEY AUTO_INCREMENT,
     Nombre varchar (50) NOT NULL,
-    Apellido_paterno varchar (25) NOT NULL,
+    Apellido_materno varchar (25) NOT NULL,
     Apellido_paterno varchar (25) NOT NULL,
     Sucursal varchar (30) NOT NULL,
     Autobus varchar (25) NOT NULL
@@ -122,5 +122,10 @@ create table auditoria(
     Accion varchar (50) NOT NULL,
     Empleado varchar (50) NOT NULL,
     
+);
+
+create table Escala(
+    Id_escala int (11) PRIMARY KEY AUTO_INCREMENT, 
+    Escala varchar (50) NOT NULL
 );
 

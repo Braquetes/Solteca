@@ -1,29 +1,3 @@
-/*ESTILOS GENERALES*/
-
-:root {
-    --fondo: #f6f6f6;
-    --rojo: #e71d19;
-    --rojohover: #f8130f;
-    --principal: #4e5c81;
-    --verde: #3ad138;
-    --verdehover: #09e205;
-    --verdeasiento: #1bcf0e;
-    --rojoasiento: #1bcf0e;
-    --blanco: #ffffff;
-    --negro: #000000;
-    --hover-menu: #3a4767;
-    --morado: #5254c2;
-    --moradohover: #4445af;
-}
-
-body {
-    background-color: #f6f6f6;
-    font-family: 'Muli', sans-serif;
-    padding: 0;
-    margin: 0;
-}
-
-
 /*ESTILOS BOTONES*/
 
 .btn {
@@ -52,44 +26,6 @@ body {
     background-color: #4445af;
     color: #ffffff;
 }
-
-
-/*ESTILOS BARRA DE NAVEGACION*/
-
-nav {
-    background-color: #5254c2 !important;
-    padding: 10px;
-}
-
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-nav a:hover {
-    color: #ffffff;
-}
-
-.opcion {
-    font-size: 20px;
-    color: #ffffff;
-    font-weight: 700;
-    text-decoration: none;
-    margin-left: 20px;
-}
-
-.opcion:hover {
-    text-decoration: none;
-    color: #ffffff;
-    background-color: #4445af;
-    border-radius: 10px;
-}
-
-.logo {
-    font-size: 30px;
-    font-weight: 600;
-}
-
 
 /*ESTILOS MENU PRINCIPAL*/
 

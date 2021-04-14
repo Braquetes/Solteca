@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
         alert(datos.mensaje);
       }
       if (datos.access_token !== undefined) {
-        this.CS.set('access_token', datos.access_token, 4, '/');
-        this.CS.set('client', datos.client, 4, '/');
+        this.CS.set('access_token', datos.access_token, 1, '/');
+        this.CS.set('client', datos.client, 1, '/');
       }
       const cookie = this.CS.check('access_token');
       const client = this.CS.get('client');

@@ -11,8 +11,4 @@ export class SucursalComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  salir(): void {
-    this.AS.logout();
-  }
-
 }

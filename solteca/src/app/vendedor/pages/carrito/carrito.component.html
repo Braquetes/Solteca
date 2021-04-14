@@ -53,20 +53,20 @@
                                             <tr>
                                                 <th scope="col">Tipo</th>
                                                 <th scope="col">Precio</th>
-                                                <th scope="col">N° Boletos</th>
+                                                <th scope="col">N° Asiento</th>
                                                 <th scope="col"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">Tipo de boleto</th>
-                                                <td>$$$$</td>
-                                                <td>20</td>
+                                            <tr *ngFor="let carro of carrito">
+                                                <th scope="row">{{carro.Tipo}}</th>
+                                                <td>$ {{carro.Precio}}</td>
+                                                <td>{{carro.Asiento}}</td>
                                                 <td><button class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button></td>
                                             </tr>
                                             <tr class="text-center">
                                                 <th scope="row" class="total">Total:</th>
-                                                <td colspan="3" class="total">$ 000.00</td>
+                                                <td colspan="3" class="total">$ {{total}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
