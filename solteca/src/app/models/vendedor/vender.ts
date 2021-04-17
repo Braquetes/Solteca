@@ -1,4 +1,4 @@
-export interface Carrito {
+export interface Vender {
     Id_carrito: number;
     Nombre_cliente: string;
     Origen: string;

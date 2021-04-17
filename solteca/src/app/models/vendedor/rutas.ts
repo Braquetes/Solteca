@@ -1,4 +1,6 @@
 export interface Rutas {
-    Id_lugar?: number;
-    Lugar: string;
+    Id_rutas: number;
+    Lugar_salida: string;
+    Lugar_destino: string;
+    Precio: number;
 }

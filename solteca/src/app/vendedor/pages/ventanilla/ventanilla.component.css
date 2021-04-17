@@ -1,4 +1,24 @@
 /*ESTILOS BOTONES*/
+.actualizar {
+  /*  background-color: var(--verdeasiento); */
+  background-color: var(--blanco);
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  color: var(--verdeasiento);
+  font-size: 25px;
+}
+
+.actualizar:hover {
+  background-color: var(--verdeasiento);
+  color: white;
+  width: 40%;
+  border-radius: 55px;
+}
+
+.actualizar:focus {
+  outline: none;
+}
 
 .dato .btn-terminar {
   background-color: var(--rojo);

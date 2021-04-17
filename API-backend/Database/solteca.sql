@@ -129,3 +129,9 @@ create table Escala(
     Escala varchar (50) NOT NULL
 );
 
+create table autobus(
+    Id_autobus int (11) PRIMARY KEY AUTO_INCREMENT,
+    Tipo varchar (50) NOT NULL,
+    Tamaño int (5) NOT NULL,
+    Ruta varchar (50) NOT NULL
+);

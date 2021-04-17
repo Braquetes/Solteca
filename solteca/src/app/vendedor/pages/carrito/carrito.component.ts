@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { VendedorService } from 'src/app/services/vendedor.service';
+import { ARequest } from 'src/app/models/vendedor/asientoRequest';
 
 @Component({
   selector: 'app-carrito',
@@ -10,8 +11,10 @@ import { VendedorService } from 'src/app/services/vendedor.service';
   styleUrls: ['./carrito.component.css'],
 })
 export class CarritoComponent implements OnInit {
-  venta = [
+  carro: any | undefined;
+  carrito = [
     {
+      Id_carrito: 0,
       Nombre_cliente: '',
       Origen: '',
       Destino: '',
@@ -26,28 +29,14 @@ export class CarritoComponent implements OnInit {
       Numero_asiento: '',
       Id_venta: 0,
       Estado: 0,
-    },
-  ];
-  carro: any | undefined;
-  carrito = [
-    {
-      Nombre_cliente: '',
-      Origen: '',
-      Destino: '',
-      Tipo: '',
-      Escala: '',
-      Cantidad: 0,
-      Precio: 0,
-      Fecha_salida: '',
-      Hora_salida: '',
-      Telefono: '',
-      Asiento: 0,
-      Numero_asiento: '',
-      Id_venta: 0,
-      Estado: 0
+      Id_autobus: 0
     }
   ];
   total = 0;
+  origen: any;
+  destino: any;
+  fecha: any;
+  hora: any;
   constructor(
     private CS: CookieService,
     private router: Router,
@@ -62,12 +51,25 @@ export class CarritoComponent implements OnInit {
         this.router.navigate(['/menu']);
       }
     }
+    this.boletos();
+  }
+
+  boletos(): void{
+    this.total = 0;
+    this.origen = localStorage.getItem('Origen');
+    this.destino = localStorage.getItem('Destino');
+    this.fecha = localStorage.getItem('Fecha');
+    this.hora = localStorage.getItem('Hora');
+    console.log(this.origen);
+    console.log(this.destino);
+    console.log(this.fecha);
+    console.log(this.hora);
     // tslint:disable-next-line: deprecation
-    this.VS.camion('Oaxaca', 'México').subscribe((data: Carrito) => {
+    this.VS.camion(this.origen, this.destino, this.fecha, this.hora).subscribe((data: Carrito) => {
       this.carro = data;
       for (const val of this.carro) {
         this.carrito.push(val);
-        this.total += val.Cantidad;
+        this.total += val.Precio * 1;
       }
       console.log('DB');
       console.log(this.carro);
@@ -88,4 +90,39 @@ export class CarritoComponent implements OnInit {
     }
     console.log(this.carrito);
   }
+
+
+  eliminar(id: number): void{
+    console.log('Eliminar');
+    // tslint:disable-next-line: deprecation
+    this.VS.deletePendiente(id).subscribe(
+      (data: ARequest) => {
+        if (data.resultado === 'OK') {
+          console.log(data.mensaje);
+          this.boletos();
+        }
+      }
+    );
+    // this.CS.delete(this.Camion.Corrida.toString() + this.Camion.Id_pendiente.toString(), '/proof');
+    // // tslint:disable-next-line: deprecation
+    // this.VS.deletePendiente(this.corrida, asiento).subscribe(
+    //   (data: ARequest) => {
+    //     if (data.resultado === 'OK') {
+    //       console.log(data.mensaje);
+    //       this.boton1 = false;
+    //     }
+    //   }
+    // );
+  }
+
+  generar(): void{
+    console.log('Vender');
+    // tslint:disable-next-line: deprecation
+    this.VS.vender(this.carro).subscribe((datos: ARequest) => {
+      if (datos.resultado === 'OK') {
+        console.log(datos.mensaje);
+      }
+    });
+  }
+
 }

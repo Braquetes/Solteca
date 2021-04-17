@@ -62,21 +62,21 @@
                       <thead class="thead">
                         <tr>
                           <th class="columna1">Tipo</th>
-                          <th *ngFor="let boleto of boletos">
+                          <th *ngFor="let boleto of bolets">
                             {{ boleto.Tipo }}
                           </th>
                         </tr>
                       </thead>
                       <tr>
                         <td class="columna1">Precio</td>
-                        <th *ngFor="let boleto of boletos">
-                          {{ boleto.Precio }}
+                        <th *ngFor="let boleto of bolets" >
+                            <strong [hidden]="boleto.Precio == 0">{{ boleto.Precio }}</strong>
                         </th>
                       </tr>
                       <tr>
                         <td class="columna1">Comprados</td>
-                        <th *ngFor="let boleto of boletos">
-                          {{ boleto.Id_boletos }}
+                        <th *ngFor="let boleto of bolets">
+                            <strong [hidden]="boleto.Precio == 0">xd</strong>
                         </th>
                       </tr>
                     </table>
@@ -122,14 +122,17 @@
                               [(ngModel)]="venta.Origen"
                               required
                             >
-                              <option value="0" disabled selected>
-                                  Seleeciona el origen
+                              <option value="0" disabled selected *ngIf="!venta.Origen">
+                                  Selecciona el origen
+                              </option>
+                              <option value="0" disabled selected *ngIf="venta.Origen !== ''">
+                                  {{venta.Origen}}
                               </option>
                               <option
-                              *ngFor="let ruta of rutas"
-                              value="{{ruta.Lugar}}"
+                              *ngFor="let lugar of lugares"
+                              value="{{lugar.Lugar}}"
                               >
-                                {{ruta.Lugar}}
+                                {{lugar.Lugar}}
                               </option>
                             </select>
                           </div>
@@ -140,18 +143,21 @@
                               class="input1"
                               [(ngModel)]="venta.Destino"
                             >
-                              <option value="0" disabled selected>
+                              <option value="0" disabled selected *ngIf="!venta.Destino">
                                 Selecciona el destino
                               </option>
+                              <option value="0" disabled selected *ngIf="venta.Destino !== ''">
+                                  {{venta.Destino}}
+                              </option>
                               <option
-                                value="{{ ruta.Lugar }}"
-                                *ngFor="let ruta of rutas"
+                                *ngFor="let lugar of lugares"
+                              value="{{lugar.Lugar}}"
                                 [hidden]="
-                                  ruta.Lugar == venta.Origen ||
+                                  lugar.Lugar == venta.Origen ||
                                   venta.Origen == ''
                                 "
                               >
-                                {{ ruta.Lugar }}
+                                {{ lugar.Lugar }}
                               </option>
                             </select>
                           </div>
@@ -164,12 +170,16 @@
                               class="input1"
                               [(ngModel)]="venta.Tipo"
                             >
-                            <option value="0" disabled selected>
+                            <option value="0" disabled selected *ngIf="!venta.Tipo">
                                 Selecciona el tipo
+                              </option>
+                              <option value="0" disabled selected *ngIf="venta.Tipo !== ''">
+                                  {{venta.Tipo}}
                               </option>
                               <option
                                 value="{{ boleto.Tipo }}"
-                                *ngFor="let boleto of boletos"
+                                *ngFor="let boleto of bolets"
+                                [hidden]="!boleto.Tipo"
                               >
                                 {{ boleto.Tipo }}
                               </option>
@@ -182,8 +192,11 @@
                               class="input1"
                               [(ngModel)]="venta.Escala"
                             >
-                              <option value="0" disabled selected>
+                              <option value="0" disabled selected *ngIf="!venta.Escala">
                                 Selecciona la escala
+                              </option>
+                              <option value="0" disabled selected *ngIf="venta.Escala !== ''">
+                                  {{venta.Escala}}
                               </option>
                               <option
                                 value="{{ escala.Escala }}"
@@ -193,18 +206,26 @@
                               </option>
                             </select>
                           </div>
-                          <div class="col-sm col1">
-                            <label for="" class="indicacion"
-                              >Numero de boletos</label
-                            >
-                            <input
-                              type="number"
-                              name="Cantidad"
+                          <div class="col-sm col1">    
+                            <label for="" class="indicacion">Tipo de camión</label>
+                            <select
+                              name="Camion"
                               class="input1"
-                              [(ngModel)]="venta.Cantidad"
-                              disabled
-                            />
+                              [(ngModel)]="venta.Id_autobus"
+                            >
+                              <option value="0" disabled selected *ngIf="!venta.Id_autobus">
+                                Selecciona el camión
+                              </option>
+                              <option
+                                value="{{ auto.Id_autobus }}"
+                                *ngFor="let auto of autobus"
+                                [hidden]="auto.Ruta !== lugarSelectRuta"
+                              >
+                                {{ auto.Tipo }}
+                              </option>
+                            </select>
                           </div>
+                          
                         </div>
 
                         <div class="row">
@@ -217,14 +238,12 @@
                               class="input1"
                               [(ngModel)]="venta.Precio"
                             >
-                              <option value="0" disabled selected>$$$</option>
+                              <option value="0" disabled selected *ngIf="!venta.Tipo">$$$</option>
+                            
                               <option
                                 value="{{ boleto.Precio }}"
-                                *ngFor="let boleto of boletos"
-                                [hidden]="
-                                  boleto.Tipo != venta.Tipo || venta.Tipo == ''
-                                "
-                              >
+                                *ngFor="let boleto of bolets"
+                                [hidden]="boleto.Tipo != venta.Tipo || venta.Tipo == ''">
                                 {{ boleto.Precio }}
                               </option>
                             </select>
@@ -266,6 +285,20 @@
                               required
                             />
                           </div>
+                          
+                          <div class="col-sm col1">
+                            <label for="" class="indicacion"
+                              >Numero de boletos</label
+                            >
+                            <input
+                              type="number"
+                              name="Cantidad"
+                              class="input1"
+                              [(ngModel)]="venta.Cantidad"
+                              disabled
+                            />
+                          </div>
+
                           <div class="col-sm col1">
                             <label for="" class="totallabel"
                               >Numero de asientos</label
@@ -277,6 +310,8 @@
                               disabled
                             />
                           </div>
+                        </div>
+                        <div class="row">
                           <div class="col-sm colprecio">
                             <span class="badge badge-success">
                               <h6><strong>Total $</strong>{{total}}</h6>
@@ -285,7 +320,7 @@
                         </div>
                         <div class="alert alert-success" role="alert">
                           Se aplico un descuento de <strong>20</strong> pesos al
-                          boleto de tipo estudiante
+                          boleto de tipo <strong>{{venta.Tipo}}</strong>
                         </div>
                         <div class="verificar">
                           <a (click)="enviar()" class="btn btn-agregar"
@@ -314,7 +349,8 @@
                           <h6>Disponible</h6>
                         </div>
                         <div class="col">
-                          <i class="fas fa-sync-alt" (click)="recargar()"></i>
+                          <button class="actualizar"> <i class="fas fa-sync-alt " (click)="recargar()"></i></button>
+                          <p>{{alerta}}</p>
                         </div>
                         <div class="col">
                           <img
@@ -332,6 +368,7 @@
                         <div class="containerbus">
                           <!-- Squared ONE -->
                           <div class="autobus">
+
                             <div class="fila">
                               <div class="seccion">
                                   <div class="asiento" *ngIf="boton1 == 0">
@@ -341,7 +378,7 @@
                                     id="asiento1"
                                     name="check"
                                   />
-                                  <label for="asiento1">1</label>
+                                  <label for="asiento1"></label>
                                 </div>
                                 <div class="asiento1" *ngIf="boton1 == 2" >
                                   <input type="checkbox" checked disabled />
@@ -387,7 +424,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton4 == 0" [hidden]="asiento4  != 4">
+                                <div class="asiento" *ngIf="boton4 == 0">
                                   <input
                                     type="checkbox"
                                     (click)="boton4 == 0 ? updateAsientos(4) : botons(1)"
@@ -409,73 +446,73 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton1 == 0">
+                                  <div class="asiento" *ngIf="boton5 == 0">
                                     <input
                                     type="checkbox"
-                                    (click)="boton1 == 0 ? updateAsientos(1) : botons(1)"
-                                    id="asiento1"
+                                    (click)="boton5 == 0 ? updateAsientos(5) : botons(1)"
+                                    id="asiento5"
                                     name="check"
                                   />
-                                  <label for="asiento1">1</label>
+                                  <label for="asiento5"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton1 == 2" >
+                                <div class="asiento1" *ngIf="boton5 == 2" >
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton1 == 1">
+                                <div class="asiento3" *ngIf="boton5 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton2== 0">
+                                <div class="asiento" *ngIf="boton6== 0">
                                   <input
                                   type="checkbox"
-                                  (click)="boton2 == 0 ? updateAsientos(2) : botons(1)"
-                                  id="asiento2"
+                                  (click)="boton6 == 0 ? updateAsientos(6) : botons(1)"
+                                  id="asiento6"
                                   name="check"
                                   />
-                                  <label for="asiento2"></label>
+                                  <label for="asiento6"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton2 == 2">
+                                <div class="asiento1" *ngIf="boton6 == 2">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton2 == 1">
+                                <div class="asiento3" *ngIf="boton6 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton3 == 0">
+                                <div class="asiento" *ngIf="boton7 == 0">
                                   <input
                                   type="checkbox"
-                                  (click)="boton3 == 0 ? updateAsientos(3) : botons(1)"
-                                    id="asiento3"
+                                  (click)="boton7 == 0 ? updateAsientos(7) : botons(1)"
+                                    id="asiento7"
                                     name="check"
                                   />
-                                  <label for="asiento3"></label>
+                                  <label for="asiento7"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton3 == 2">
+                                <div class="asiento1" *ngIf="boton7 == 2">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton3 == 1">
+                                <div class="asiento3" *ngIf="boton7 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton4 == 0" [hidden]="asiento4  != 4">
+                                <div class="asiento" *ngIf="boton8 == 0">
                                   <input
                                     type="checkbox"
-                                    (click)="boton4 == 0 ? updateAsientos(4) : botons(1)"
-                                    id="asiento4"
+                                    (click)="boton8 == 0 ? updateAsientos(8) : botons(1)"
+                                    id="asiento8"
                                     name="check"
                                   />
-                                  <label for="asiento4"></label>
+                                  <label for="asiento8"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton4 == 2">
+                                <div class="asiento1" *ngIf="boton8 == 2">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton4 == 1">
+                                <div class="asiento3" *ngIf="boton8 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
@@ -484,73 +521,73 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton1 == 0">
+                                  <div class="asiento" *ngIf="boton9 == 0">
                                     <input
                                     type="checkbox"
-                                    (click)="boton1 == 0 ? updateAsientos(1) : botons(1)"
-                                    id="asiento1"
+                                    (click)="boton9 == 0 ? updateAsientos(9) : botons(1)"
+                                    id="asiento9"
                                     name="check"
                                   />
-                                  <label for="asiento1">1</label>
+                                  <label for="asiento9"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton1 == 2" >
+                                <div class="asiento1" *ngIf="boton9 == 2" >
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton1 == 1">
+                                <div class="asiento3" *ngIf="boton9 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton2== 0">
+                                <div class="asiento" *ngIf="boton10 == 0">
                                   <input
                                   type="checkbox"
-                                  (click)="boton2 == 0 ? updateAsientos(2) : botons(1)"
-                                  id="asiento2"
+                                  (click)="boton10 == 0 ? updateAsientos(10) : botons(1)"
+                                  id="asiento10"
                                   name="check"
                                   />
-                                  <label for="asiento2"></label>
+                                  <label for="asiento10"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton2 == 2">
+                                <div class="asiento1" *ngIf="boton10 == 2">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton2 == 1">
+                                <div class="asiento3" *ngIf="boton10 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton3 == 0">
+                                <div class="asiento" *ngIf="boton11 == 0">
                                   <input
                                   type="checkbox"
-                                  (click)="boton3 == 0 ? updateAsientos(3) : botons(1)"
-                                    id="asiento3"
+                                  (click)="boton11 == 0 ? updateAsientos(11) : botons(1)"
+                                    id="asiento11"
                                     name="check"
                                   />
-                                  <label for="asiento3"></label>
+                                  <label for="asiento11"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton3 == 2">
+                                <div class="asiento1" *ngIf="boton11 == 2">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton3 == 1">
+                                <div class="asiento3" *ngIf="boton11 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton4 == 0" [hidden]="asiento4  != 4">
+                                <div class="asiento" *ngIf="boton12 == 0">
                                   <input
                                     type="checkbox"
-                                    (click)="boton4 == 0 ? updateAsientos(4) : botons(1)"
-                                    id="asiento4"
+                                    (click)="boton12 == 0 ? updateAsientos(12) : botons(1)"
+                                    id="asiento12"
                                     name="check"
                                   />
-                                  <label for="asiento4"></label>
+                                  <label for="asiento12"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton4 == 2">
+                                <div class="asiento1" *ngIf="boton12 == 2">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton4 == 1">
+                                <div class="asiento3" *ngIf="boton12 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
@@ -559,73 +596,73 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton1 == 0">
+                                  <div class="asiento" *ngIf="boton13 == 0">
                                     <input
                                     type="checkbox"
-                                    (click)="boton1 == 0 ? updateAsientos(1) : botons(1)"
-                                    id="asiento1"
+                                    (click)="boton13 == 0 ? updateAsientos(13) : botons(1)"
+                                    id="asiento13"
                                     name="check"
                                   />
-                                  <label for="asiento1">1</label>
+                                  <label for="asiento13"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton1 == 2" >
+                                <div class="asiento1" *ngIf="boton13 == 2" >
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton1 == 1">
+                                <div class="asiento3" *ngIf="boton13 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton2== 0">
+                                <div class="asiento" *ngIf="boton14== 0">
                                   <input
                                   type="checkbox"
-                                  (click)="boton2 == 0 ? updateAsientos(2) : botons(1)"
-                                  id="asiento2"
+                                  (click)="boton2 == 0 ? updateAsientos(14) : botons(1)"
+                                  id="asiento14"
                                   name="check"
                                   />
-                                  <label for="asiento2"></label>
+                                  <label for="asiento14"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton2 == 2">
+                                <div class="asiento1" *ngIf="boton14 == 2">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton2 == 1">
+                                <div class="asiento3" *ngIf="boton14 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton3 == 0">
+                                <div class="asiento" *ngIf="boton15 == 0">
                                   <input
                                   type="checkbox"
-                                  (click)="boton3 == 0 ? updateAsientos(3) : botons(1)"
-                                    id="asiento3"
+                                  (click)="boton15 == 0 ? updateAsientos(15) : botons(1)"
+                                    id="asiento15"
                                     name="check"
                                   />
-                                  <label for="asiento3"></label>
+                                  <label for="asiento15"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton3 == 2">
+                                <div class="asiento1" *ngIf="boton15 == 2">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton3 == 1">
+                                <div class="asiento3" *ngIf="boton15 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton4 == 0" [hidden]="asiento4  != 4">
+                                <div class="asiento" *ngIf="boton16 == 0">
                                   <input
                                     type="checkbox"
-                                    (click)="boton4 == 0 ? updateAsientos(4) : botons(1)"
-                                    id="asiento4"
+                                    (click)="boton16 == 0 ? updateAsientos(16) : botons(1)"
+                                    id="asiento16"
                                     name="check"
                                   />
-                                  <label for="asiento4"></label>
+                                  <label for="asiento16"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton4 == 2">
+                                <div class="asiento1" *ngIf="boton16 == 2">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton4 == 1">
+                                <div class="asiento3" *ngIf="boton16 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
@@ -634,73 +671,73 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton1 == 0">
+                                  <div class="asiento" *ngIf="boton17 == 0">
                                     <input
                                     type="checkbox"
-                                    (click)="boton1 == 0 ? updateAsientos(1) : botons(1)"
-                                    id="asiento1"
+                                    (click)="boton17 == 0 ? updateAsientos(17) : botons(1)"
+                                    id="asiento17"
                                     name="check"
                                   />
-                                  <label for="asiento1">1</label>
+                                  <label for="asiento17"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton1 == 2" >
+                                <div class="asiento1" *ngIf="boton17 == 2" >
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton1 == 1">
+                                <div class="asiento3" *ngIf="boton17 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton2== 0">
+                                <div class="asiento" *ngIf="boton18 == 0">
                                   <input
                                   type="checkbox"
-                                  (click)="boton2 == 0 ? updateAsientos(2) : botons(1)"
-                                  id="asiento2"
+                                  (click)="boton18 == 0 ? updateAsientos(18) : botons(1)"
+                                  id="asiento18"
                                   name="check"
                                   />
-                                  <label for="asiento2"></label>
+                                  <label for="asiento18"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton2 == 2">
+                                <div class="asiento1" *ngIf="boton18 == 2">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton2 == 1">
+                                <div class="asiento3" *ngIf="boton18 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton3 == 0">
+                                <div class="asiento" *ngIf="boton19 == 0">
                                   <input
                                   type="checkbox"
-                                  (click)="boton3 == 0 ? updateAsientos(3) : botons(1)"
-                                    id="asiento3"
+                                  (click)="boton19 == 0 ? updateAsientos(19) : botons(1)"
+                                    id="asiento19"
                                     name="check"
                                   />
-                                  <label for="asiento3"></label>
+                                  <label for="asiento19"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton3 == 2">
+                                <div class="asiento1" *ngIf="boton19 == 2">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton3 == 1">
+                                <div class="asiento3" *ngIf="boton19 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton4 == 0" [hidden]="asiento4  != 4">
+                                <div class="asiento" *ngIf="boton20 == 0">
                                   <input
                                     type="checkbox"
-                                    (click)="boton4 == 0 ? updateAsientos(4) : botons(1)"
-                                    id="asiento4"
+                                    (click)="boton20 == 0 ? updateAsientos(20) : botons(1)"
+                                    id="asiento20"
                                     name="check"
                                   />
-                                  <label for="asiento4"></label>
+                                  <label for="asiento20"></label>
                                 </div>
-                                <div class="asiento1" *ngIf="boton4 == 2">
+                                <div class="asiento1" *ngIf="boton20 == 2">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton4 == 1">
+                                <div class="asiento3" *ngIf="boton20 == 1">
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
@@ -709,341 +746,604 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                <div class="asiento">
-                                  <input
+                                  <div class="asiento" *ngIf="boton21 == 0">
+                                    <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton21 == 0 ? updateAsientos(21) : botons(1)"
                                     id="asiento21"
                                     name="check"
                                   />
                                   <label for="asiento21"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton21 == 2" >
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton21 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton22== 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
-                                    id="asiento22"
-                                    name="check"
+                                  type="checkbox"
+                                  (click)="boton22 == 0 ? updateAsientos(22) : botons(1)"
+                                  id="asiento22"
+                                  name="check"
                                   />
                                   <label for="asiento22"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton22 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton22 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento">
+                                <div class="asiento" *ngIf="boton23 == 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
+                                  type="checkbox"
+                                  (click)="boton23 == 0 ? updateAsientos(23) : botons(1)"
                                     id="asiento23"
                                     name="check"
                                   />
                                   <label for="asiento23"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton23 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton23 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton24 == 0">
                                   <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton24 == 0 ? updateAsientos(24) : botons(1)"
                                     id="asiento24"
                                     name="check"
                                   />
                                   <label for="asiento24"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton24 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton24 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                             </div>
-                            
+
                             <div class="fila">
                               <div class="seccion">
-                                <div class="asiento">
-                                  <input
+                                  <div class="asiento" *ngIf="boton25 == 0">
+                                    <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton25 == 0 ? updateAsientos(25) : botons(1)"
                                     id="asiento25"
                                     name="check"
                                   />
                                   <label for="asiento25"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton25 == 2" >
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton25 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton26== 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
-                                    id="asiento26"
-                                    name="check"
+                                  type="checkbox"
+                                  (click)="boton26 == 0 ? updateAsientos(26) : botons(1)"
+                                  id="asiento26"
+                                  name="check"
                                   />
                                   <label for="asiento26"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton26 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton26 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento">
+                                <div class="asiento" *ngIf="boton27 == 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
+                                  type="checkbox"
+                                  (click)="boton27 == 0 ? updateAsientos(27) : botons(1)"
                                     id="asiento27"
                                     name="check"
                                   />
                                   <label for="asiento27"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton27 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton27 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton28 == 0">
                                   <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton28 == 0 ? updateAsientos(28) : botons(1)"
                                     id="asiento28"
                                     name="check"
                                   />
                                   <label for="asiento28"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton28 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton28 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                             </div>
+
                             <div class="fila">
                               <div class="seccion">
-                                <div class="asiento">
-                                  <input
+                                  <div class="asiento" *ngIf="boton29 == 0">
+                                    <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton29 == 0 ? updateAsientos(29) : botons(1)"
                                     id="asiento29"
                                     name="check"
                                   />
                                   <label for="asiento29"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton29 == 2" >
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton29 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton30== 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
-                                    id="asiento30"
-                                    name="check"
+                                  type="checkbox"
+                                  (click)="boton30 == 0 ? updateAsientos(30) : botons(1)"
+                                  id="asiento30"
+                                  name="check"
                                   />
                                   <label for="asiento30"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton30 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton30 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento">
+                                <div class="asiento" *ngIf="boton31 == 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
+                                  type="checkbox"
+                                  (click)="boton31 == 0 ? updateAsientos(31) : botons(1)"
                                     id="asiento31"
                                     name="check"
                                   />
                                   <label for="asiento31"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton31 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton31 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton32 == 0">
                                   <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton32 == 0 ? updateAsientos(32) : botons(1)"
                                     id="asiento32"
                                     name="check"
                                   />
                                   <label for="asiento32"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton32 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton32 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                             </div>
+
                             <div class="fila">
                               <div class="seccion">
-                                <div class="asiento">
-                                  <input
+                                  <div class="asiento" *ngIf="boton33 == 0">
+                                    <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton33 == 0 ? updateAsientos(33) : botons(1)"
                                     id="asiento33"
                                     name="check"
                                   />
                                   <label for="asiento33"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton33 == 2" >
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton33 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton34== 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
-                                    id="asiento34"
-                                    name="check"
+                                  type="checkbox"
+                                  (click)="boton34 == 0 ? updateAsientos(34) : botons(1)"
+                                  id="asiento34"
+                                  name="check"
                                   />
                                   <label for="asiento34"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton34 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton34 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento">
+                                <div class="asiento" *ngIf="boton35 == 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
+                                  type="checkbox"
+                                  (click)="boton35 == 0 ? updateAsientos(35) : botons(1)"
                                     id="asiento35"
                                     name="check"
                                   />
                                   <label for="asiento35"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton35 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton35 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton36 == 0">
                                   <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton36 == 0 ? updateAsientos(36) : botons(1)"
                                     id="asiento36"
                                     name="check"
                                   />
                                   <label for="asiento36"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton36 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton36 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                             </div>
+
                             <div class="fila">
                               <div class="seccion">
-                                <div class="asiento">
-                                  <input
+                                  <div class="asiento" *ngIf="boton37 == 0">
+                                    <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton37 == 0 ? updateAsientos(37) : botons(1)"
                                     id="asiento37"
                                     name="check"
                                   />
                                   <label for="asiento37"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton37 == 2" >
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton37 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton38== 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
-                                    id="asiento38"
-                                    name="check"
+                                  type="checkbox"
+                                  (click)="boton38 == 0 ? updateAsientos(38) : botons(1)"
+                                  id="asiento38"
+                                  name="check"
                                   />
                                   <label for="asiento38"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton38 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton38 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento">
+                                <div class="asiento" *ngIf="boton39 == 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
+                                  type="checkbox"
+                                  (click)="boton39 == 0 ? updateAsientos(39) : botons(1)"
                                     id="asiento39"
                                     name="check"
                                   />
                                   <label for="asiento39"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton39 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton39 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton40 == 0">
                                   <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton40 == 0 ? updateAsientos(40) : botons(1)"
                                     id="asiento40"
                                     name="check"
                                   />
                                   <label for="asiento40"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton40 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton40 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                             </div>
+
                             <div class="fila">
                               <div class="seccion">
-                                <div class="asiento">
-                                  <input
+                                  <div class="asiento" *ngIf="boton41 == 0">
+                                    <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton41 == 0 ? updateAsientos(41) : botons(1)"
                                     id="asiento41"
                                     name="check"
                                   />
                                   <label for="asiento41"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton41 == 2" >
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton41 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton42== 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
-                                    id="asiento42"
-                                    name="check"
+                                  type="checkbox"
+                                  (click)="boton42 == 0 ? updateAsientos(42) : botons(1)"
+                                  id="asiento42"
+                                  name="check"
                                   />
                                   <label for="asiento42"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton42 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton42 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento">
+                                <div class="asiento" *ngIf="boton43 == 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
+                                  type="checkbox"
+                                  (click)="boton43 == 0 ? updateAsientos(43) : botons(1)"
                                     id="asiento43"
                                     name="check"
                                   />
                                   <label for="asiento43"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton43 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton43 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton44 == 0">
                                   <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton44 == 0 ? updateAsientos(44) : botons(1)"
                                     id="asiento44"
                                     name="check"
                                   />
                                   <label for="asiento44"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton44 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton44 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                             </div>
+
                             <div class="fila">
                               <div class="seccion">
-                                <div class="asiento">
-                                  <input
+                                  <div class="asiento" *ngIf="boton45 == 0">
+                                    <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton45 == 0 ? updateAsientos(45) : botons(1)"
                                     id="asiento45"
                                     name="check"
                                   />
                                   <label for="asiento45"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton45 == 2" >
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton45 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton46== 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
-                                    id="asiento46"
-                                    name="check"
+                                  type="checkbox"
+                                  (click)="boton46 == 0 ? updateAsientos(46) : botons(1)"
+                                  id="asiento46"
+                                  name="check"
                                   />
                                   <label for="asiento46"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton46 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton46 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento">
+                                <div class="asiento" *ngIf="boton47 == 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
+                                  type="checkbox"
+                                  (click)="boton47 == 0 ? updateAsientos(47) : botons(1)"
                                     id="asiento47"
                                     name="check"
                                   />
                                   <label for="asiento47"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton47 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton47 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton48 == 0">
                                   <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton48 == 0 ? updateAsientos(48) : botons(1)"
                                     id="asiento48"
                                     name="check"
                                   />
                                   <label for="asiento48"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton48 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton48 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                             </div>
+
                             <div class="fila">
                               <div class="seccion">
-                                <div class="asiento">
-                                  <input
+                                  <div class="asiento" *ngIf="boton49 == 0">
+                                    <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton49 == 0 ? updateAsientos(49) : botons(1)"
                                     id="asiento49"
                                     name="check"
                                   />
                                   <label for="asiento49"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton49 == 2" >
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton49 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton50== 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
-                                    id="asiento50"
-                                    name="check"
+                                  type="checkbox"
+                                  (click)="boton50 == 0 ? updateAsientos(50) : botons(1)"
+                                  id="asientn50"
+                                  name="check"
                                   />
-                                  <label for="asiento50"></label>
+                                  <label for="asientn50"></label>
+                                </div>
+                                <div class="asiento1" *ngIf="boton50 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton50 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento">
+                                <div class="asiento" *ngIf="boton51 == 0">
                                   <input
-                                    type="checkbox"
-                                    value="None"
+                                  type="checkbox"
+                                  (click)="boton51 == 0 ? updateAsientos(51) : botons(1)"
                                     id="asiento51"
                                     name="check"
                                   />
                                   <label for="asiento51"></label>
                                 </div>
-                                <div class="asiento">
+                                <div class="asiento1" *ngIf="boton51 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton51 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento" *ngIf="boton52 == 0">
                                   <input
                                     type="checkbox"
-                                    value="None"
+                                    (click)="boton52 == 0 ? updateAsientos(52) : botons(1)"
                                     id="asiento52"
                                     name="check"
                                   />
                                   <label for="asiento52"></label>
                                 </div>
+                                <div class="asiento1" *ngIf="boton52 == 2">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton52 == 1">
+                                  <input type="checkbox" checked disabled />
+                                  <label></label>
+                                </div>
                               </div>
                             </div>
+
                           </div>
                         </div>
                       </div>

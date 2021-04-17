@@ -1,13 +1,15 @@
+import { Carrito } from 'src/app/models/vendedor/carrito';
+import { ARequest } from './../models/vendedor/asientoRequest';
+import { Lugares } from '../models/vendedor/lugares';
 import { Boletos } from './../models/vendedor/boletos';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Asiento } from '../models/vendedor/asiento';
 import { tap } from 'rxjs/operators';
-import { ARequest } from '../models/vendedor/asientoRequest';
-import { Rutas } from '../models/vendedor/rutas';
 import { Escala } from '../models/vendedor/escala';
-import { Carrito } from '../models/vendedor/carrito';
+import { Autobus } from '../models/vendedor/camion';
+import { Rutas } from '../models/vendedor/rutas';
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +27,10 @@ export class VendedorService {
     return this._refresh$;
   }
 
-  camion(origen: string, destino: string): Observable<Carrito> {
-    return this.http.get<Carrito>(`${this.URL}asientos.php?origen=${origen}&destino=${destino}`);
+  camion(origen: string, destino: string, fecha: string, hora: string): Observable<Carrito> {
+    return this.http.get<Carrito>(
+      `${this.URL}asientos.php?origen=${origen}&destino=${destino}&fechaSalida=${fecha}&horaSalida=${hora}`
+    );
   }
 
   carrito(asiento: Carrito): Observable<ARequest> {
@@ -42,10 +46,10 @@ export class VendedorService {
       );
   }
 
-  deletePendiente(corrida: number, asiento: number, id: number): Observable<ARequest> {
+  deletePendiente(id: number): Observable<ARequest> {
     return this.http
       .get<ARequest>(
-        `${this.URL}delete.php?Corrida=${corrida}&Asiento=${asiento}&Id_pendiente=${id}`)
+        `${this.URL}delete.php?Id_carrito=${id}`)
       .pipe(
         tap(() => {
           this._refresh$.next();
@@ -57,12 +61,24 @@ export class VendedorService {
     return this.http.get<Boletos>(`${this.URL}precios/preciosTabla.php`);
   }
 
-  rutas(): Observable<Rutas> {
-    return this.http.get<Rutas>(`${this.URL}form/rutas.php`);
+  lugares(): Observable<Lugares> {
+    return this.http.get<Lugares>(`${this.URL}form/lugares.php`);
   }
 
   escala(): Observable<Escala> {
     return this.http.get<Escala>(`${this.URL}form/escala.php`);
+  }
+
+  autobus(): Observable<Autobus> {
+    return this.http.get<Autobus>(`${this.URL}form/camion.php`);
+  }
+
+  rutas(): Observable<Rutas>{
+    return this.http.get<Rutas>(`${this.URL}form/rutas.php`);
+  }
+
+  vender(vender: Carrito): Observable<ARequest>{
+    return this.http.post<ARequest>(`${this.URL}carro/updateCarro.php`, JSON.stringify(vender));
   }
 
 }
