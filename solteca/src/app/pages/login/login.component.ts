@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   login = {
     user: '',
     pass: '',
-    option: '0',
+    option: 0,
   };
 
   sucursal: any;
