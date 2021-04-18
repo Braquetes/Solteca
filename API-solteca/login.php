@@ -10,11 +10,13 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
   require "./config/conexion.php";  // IMPORTA EL ARCHIVO CON LA CONEXION A LA DB
 
   // REALIZA LA QUERY A LA DB
-  $resultado = mysqli_query($conexion, "SELECT * FROM `usuarios` WHERE `user`='".$params->user."' AND `pass`='".$params->pass."'");
+  $resultado = mysqli_query($conexion, "SELECT * FROM `empleados` WHERE `usuario`='".$params->user."' AND `contraseña`='".$params->pass."' AND `Id_sucursal`='".$params->option."'");
   $access_token = "asd";
   while($row = mysqli_fetch_array($resultado)){
             $access_token = $row['access_token'];
-            $tipo = $row['tipo'];
+            $tipo = $row['Cargo'];
+            $nombre = $row['Nombre'];
+            $sucursal = $row['Id_sucursal'];
         }
 
 
@@ -28,11 +30,14 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
         $response->mensaje = 'Bienvenido';
         $response->access_token = $access_token;
         $response->client = $tipo;
+        $response->sucursal = $sucursal;
+        $response->nombre = $nombre;
     } else {
         $response->resultado = 'FAIL';
-        $response->mensaje = 'Usuario o Contraseña incorrecta';
+        $response->mensaje = 'Datos incorrectos';
     }
 
     header('Content-Type: text/html');
 
     echo json_encode($response); // MUESTRA EL JSON GENERADO
+?>

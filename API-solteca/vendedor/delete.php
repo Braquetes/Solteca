@@ -2,10 +2,9 @@
   header('Access-Control-Allow-Origin: *');
   header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
-require "./config/conexion.php";
+  require "../config/conexion.php";
 
-  mysqli_query($conexion,"DELETE FROM `tm_categoria` WHERE `cat_id`=$_GET[codigo]");
-
+  mysqli_query($conexion,"DELETE FROM `carrito` WHERE `carrito`.`Id_carrito`=$_GET[Id_carrito]");
 
   class Result {}
 
