@@ -79,12 +79,12 @@
                             <strong [hidden]="descuento.Descuento === '0'">{{descuento.Descuento}}</strong>
                         </th>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <td class="columna1">Comprados</td>
                         <th *ngFor="let carro of carrito">
                             <strong>{{carro.Tipo}}</strong>
                         </th>
-                      </tr>
+                      </tr> -->
                     </table>
                   </div>
                 </div>
@@ -1339,7 +1339,7 @@
                                 </div>
                                 <div class="asiento1" *ngIf="boton52 == 2">
                                   <input type="checkbox" checked disabled />
-                                  <label></label>
+                                  <label>52</label>
                                 </div>
                                 <div class="asiento3" *ngIf="boton52 == 1">
                                   <input type="checkbox" checked disabled />

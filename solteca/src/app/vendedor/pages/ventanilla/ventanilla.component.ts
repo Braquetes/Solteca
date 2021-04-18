@@ -349,18 +349,18 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
   recargar(): void {
     localStorage.removeItem('Longitud');
     if (this.venta.Destino !== '') {
-      if (!localStorage.getItem('Longitud')) {
-        this.autobs = this.autobus;
-        for (const raw of this.autobs) {
-          if (raw.Id_autobus === this.venta.Id_autobus) {
-            console.log('raw');
-            this.longitud = raw.Tamaño;
-            localStorage.setItem('Longitud', this.longitud);
-            this.longitudCamion = localStorage.getItem('Longitud');
-            console.log(this.longitudCamion);
-          }
-        }
-      }
+      // if (!localStorage.getItem('Longitud')) {
+      //   this.autobs = this.autobus;
+      //   for (const raw of this.autobs) {
+      //     if (raw.Id_autobus === this.venta.Id_autobus) {
+      //       console.log('raw');
+      //       this.longitud = raw.Tamaño;
+      //       localStorage.setItem('Longitud', this.longitud);
+      //       this.longitudCamion = localStorage.getItem('Longitud');
+      //       console.log(this.longitudCamion);
+      //     }
+      //   }
+      // }
       this.VS.camion(
         this.venta.Origen,
         this.venta.Destino,
@@ -370,6 +370,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       ).subscribe((data: Carrito) => {
         this.carro = data;
         for (const val of this.carro) {
+          this.longitud = val.Id_autobus;
           this.carrito.push(val);
           this.contador = this.carrito.length;
         }
@@ -440,6 +441,8 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       this.alerta = 'Actualizado';
     }
     for (let i = 0; i < this.contador; i++) {
+      console.log('Id_camion');
+      console.log(this.longitudCamion);
       // tslint:disable-next-line: prefer-const
       let x = this.carrito[i].Asiento.toString();
       switch (x) {
@@ -723,6 +726,47 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
         default: {
           console.log('Error' + ' ' + x);
           break;
+        }
+      }
+      if (this.venta.Destino !== '') {
+        if (this.longitud !== '') {
+          this.autobs = this.autobus;
+          for (const raw of this.autobs) {
+            if (raw.Id_autobus === this.longitud) {
+              console.log('raw');
+              this.longitud = raw.Tamaño;
+              localStorage.setItem('Longitud', this.longitud);
+              this.longitudCamion = localStorage.getItem('Longitud');
+              console.log(this.longitudCamion);
+            }
+          }
+        } else {
+          if (!localStorage.getItem('Longitud')) {
+            this.autobs = this.autobus;
+            for (const raw of this.autobs) {
+              if (raw.Id_autobus === this.venta.Id_autobus) {
+                console.log('raw');
+                this.longitud = raw.Tamaño;
+                localStorage.setItem('Longitud', this.longitud);
+                this.longitudCamion = localStorage.getItem('Longitud');
+                console.log(this.longitudCamion);
+              }
+            }
+          }
+        }
+      }
+    }
+    if (this.venta.Destino !== '') {
+      if (!localStorage.getItem('Longitud')) {
+        this.autobs = this.autobus;
+        for (const raw of this.autobs) {
+          if (raw.Id_autobus === this.venta.Id_autobus) {
+            console.log('raw');
+            this.longitud = raw.Tamaño;
+            localStorage.setItem('Longitud', this.longitud);
+            this.longitudCamion = localStorage.getItem('Longitud');
+            console.log(this.longitudCamion);
+          }
         }
       }
     }
