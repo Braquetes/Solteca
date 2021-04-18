@@ -304,3 +304,51 @@ input[type=checkbox] {
   filter: alpha(opacity=100);
   opacity: 1;
 }
+
+body {
+  background: #EEE;
+  font-family: sans-serif;
+  font-size: 40px;
+  margin: 2em;
+  padding: 3em;
+  /* 
+    El width para determinar el ancho del ticket
+    width: 50vw; */
+  text-align: center;
+}
+
+.container {
+  text-align: center;
+
+
+}
+
+.ticket {
+  border: 2px red;
+
+}
+
+.table {
+  text-align: center;
+
+}
+
+.folio {
+  text-align: right;
+}
+
+.encabezado-ticket {
+  line-height: 20px;
+}
+
+.info-ticket {
+  line-height: 15px;
+}
+
+.pie-ticket {
+  text-align: justify;
+}
+
+button {
+  border: none;
+}

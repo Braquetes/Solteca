@@ -40,7 +40,7 @@
           <h1>Boletaje de venta</h1>
         </div>
         <div class="dato">
-          <h5>Fecha: <span class="badge badge-light">00/00/00</span></h5>
+          <h5>Fecha: <span class="badge badge-light"></span></h5>
         </div>
         <div class="dato">
           <h5>Hora: <span class="badge badge-light">00:00:00</span></h5>
@@ -69,14 +69,20 @@
                       </thead>
                       <tr>
                         <td class="columna1">Precio</td>
-                        <th *ngFor="let boleto of bolets" >
+                        <th *ngFor="let boleto of bolts" >
                             <strong [hidden]="boleto.Precio == 0">{{ boleto.Precio }}</strong>
                         </th>
                       </tr>
                       <tr>
+                        <td class="columna1">% de descuento</td>
+                        <th *ngFor="let descuento of descuents">
+                            <strong [hidden]="descuento.Descuento === '0'">{{descuento.Descuento}}</strong>
+                        </th>
+                      </tr>
+                      <tr>
                         <td class="columna1">Comprados</td>
-                        <th *ngFor="let boleto of bolets">
-                            <strong [hidden]="boleto.Precio == 0">xd</strong>
+                        <th *ngFor="let carro of carrito">
+                            <strong>{{carro.Tipo}}</strong>
                         </th>
                       </tr>
                     </table>
@@ -93,11 +99,11 @@
                       <div class="row justify-content-center">
                         <div class="col-4">
                           <strong>Numero de folio:</strong>
-                          <span class="badge badge-danger">F31231</span>
+                          <span class="badge badge-danger">{{numeroFolio}}</span>
                         </div>
                         <div class="col-4">
                           <strong>Numero de corrida</strong>
-                          <span class="badge badge-danger">4</span>
+                          <span class="badge badge-danger">{{idVenta}}</span>
                         </div>
                       </div>
                     </div>
@@ -300,14 +306,13 @@
                           </div>
 
                           <div class="col-sm col1">
-                            <label for="" class="totallabel"
-                              >Numero de asientos</label
-                            >
+                            <label class="indicacion">Referencias</label>
                             <input
+                              name="Referencia"
+                              [(ngModel)]="venta.Referencia"
                               type="text"
-                              class="inputboletos"
-                              placeholder="{{ venta.Numero_asiento }}"
-                              disabled
+                              class="input1"
+                              required
                             />
                           </div>
                         </div>
@@ -319,7 +324,7 @@
                           </div>
                         </div>
                         <div class="alert alert-success" role="alert">
-                          Se aplico un descuento de <strong>20</strong> pesos al
+                          Se aplico un descuento de <strong *ngFor="let boleto of descuents" [hidden]="boleto.Tipo !== venta.Tipo">{{boleto.Descuento}} %</strong> al
                           boleto de tipo <strong>{{venta.Tipo}}</strong>
                         </div>
                         <div class="verificar">
@@ -371,7 +376,7 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton1 == 0">
+                                  <div class="asiento" *ngIf="boton1 == 0 && longitudCamion >= 1">
                                     <input
                                     type="checkbox"
                                     (click)="boton1 == 0 ? updateAsientos(1) : botons(1)"
@@ -388,7 +393,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton2== 0">
+                                <div class="asiento" *ngIf="boton2== 0 && longitudCamion >= 2">
                                   <input
                                   type="checkbox"
                                   (click)="boton2 == 0 ? updateAsientos(2) : botons(1)"
@@ -407,7 +412,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton3 == 0">
+                                <div class="asiento" *ngIf="boton3 == 0 && longitudCamion >= 3">
                                   <input
                                   type="checkbox"
                                   (click)="boton3 == 0 ? updateAsientos(3) : botons(1)"
@@ -424,7 +429,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton4 == 0">
+                                <div class="asiento" *ngIf="boton4 == 0 && longitudCamion >= 4">
                                   <input
                                     type="checkbox"
                                     (click)="boton4 == 0 ? updateAsientos(4) : botons(1)"
@@ -446,7 +451,7 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton5 == 0">
+                                  <div class="asiento" *ngIf="boton5 == 0 && longitudCamion >= 5">
                                     <input
                                     type="checkbox"
                                     (click)="boton5 == 0 ? updateAsientos(5) : botons(1)"
@@ -463,7 +468,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton6== 0">
+                                <div class="asiento" *ngIf="boton6== 0 && longitudCamion >= 6">
                                   <input
                                   type="checkbox"
                                   (click)="boton6 == 0 ? updateAsientos(6) : botons(1)"
@@ -482,7 +487,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton7 == 0">
+                                <div class="asiento" *ngIf="boton7 == 0 && longitudCamion >= 7">
                                   <input
                                   type="checkbox"
                                   (click)="boton7 == 0 ? updateAsientos(7) : botons(1)"
@@ -499,7 +504,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton8 == 0">
+                                <div class="asiento" *ngIf="boton8 == 0 && longitudCamion >= 8">
                                   <input
                                     type="checkbox"
                                     (click)="boton8 == 0 ? updateAsientos(8) : botons(1)"
@@ -521,7 +526,7 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton9 == 0">
+                                  <div class="asiento" *ngIf="boton9 == 0 && longitudCamion >= 9">
                                     <input
                                     type="checkbox"
                                     (click)="boton9 == 0 ? updateAsientos(9) : botons(1)"
@@ -538,7 +543,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton10 == 0">
+                                <div class="asiento" *ngIf="boton10 == 0 && longitudCamion >= 10">
                                   <input
                                   type="checkbox"
                                   (click)="boton10 == 0 ? updateAsientos(10) : botons(1)"
@@ -557,7 +562,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton11 == 0">
+                                <div class="asiento" *ngIf="boton11 == 0 && longitudCamion >= 11">
                                   <input
                                   type="checkbox"
                                   (click)="boton11 == 0 ? updateAsientos(11) : botons(1)"
@@ -574,7 +579,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton12 == 0">
+                                <div class="asiento" *ngIf="boton12 == 0 && longitudCamion >= 12">
                                   <input
                                     type="checkbox"
                                     (click)="boton12 == 0 ? updateAsientos(12) : botons(1)"
@@ -593,10 +598,9 @@
                                 </div>
                               </div>
                             </div>
-
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton13 == 0">
+                                  <div class="asiento" *ngIf="boton13 == 0 && longitudCamion >= 13">
                                     <input
                                     type="checkbox"
                                     (click)="boton13 == 0 ? updateAsientos(13) : botons(1)"
@@ -613,7 +617,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton14== 0">
+                                <div class="asiento" *ngIf="boton14== 0 && longitudCamion >= 14">
                                   <input
                                   type="checkbox"
                                   (click)="boton2 == 0 ? updateAsientos(14) : botons(1)"
@@ -632,7 +636,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton15 == 0">
+                                <div class="asiento" *ngIf="boton15 == 0 && longitudCamion >= 15">
                                   <input
                                   type="checkbox"
                                   (click)="boton15 == 0 ? updateAsientos(15) : botons(1)"
@@ -649,7 +653,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton16 == 0">
+                                <div class="asiento" *ngIf="boton16 == 0 && longitudCamion >= 16">
                                   <input
                                     type="checkbox"
                                     (click)="boton16 == 0 ? updateAsientos(16) : botons(1)"
@@ -671,7 +675,7 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton17 == 0">
+                                  <div class="asiento" *ngIf="boton17 == 0 && longitudCamion >= 17">
                                     <input
                                     type="checkbox"
                                     (click)="boton17 == 0 ? updateAsientos(17) : botons(1)"
@@ -688,7 +692,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton18 == 0">
+                                <div class="asiento" *ngIf="boton18 == 0 && longitudCamion >= 18">
                                   <input
                                   type="checkbox"
                                   (click)="boton18 == 0 ? updateAsientos(18) : botons(1)"
@@ -707,7 +711,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton19 == 0">
+                                <div class="asiento" *ngIf="boton19 == 0 && longitudCamion >= 19">
                                   <input
                                   type="checkbox"
                                   (click)="boton19 == 0 ? updateAsientos(19) : botons(1)"
@@ -724,7 +728,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton20 == 0">
+                                <div class="asiento" *ngIf="boton20 == 0 && longitudCamion >= 20">
                                   <input
                                     type="checkbox"
                                     (click)="boton20 == 0 ? updateAsientos(20) : botons(1)"
@@ -746,7 +750,7 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton21 == 0">
+                                  <div class="asiento" *ngIf="boton21 == 0 && longitudCamion >= 21">
                                     <input
                                     type="checkbox"
                                     (click)="boton21 == 0 ? updateAsientos(21) : botons(1)"
@@ -763,7 +767,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton22== 0">
+                                <div class="asiento" *ngIf="boton22== 0 && longitudCamion >= 22">
                                   <input
                                   type="checkbox"
                                   (click)="boton22 == 0 ? updateAsientos(22) : botons(1)"
@@ -782,7 +786,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton23 == 0">
+                                <div class="asiento" *ngIf="boton23 == 0 && longitudCamion >= 23">
                                   <input
                                   type="checkbox"
                                   (click)="boton23 == 0 ? updateAsientos(23) : botons(1)"
@@ -799,7 +803,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton24 == 0">
+                                <div class="asiento" *ngIf="boton24 == 0 && longitudCamion >= 24">
                                   <input
                                     type="checkbox"
                                     (click)="boton24 == 0 ? updateAsientos(24) : botons(1)"
@@ -821,7 +825,7 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton25 == 0">
+                                  <div class="asiento" *ngIf="boton25 == 0 && longitudCamion >= 25">
                                     <input
                                     type="checkbox"
                                     (click)="boton25 == 0 ? updateAsientos(25) : botons(1)"
@@ -838,7 +842,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton26== 0">
+                                <div class="asiento" *ngIf="boton26== 0 && longitudCamion >= 26">
                                   <input
                                   type="checkbox"
                                   (click)="boton26 == 0 ? updateAsientos(26) : botons(1)"
@@ -857,7 +861,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton27 == 0">
+                                <div class="asiento" *ngIf="boton27 == 0 && longitudCamion >= 27">
                                   <input
                                   type="checkbox"
                                   (click)="boton27 == 0 ? updateAsientos(27) : botons(1)"
@@ -874,7 +878,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton28 == 0">
+                                <div class="asiento" *ngIf="boton28 == 0 && longitudCamion >= 28">
                                   <input
                                     type="checkbox"
                                     (click)="boton28 == 0 ? updateAsientos(28) : botons(1)"
@@ -896,7 +900,7 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton29 == 0">
+                                  <div class="asiento" *ngIf="boton29 == 0 && longitudCamion >= 29">
                                     <input
                                     type="checkbox"
                                     (click)="boton29 == 0 ? updateAsientos(29) : botons(1)"
@@ -913,7 +917,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton30== 0">
+                                <div class="asiento" *ngIf="boton30== 0 && longitudCamion >= 30">
                                   <input
                                   type="checkbox"
                                   (click)="boton30 == 0 ? updateAsientos(30) : botons(1)"
@@ -932,7 +936,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton31 == 0">
+                                <div class="asiento" *ngIf="boton31 == 0 && longitudCamion >= 31">
                                   <input
                                   type="checkbox"
                                   (click)="boton31 == 0 ? updateAsientos(31) : botons(1)"
@@ -949,7 +953,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton32 == 0">
+                                <div class="asiento" *ngIf="boton32 == 0 && longitudCamion >= 32">
                                   <input
                                     type="checkbox"
                                     (click)="boton32 == 0 ? updateAsientos(32) : botons(1)"
@@ -971,7 +975,7 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton33 == 0">
+                                  <div class="asiento" *ngIf="boton33 == 0 && longitudCamion >= 33">
                                     <input
                                     type="checkbox"
                                     (click)="boton33 == 0 ? updateAsientos(33) : botons(1)"
@@ -988,7 +992,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton34== 0">
+                                <div class="asiento" *ngIf="boton34== 0 && longitudCamion >= 34">
                                   <input
                                   type="checkbox"
                                   (click)="boton34 == 0 ? updateAsientos(34) : botons(1)"
@@ -1007,7 +1011,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton35 == 0">
+                                <div class="asiento" *ngIf="boton35 == 0 && longitudCamion >= 35">
                                   <input
                                   type="checkbox"
                                   (click)="boton35 == 0 ? updateAsientos(35) : botons(1)"
@@ -1024,7 +1028,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton36 == 0">
+                                <div class="asiento" *ngIf="boton36 == 0 && longitudCamion >= 36">
                                   <input
                                     type="checkbox"
                                     (click)="boton36 == 0 ? updateAsientos(36) : botons(1)"
@@ -1046,7 +1050,7 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton37 == 0">
+                                  <div class="asiento" *ngIf="boton37 == 0 && longitudCamion >= 37">
                                     <input
                                     type="checkbox"
                                     (click)="boton37 == 0 ? updateAsientos(37) : botons(1)"
@@ -1063,7 +1067,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton38== 0">
+                                <div class="asiento" *ngIf="boton38== 0 && longitudCamion >= 38">
                                   <input
                                   type="checkbox"
                                   (click)="boton38 == 0 ? updateAsientos(38) : botons(1)"
@@ -1082,7 +1086,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton39 == 0">
+                                <div class="asiento" *ngIf="boton39 == 0 && longitudCamion >= 39">
                                   <input
                                   type="checkbox"
                                   (click)="boton39 == 0 ? updateAsientos(39) : botons(1)"
@@ -1099,7 +1103,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton40 == 0">
+                                <div class="asiento" *ngIf="boton40 == 0 && longitudCamion >= 40">
                                   <input
                                     type="checkbox"
                                     (click)="boton40 == 0 ? updateAsientos(40) : botons(1)"
@@ -1121,7 +1125,7 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton41 == 0">
+                                  <div class="asiento" *ngIf="boton41 == 0 && longitudCamion >= 41">
                                     <input
                                     type="checkbox"
                                     (click)="boton41 == 0 ? updateAsientos(41) : botons(1)"
@@ -1138,7 +1142,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton42== 0">
+                                <div class="asiento" *ngIf="boton42== 0 && longitudCamion >= 42">
                                   <input
                                   type="checkbox"
                                   (click)="boton42 == 0 ? updateAsientos(42) : botons(1)"
@@ -1157,7 +1161,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton43 == 0">
+                                <div class="asiento" *ngIf="boton43 == 0 && longitudCamion >= 43">
                                   <input
                                   type="checkbox"
                                   (click)="boton43 == 0 ? updateAsientos(43) : botons(1)"
@@ -1174,7 +1178,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton44 == 0">
+                                <div class="asiento" *ngIf="boton44 == 0 && longitudCamion >= 44">
                                   <input
                                     type="checkbox"
                                     (click)="boton44 == 0 ? updateAsientos(44) : botons(1)"
@@ -1196,7 +1200,7 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton45 == 0">
+                                  <div class="asiento" *ngIf="boton45 == 0 && longitudCamion >= 45">
                                     <input
                                     type="checkbox"
                                     (click)="boton45 == 0 ? updateAsientos(45) : botons(1)"
@@ -1213,7 +1217,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton46== 0">
+                                <div class="asiento" *ngIf="boton46== 0 && longitudCamion >= 46">
                                   <input
                                   type="checkbox"
                                   (click)="boton46 == 0 ? updateAsientos(46) : botons(1)"
@@ -1232,7 +1236,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton47 == 0">
+                                <div class="asiento" *ngIf="boton47 == 0 && longitudCamion >= 47">
                                   <input
                                   type="checkbox"
                                   (click)="boton47 == 0 ? updateAsientos(47) : botons(1)"
@@ -1249,7 +1253,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton48 == 0">
+                                <div class="asiento" *ngIf="boton48 == 0 && longitudCamion >= 48">
                                   <input
                                     type="checkbox"
                                     (click)="boton48 == 0 ? updateAsientos(48) : botons(1)"
@@ -1271,7 +1275,7 @@
 
                             <div class="fila">
                               <div class="seccion">
-                                  <div class="asiento" *ngIf="boton49 == 0">
+                                  <div class="asiento" *ngIf="boton49 == 0 && longitudCamion >= 49">
                                     <input
                                     type="checkbox"
                                     (click)="boton49 == 0 ? updateAsientos(49) : botons(1)"
@@ -1288,7 +1292,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton50== 0">
+                                <div class="asiento" *ngIf="boton50== 0 && longitudCamion >= 50">
                                   <input
                                   type="checkbox"
                                   (click)="boton50 == 0 ? updateAsientos(50) : botons(1)"
@@ -1307,7 +1311,7 @@
                                 </div>
                               </div>
                               <div class="seccion">
-                                <div class="asiento" *ngIf="boton51 == 0">
+                                <div class="asiento" *ngIf="boton51 == 0 && longitudCamion >= 51">
                                   <input
                                   type="checkbox"
                                   (click)="boton51 == 0 ? updateAsientos(51) : botons(1)"
@@ -1324,7 +1328,7 @@
                                   <input type="checkbox" checked disabled />
                                   <label></label>
                                 </div>
-                                <div class="asiento" *ngIf="boton52 == 0">
+                                <div class="asiento" *ngIf="boton52 == 0 && longitudCamion >= 52">
                                   <input
                                     type="checkbox"
                                     (click)="boton52 == 0 ? updateAsientos(52) : botons(1)"

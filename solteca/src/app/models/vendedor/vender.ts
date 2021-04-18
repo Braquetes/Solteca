@@ -15,4 +15,5 @@ export interface Vender {
     Id_venta: number;
     Estado: number;
     Id_autobus: number;
+    Id_sucursal: number;
 }

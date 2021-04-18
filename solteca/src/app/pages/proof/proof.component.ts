@@ -24,8 +24,9 @@ export class ProofComponent implements OnInit {
   };
   estado = 1;
   persona: any;
-  contador = [{Id_pendiente: 0, Corrida: 0, Asiento: 0, Estado: 1 }];
+  contador = [{ Id_pendiente: 0, Corrida: 0, Asiento: 0, Estado: 1 }];
   xd = 0;
+  results: any;
   constructor(
     private VS: VendedorService,
     private RT: Router,
@@ -49,8 +50,8 @@ export class ProofComponent implements OnInit {
       { name: 'Magnetic', value: 13 },
       { name: 'Zeros', value: 37 },
     ];
-    // tslint:disable-next-line: only-arrow-functions tslint:disable-next-line: typedef
-    items.sort(function(a, b) {
+    // tslint:disable-next-line: only-arrow-functions tslint:disable-next-line: typedef space-before-function-paren
+    items.sort(function (a, b) {
       if (a.value < b.value) {
         return 1;
       }
@@ -61,8 +62,38 @@ export class ProofComponent implements OnInit {
       return 0;
     });
     console.log(items);
+
+    this.folio();
   }
 
+  // xdxd(): void{
+  //   function generaNss(): string{
+  //     let result = '';
+  //     const characters =
+  //       '0123456789012345678';
+  //     const charactersLength = characters.length;
+  //     for (let i = 0; i < charactersLength; i++) {
+  //       result += characters.charAt(
+  //         Math.floor(Math.random() * charactersLength)
+  //       );
+  //     }
+
+  //     return result;
+  //   }
+
+  //   console.log(generaNss());
+  // }
+
+  folio(): void {
+    this.results = '';
+    const characters = '0123456789012345678';
+    const charactersLength = characters.length;
+    for (let i = 0; i < charactersLength; i++) {
+      this.results += characters.charAt(
+        Math.floor(Math.random() * charactersLength)
+      );
+    }
+  }
   // getAsientos(): void {
   //   // tslint:disable-next-line: deprecation
   //   this.VS.camion().subscribe((data: Asiento) => {

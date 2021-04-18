@@ -25,10 +25,14 @@
                     </div>
                     <div class="campos">
                         <label>Selecciona la terminal</label>
-                        <select name="option" [(ngModel)]="login.option" id="" class="elige" required>
-                        <option value="1">Opcion 1</option>
-                        <option value="2">Opcion 2</option>
-                        <option value="3">Opcion 3</option>
+                        <select name="option" [(ngModel)]="login.option" class="elige" required >
+                        <option value="0" selected disabled>Seleeciona tu sucursal</option>
+                        <option
+                        *ngFor="let sucsal of sucursal"
+                        value="{{sucsal.Id_sucursal}}"
+                        >
+                        {{sucsal.Nombre}}
+                        </option>
                     </select>
                     </div>
                     <div class="boton">

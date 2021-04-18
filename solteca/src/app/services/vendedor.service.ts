@@ -1,3 +1,5 @@
+import { Descuentos } from './../models/vendedor/descuentos';
+import { Idventa } from './../models/vendedor/idVenta';
 import { Carrito } from 'src/app/models/vendedor/carrito';
 import { ARequest } from './../models/vendedor/asientoRequest';
 import { Lugares } from '../models/vendedor/lugares';
@@ -10,6 +12,7 @@ import { tap } from 'rxjs/operators';
 import { Escala } from '../models/vendedor/escala';
 import { Autobus } from '../models/vendedor/camion';
 import { Rutas } from '../models/vendedor/rutas';
+import { Ticket } from '../models/vendedor/ticket';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +21,7 @@ export class VendedorService {
   // tslint:disable-next-line: variable-name
   private _refresh$ = new Subject<void>();
 
-  URL = 'https://solteca.ml/API-solteca/vendedor/';
+  URL = 'http://braquetes.mx/API-solteca/vendedor/';
 
   constructor(private http: HttpClient) {}
 
@@ -27,18 +30,32 @@ export class VendedorService {
     return this._refresh$;
   }
 
-  camion(origen: string, destino: string, fecha: string, hora: string): Observable<Carrito> {
+  camion(
+    origen: string,
+    destino: string,
+    fecha: string,
+    hora: string
+    ): Observable<Carrito> {
     return this.http.get<Carrito>(
       `${this.URL}asientos.php?origen=${origen}&destino=${destino}&fechaSalida=${fecha}&horaSalida=${hora}`
     );
   }
 
+  camionCarro(
+    origen: string,
+    destino: string,
+    fecha: string,
+    hora: string,
+    idVenta: string,
+  ): Observable<Carrito> {
+    return this.http.get<Carrito>(
+      `${this.URL}asientosCarro.php?origen=${origen}&destino=${destino}&fechaSalida=${fecha}&horaSalida=${hora}&Id_venta=${idVenta}`
+    );
+  }
+
   carrito(asiento: Carrito): Observable<ARequest> {
     return this.http
-      .post<ARequest>(
-        `${this.URL}carro/carrito.php`,
-        JSON.stringify(asiento)
-      )
+      .post<ARequest>(`${this.URL}carro/carrito.php`, JSON.stringify(asiento))
       .pipe(
         tap(() => {
           this._refresh$.next();
@@ -48,8 +65,7 @@ export class VendedorService {
 
   deletePendiente(id: number): Observable<ARequest> {
     return this.http
-      .get<ARequest>(
-        `${this.URL}delete.php?Id_carrito=${id}`)
+      .get<ARequest>(`${this.URL}delete.php?Id_carrito=${id}`)
       .pipe(
         tap(() => {
           this._refresh$.next();
@@ -69,16 +85,27 @@ export class VendedorService {
     return this.http.get<Escala>(`${this.URL}form/escala.php`);
   }
 
+  descuentos(): Observable<Descuentos> {
+    return this.http.get<Descuentos>(`${this.URL}form/descuentos.php`);
+  }
+
   autobus(): Observable<Autobus> {
     return this.http.get<Autobus>(`${this.URL}form/camion.php`);
   }
 
-  rutas(): Observable<Rutas>{
+  rutas(): Observable<Rutas> {
     return this.http.get<Rutas>(`${this.URL}form/rutas.php`);
   }
 
-  vender(vender: Carrito): Observable<ARequest>{
-    return this.http.post<ARequest>(`${this.URL}carro/updateCarro.php`, JSON.stringify(vender));
+  idVenta(): Observable<Idventa> {
+    return this.http.get<Idventa>(`${this.URL}carro/idVenta.php`);
   }
 
+  ticket(idSucursal: string): Observable<Ticket> {
+    return this.http.get<Ticket>(`${this.URL}carro/ticket.php?Id_sucursal=${idSucursal}`);
+  }
+
+  vender(vender: string): Observable<ARequest> {
+    return this.http.get<ARequest>(`${this.URL}carro/updateCarro.php?Id_venta=${vender}`);
+  }
 }

@@ -1,3 +1,4 @@
+import { Idventa } from './../../../models/vendedor/idVenta';
 import { Carrito } from './../../../models/vendedor/carrito';
 import { Camion } from 'src/app/models/vendedor/botones';
 import { AdministradorService } from './../../../services/administrador.service';
@@ -14,6 +15,7 @@ import { Lugares} from 'src/app/models/vendedor/lugares';
 import { Escala } from 'src/app/models/vendedor/escala';
 import { Autobus } from 'src/app/models/vendedor/camion';
 import { Rutas } from 'src/app/models/vendedor/rutas';
+import { Descuentos } from 'src/app/models/vendedor/descuentos';
 
 @Component({
   selector: 'app-ventanilla',
@@ -34,10 +36,11 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
     Hora_salida: '',
     Telefono: '',
     Asiento: 0,
-    Numero_asiento: '',
-    Id_venta: 0,
+    Referencia: '',
+    Id_venta: '',
     Estado: 0,
-    Id_autobus: 0
+    Id_autobus: 0,
+    Id_sucursal: '',
   };
 
   boletos: any | undefined;
@@ -45,7 +48,10 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
   escalas: any | undefined;
   carro: any | undefined;
   autobus: any | undefined;
+  autobs: any;
   lugares: any | undefined;
+  ruta: any  | undefined;
+
   carrito = [
     {
       Id_carrito: 0,
@@ -60,10 +66,11 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       Hora_salida: '',
       Telefono: '',
       Asiento: 0,
-      Numero_asiento: '',
-      Id_venta: 0,
+      Referencia: '',
+      Id_venta: '',
       Estado: 0,
-      Id_autobus: 0
+      Id_autobus: 0,
+      Id_sucursal: '',
     },
   ];
   suscription: Subscription | undefined;
@@ -198,19 +205,37 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
 
   alerta: any;
 
-  ruta: any;
   lugar: any;
   rutaSelect: any;
   lugarSelect: any;
   lugarSelectRuta: any;
   boleto: any;
-  bolets = [{
-    Id_boleto: 0,
-    Tipo: '',
-    Precio: 0,
-    Ruta: ''
-  }];
-  vendidos = [{tipo: '', vendido: 0}];
+  bolets = [
+    {
+      Id_boleto: 0,
+      Tipo: '',
+      Precio: 0,
+      Ruta: '',
+    },
+  ];
+  bolts = [
+    {
+      Id_boleto: 0,
+      Tipo: '',
+      Precio: 0,
+      Ruta: '',
+    },
+  ];
+  vendidos = [{ tipo: '', vendido: 0 }];
+  results: any;
+  numeroFolio: any;
+  referencia: any;
+  descuentos: any;
+  descuento: any;
+  descuents = [{Id_descuento: 0, Tipo: '', Descuento: ''}];
+  precioDescuento1: any;
+  longitudCamion: any;
+  longitud = '';
 
   constructor(
     private VS: VendedorService,
@@ -227,6 +252,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
         this.router.navigate(['/menu']);
       }
     }
+    this.folio();
     this.cookies();
     this.getBoletos();
     this.getRutas();
@@ -234,10 +260,28 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
     this.getEscala();
     this.getAutobus();
     this.recargar();
+    this.getIdVenta();
+    this.getDescuentos();
     // tslint:disable-next-line: deprecation
     this.suscription = this.VS.refresh$.subscribe(() => {
       this.recargar();
     });
+  }
+
+  getIdVenta(): void {
+    const idVenta = this.CS.get('Id_venta');
+    if (!idVenta) {
+      // tslint:disable-next-line: deprecation
+      this.VS.idVenta().subscribe((data: Idventa) => {
+        if (data.resultado === 'OK') {
+          console.log(data.mensaje);
+          this.idVenta = data.Id_venta;
+          this.CS.set('Id_venta', this.idVenta.toString(), 30, '/');
+        }
+      });
+    } else {
+      this.idVenta = idVenta;
+    }
   }
 
   getBoletos(): void {
@@ -272,7 +316,15 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
     });
   }
 
-  getAutobus(): void{
+  getDescuentos(): void {
+    // tslint:disable-next-line: deprecation
+    this.VS.descuentos().subscribe((data: Descuentos) => {
+      this.descuentos = data;
+      console.log(this.descuentos);
+    });
+  }
+
+  getAutobus(): void {
     // tslint:disable-next-line: deprecation
     this.VS.autobus().subscribe((data: Autobus) => {
       this.autobus = data;
@@ -282,7 +334,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
 
   boton(value: number): void {
     this.venta.Cantidad += 1;
-    this.venta.Numero_asiento += value + ' , ';
+    // this.venta.Numero_asiento += value + ' , ';
     console.log(value);
   }
 
@@ -295,17 +347,35 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
   }
 
   recargar(): void {
+    localStorage.removeItem('Longitud');
     if (this.venta.Destino !== '') {
-      // tslint:disable-next-line: deprecation
-      this.VS.camion(this.venta.Origen, this.venta.Destino, this.venta.Fecha_salida, this.venta.Hora_salida).subscribe((data: Carrito) => {
+      if (!localStorage.getItem('Longitud')) {
+        this.autobs = this.autobus;
+        for (const raw of this.autobs) {
+          if (raw.Id_autobus === this.venta.Id_autobus) {
+            console.log('raw');
+            this.longitud = raw.Tamaño;
+            localStorage.setItem('Longitud', this.longitud);
+            this.longitudCamion = localStorage.getItem('Longitud');
+            console.log(this.longitudCamion);
+          }
+        }
+      }
+      this.VS.camion(
+        this.venta.Origen,
+        this.venta.Destino,
+        this.venta.Fecha_salida,
+        this.venta.Hora_salida
+        // tslint:disable-next-line: deprecation
+      ).subscribe((data: Carrito) => {
         this.carro = data;
         for (const val of this.carro) {
           this.carrito.push(val);
           this.contador = this.carrito.length;
         }
         console.log('DB');
-        // tslint:disable-next-line: only-arrow-functions tslint:disable-next-line: typedef
-        this.carrito.sort(function(a, b) {
+        // tslint:disable-next-line: only-arrow-functions typedef  space-before-function-paren
+        this.carrito.sort(function (a, b) {
           if (a.Asiento > b.Asiento) {
             return 1;
           }
@@ -317,10 +387,13 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
         });
       });
       console.log(this.carrito);
-      if (this.venta.Destino !==  '' && this.venta.Origen !== ''){
+      if (this.venta.Destino !== '' && this.venta.Origen !== '') {
         this.ruta = this.rutas;
-        for (const val of this.ruta){
-          if (val.Lugar_salida === this.venta.Origen && val.Lugar_destino === this.venta.Destino){
+        for (const val of this.ruta) {
+          if (
+            val.Lugar_salida === this.venta.Origen &&
+            val.Lugar_destino === this.venta.Destino
+          ) {
             this.rutaSelect = val.Precio;
             console.log(this.rutaSelect);
             this.lugarSelect = val.Lugar_destino;
@@ -335,6 +408,29 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
             this.bolets.push(val);
             console.log('Boletos');
             console.log(this.bolets);
+            this.descuento = this.descuentos;
+            for (const vall of this.descuento) {
+              if (val.Tipo === vall.Tipo){
+                this.descuents.push(vall);
+                console.log('Descuents');
+                console.log(this.descuents);
+                for (const valll of this.bolets) {
+                  if (valll.Tipo === vall.Tipo){
+                    console.log('Precio - Descuento');
+                    console.log(valll.Precio);
+                    console.log(vall.Descuento);
+                    if (vall.Descuento > 0){
+                    valll.Precio = valll.Precio - (valll.Precio * vall.Descuento) / 100;
+                  }else {
+                    valll.Precio = val.Precio;
+                  }
+                    this.bolts.push(valll);
+                    console.log('Bolts');
+                    console.log(this.bolts);
+                  }
+                }
+              }
+            }
           }
         }
         while (this.boletos.length > 0) {
@@ -377,30 +473,251 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
           break;
         case '4':
           this.boton4 = this.carrito[i].Estado;
+          this.asiento4 = this.carrito[i].Asiento;
           console.log('Arreglo' + ' , ' + i);
           break;
         case '5':
           this.boton5 = this.carrito[i].Estado;
+          this.asiento5 = this.carrito[i].Asiento;
           console.log('Arreglo' + ' , ' + i);
           break;
         case '6':
           this.boton6 = this.carrito[i].Estado;
+          this.asiento6 = this.carrito[i].Asiento;
           console.log('Arreglo' + ' , ' + i);
           break;
         case '7':
           this.boton7 = this.carrito[i].Estado;
+          this.asiento7 = this.carrito[i].Asiento;
           console.log('Arreglo' + ' , ' + i);
           break;
         case '8':
           this.boton8 = this.carrito[i].Estado;
+          this.asiento8 = this.carrito[i].Asiento;
           console.log('Arreglo' + ' , ' + i);
           break;
         case '9':
           this.boton9 = this.carrito[i].Estado;
+          this.asiento9 = this.carrito[i].Asiento;
           console.log('Arreglo' + ' , ' + i);
           break;
         case '10':
           this.boton10 = this.carrito[i].Estado;
+          this.asiento10 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '11':
+          this.boton11 = this.carrito[i].Estado;
+          this.asiento11 = this.carrito[i].Asiento;
+          console.log('Arreglo: ' + i);
+          break;
+        case '12':
+          this.boton12 = this.carrito[i].Estado;
+          this.asiento12 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '13':
+          this.boton13 = this.carrito[i].Estado;
+          this.asiento13 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '14':
+          this.boton14 = this.carrito[i].Estado;
+          this.asiento14 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '15':
+          this.boton15 = this.carrito[i].Estado;
+          this.asiento15 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '16':
+          this.boton16 = this.carrito[i].Estado;
+          this.asiento16 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '17':
+          this.boton17 = this.carrito[i].Estado;
+          this.asiento17 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '18':
+          this.boton18 = this.carrito[i].Estado;
+          this.asiento18 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '19':
+          this.boton19 = this.carrito[i].Estado;
+          this.asiento19 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '20':
+          this.boton20 = this.carrito[i].Estado;
+          this.asiento20 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '21':
+          this.boton21 = this.carrito[i].Estado;
+          this.asiento21 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '22':
+          this.boton22 = this.carrito[i].Estado;
+          this.asiento22 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '23':
+          this.boton23 = this.carrito[i].Estado;
+          this.asiento23 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '24':
+          this.boton24 = this.carrito[i].Estado;
+          this.asiento24 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '25':
+          this.boton25 = this.carrito[i].Estado;
+          this.asiento25 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '26':
+          this.boton26 = this.carrito[i].Estado;
+          this.asiento26 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '27':
+          this.boton27 = this.carrito[i].Estado;
+          this.asiento27 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '28':
+          this.boton28 = this.carrito[i].Estado;
+          this.asiento28 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '29':
+          this.boton29 = this.carrito[i].Estado;
+          this.asiento29 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '30':
+          this.boton30 = this.carrito[i].Estado;
+          this.asiento30 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '31':
+          this.boton31 = this.carrito[i].Estado;
+          this.asiento31 = this.carrito[i].Asiento;
+          console.log('Arreglo: ' + i);
+          break;
+        case '32':
+          this.boton32 = this.carrito[i].Estado;
+          this.asiento32 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '33':
+          this.boton33 = this.carrito[i].Estado;
+          this.asiento33 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          console.log(this.asiento2);
+          break;
+        case '34':
+          this.boton34 = this.carrito[i].Estado;
+          this.asiento34 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          console.log(this.asiento3);
+          break;
+        case '35':
+          this.boton35 = this.carrito[i].Estado;
+          this.asiento35 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '36':
+          this.boton36 = this.carrito[i].Estado;
+          this.asiento36 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '37':
+          this.boton37 = this.carrito[i].Estado;
+          this.asiento37 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '38':
+          this.boton38 = this.carrito[i].Estado;
+          this.asiento38 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '39':
+          this.boton39 = this.carrito[i].Estado;
+          this.asiento39 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '40':
+          this.boton40 = this.carrito[i].Estado;
+          this.asiento40 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '41':
+          this.boton41 = this.carrito[i].Estado;
+          this.asiento41 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '42':
+          this.boton42 = this.carrito[i].Estado;
+          this.asiento42 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '43':
+          this.boton43 = this.carrito[i].Estado;
+          this.asiento43 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          console.log(this.asiento2);
+          break;
+        case '44':
+          this.boton44 = this.carrito[i].Estado;
+          this.asiento44 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          console.log(this.asiento3);
+          break;
+        case '45':
+          this.boton45 = this.carrito[i].Estado;
+          this.asiento45 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '46':
+          this.boton46 = this.carrito[i].Estado;
+          this.asiento46 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '47':
+          this.boton47 = this.carrito[i].Estado;
+          this.asiento47 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '48':
+          this.boton48 = this.carrito[i].Estado;
+          this.asiento48 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '49':
+          this.boton49 = this.carrito[i].Estado;
+          this.asiento49 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '50':
+          this.boton50 = this.carrito[i].Estado;
+          this.asiento50 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '51':
+          this.boton51 = this.carrito[i].Estado;
+          this.asiento51 = this.carrito[i].Asiento;
+          console.log('Arreglo' + ' , ' + i);
+          break;
+        case '52':
+          this.boton52 = this.carrito[i].Estado;
+          this.asiento52 = this.carrito[i].Asiento;
           console.log('Arreglo' + ' , ' + i);
           break;
         default: {
@@ -412,23 +729,40 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
     while (this.carrito.length > 0) {
       this.carrito.pop();
     }
+    this.folio();
   }
 
   updateAsientos(asiento: number): void {
-    console.log('Agregar');
-    console.log(asiento);
-    this.venta.Asiento = asiento;
-    this.venta.Cantidad = this.venta.Cantidad * 1 + 1;
-    this.total = this.venta.Cantidad * this.venta.Precio;
-    this.venta.Numero_asiento += asiento + ', ';
-    this.venta.Estado = this.estado;
-    // tslint:disable-next-line: deprecation
-    this.VS.carrito(this.venta).subscribe((datos: ARequest) => {
-      if (datos.resultado === 'OK') {
-        console.log(datos.mensaje);
-      }
-    });
-
+    if (
+      this.venta.Nombre_cliente !== '' &&
+      this.venta.Origen !== '' &&
+      this.venta.Destino !== '' &&
+      this.venta.Tipo !== '' &&
+      this.venta.Id_autobus !== 0 &&
+      this.venta.Precio !== 0 &&
+      this.venta.Fecha_salida !== '' &&
+      this.venta.Hora_salida !== '' &&
+      this.venta.Telefono !== ''
+    ){
+      console.log('Agregar');
+      console.log(asiento);
+      this.venta.Asiento = asiento;
+      this.venta.Cantidad = this.venta.Cantidad * 1 + 1;
+      this.total = this.venta.Cantidad * this.venta.Precio;
+      // this.venta.Numero_asiento += asiento + ', ';
+      this.venta.Estado = this.estado;
+      this.venta.Id_sucursal = this.CS.get('sucursal');
+      this.venta.Id_venta = this.CS.get('Id_venta');
+      // tslint:disable-next-line: deprecation
+      this.VS.carrito(this.venta).subscribe((datos: ARequest) => {
+        if (datos.resultado === 'OK') {
+          console.log(datos.mensaje);
+        }
+      });
+    }else {
+      console.log('Agregar');
+      console.log(asiento);
+    }
     // tslint:disable-next-line: deprecation
     // this.VS.asientoPendiente(this.Camion).subscribe((datos: ARequest) => {
     //   if (datos.resultado === 'OK') {
@@ -482,11 +816,12 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       localStorage.setItem('Tipo', this.venta.Tipo);
       localStorage.setItem('Telefono', this.venta.Telefono.toString());
       localStorage.setItem('Cantidad', this.venta.Cantidad.toString());
-      localStorage.setItem('Numero_Asiento', this.venta.Numero_asiento);
+      // localStorage.setItem('Numero_Asiento', this.venta.Numero_asiento);
       localStorage.setItem('Total', this.total.toString());
       localStorage.setItem('Total', this.venta.Precio.toString());
       localStorage.setItem('Id_venta', this.venta.Id_venta.toString());
       localStorage.setItem('Camion', this.venta.Id_autobus.toString());
+      localStorage.setItem('Referencia', this.venta.Referencia);
       this.router.navigate(['/carrito']);
     } else {
       this.router.navigate(['/carrito']);
@@ -509,6 +844,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       this.total = localStorage.getItem('Total');
       this.idVenta = localStorage.getItem('Id_venta');
       this.camion = localStorage.getItem('Camion');
+      this.referencia = localStorage.getItem('Referencia');
 
       this.venta.Nombre_cliente = this.cliente;
       this.venta.Origen = this.origen;
@@ -519,9 +855,27 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       this.venta.Tipo = this.tipo;
       this.venta.Cantidad = this.cantidad;
       this.venta.Telefono = this.telefono;
-      this.venta.Numero_asiento = this.numAsiento;
+      // this.venta.Numero_asiento = this.numAsiento;
       this.venta.Id_venta = this.idVenta;
       this.venta.Id_autobus = this.camion;
+      this.venta.Referencia = this.referencia;
+    }
+  }
+
+  folio(): void {
+    if (this.CS.get('Folio')){
+      this.numeroFolio = this.CS.get('Folio');
+    }else {
+      this.results = '';
+      const characters = '0123456789012345678';
+      const charactersLength = characters.length;
+      for (let i = 0; i < charactersLength; i++) {
+        this.results += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        );
+      }
+      this.numeroFolio = this.results;
+      this.CS.set('Folio', this.numeroFolio, 1, '/');
     }
   }
 
@@ -534,15 +888,12 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       this.venta.Origen !== '' &&
       this.venta.Destino !== '' &&
       this.venta.Tipo !== '' &&
-      this.venta.Escala !== '' &&
       this.venta.Cantidad !== 0 &&
       this.venta.Id_autobus !== 0 &&
       this.venta.Precio !== 0 &&
       this.venta.Fecha_salida !== '' &&
       this.venta.Hora_salida !== '' &&
-      this.venta.Telefono !== '951' &&
-      this.venta.Asiento !== 0 &&
-      this.venta.Numero_asiento !== '' &&
+      this.venta.Telefono !== '' &&
       this.enviado === true
     ) {
       return true;

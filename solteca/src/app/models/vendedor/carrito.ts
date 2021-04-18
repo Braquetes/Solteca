@@ -11,8 +11,9 @@ export interface Carrito {
     Hora_salida: string;
     Telefono: string;
     Asiento: number;
-    Numero_asiento: string;
-    Id_venta: number;
+    Referencia: string;
+    Id_venta: string;
     Estado: number;
     Id_autobus: number;
+    Id_sucursal: string;
 }

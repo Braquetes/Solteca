@@ -29,6 +29,7 @@ import { FooterComponent } from './extras/footer/footer.component';
 import { ReporteComponent } from './vendedor/pages/reporte/reporte.component';
 import { InfoComponent } from './vendedor/pages/info/info.component';
 import { ProofComponent } from './pages/proof/proof.component';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -54,15 +55,16 @@ import { ProofComponent } from './pages/proof/proof.component';
     FooterComponent,
     ReporteComponent,
     InfoComponent,
-    ProofComponent
+    ProofComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPrintModule
   ],
   providers: [CookieService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

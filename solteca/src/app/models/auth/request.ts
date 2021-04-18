@@ -3,5 +3,7 @@ export interface Request {
         mensaje: string;
         access_token: string;
         client: string;
+        sucursal: string;
+        nombre: string;
 }
 
