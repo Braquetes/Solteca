@@ -21,7 +21,7 @@ export class VendedorService {
   // tslint:disable-next-line: variable-name
   private _refresh$ = new Subject<void>();
 
-  URL = 'http://braquetes.mx/API-solteca/vendedor/';
+  URL = 'https://braquetes.mx/API-solteca/vendedor/';
 
   constructor(private http: HttpClient) {}
 
