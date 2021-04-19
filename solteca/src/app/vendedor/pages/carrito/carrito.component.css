@@ -311,16 +311,12 @@ body {
   font-size: 40px;
   margin: 2em;
   padding: 3em;
-  /* 
-    El width para determinar el ancho del ticket
-    width: 50vw; */
   text-align: center;
 }
 
 .container {
   text-align: center;
-
-
+  width: 30vw;
 }
 
 .ticket {

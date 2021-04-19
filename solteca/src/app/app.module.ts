@@ -30,6 +30,7 @@ import { ReporteComponent } from './vendedor/pages/reporte/reporte.component';
 import { InfoComponent } from './vendedor/pages/info/info.component';
 import { ProofComponent } from './pages/proof/proof.component';
 import { NgxPrintModule } from 'ngx-print';
+import { ImprimirComponent } from './vendedor/pages/imprimir/imprimir.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { NgxPrintModule } from 'ngx-print';
     ReporteComponent,
     InfoComponent,
     ProofComponent,
+    ImprimirComponent,
   ],
   imports: [
     BrowserModule,

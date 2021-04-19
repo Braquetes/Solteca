@@ -18,6 +18,7 @@ import { VentanillaComponent } from './vendedor/pages/ventanilla/ventanilla.comp
 import { FormPreciosComponent } from './admin/pages/preciosCRUD/form-precios/form-precios.component';
 import { FormsGuard } from './guards/forms.guard';
 import { ProofComponent } from './pages/proof/proof.component';
+import { ImprimirComponent } from './vendedor/pages/imprimir/imprimir.component';
 
 const routes: Routes = [
   {
@@ -101,6 +102,10 @@ const routes: Routes = [
   {
     path: 'proof',
     component: ProofComponent,
+  },
+  {
+    path: 'imprimir',
+    component: ImprimirComponent,
   },
   {
     path: '**',

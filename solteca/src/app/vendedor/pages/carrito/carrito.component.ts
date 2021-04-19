@@ -43,6 +43,9 @@ export class CarritoComponent implements OnInit {
   ticket: any;
   Folio: any;
   estilo: string | undefined;
+  cantidad: any;
+  cantidadPre: any;
+  turno: any;
 
   constructor(
     private CS: CookieService,
@@ -70,6 +73,8 @@ export class CarritoComponent implements OnInit {
     this.fecha = localStorage.getItem('Fecha');
     this.hora = localStorage.getItem('Hora');
     this.idVenta = localStorage.getItem('Id_venta');
+    this.cantidad = localStorage.getItem('Cantidad');
+    console.log(this.cantidad);
     console.log(this.origen);
     console.log(this.destino);
     console.log(this.fecha);
@@ -81,6 +86,9 @@ export class CarritoComponent implements OnInit {
         for (const val of this.carro) {
           this.carrito.push(val);
           this.total += val.Precio * 1;
+          console.log('Total');
+          console.log(this.total);
+          localStorage.setItem('Total', this.total.toString());
           console.log('Proof');
           console.log(this.carrito.length);
         }
@@ -107,6 +115,10 @@ export class CarritoComponent implements OnInit {
 
   eliminar(id: number): void {
     console.log('Eliminar');
+    this.cantidadPre = this.cantidad;
+    this.cantidad = this.cantidad * 1 - 1;
+    console.log(this.cantidad);
+    localStorage.setItem('Cantidad', this.cantidad);
     // tslint:disable-next-line: deprecation
     this.VS.deletePendiente(id).subscribe((data: ARequest) => {
       if (data.resultado === 'OK') {
@@ -145,6 +157,7 @@ export class CarritoComponent implements OnInit {
   getInfo(): void {
     this.vendedor = this.CS.get('nombre');
     this.Folio = this.CS.get('Folio');
+    this.turno = this.CS.get('turno');
   }
 
   getTicket(): void {

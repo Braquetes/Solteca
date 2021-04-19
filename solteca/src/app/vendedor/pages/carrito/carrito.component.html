@@ -6,8 +6,8 @@
       <div class="logo">
         <img src="../../../../assets/img/user1.png" alt="" />
         <h3 class="d-block p-1 border-0">Vendedor</h3>
-        <p class="d-block p-1 border-0">Nombre Vendedor</p>
-        <p class="d-block p-1 border-0">Turno</p>
+        <p class="d-block p-1 border-0">{{vendedor}}</p>
+        <p class="d-block p-1 border-0">Turno: {{turno}}</p>
       </div>
       <div class="menu">
         <a [routerLink]="['/ventanilla']" class="d-block p-3 border-0"
@@ -34,12 +34,12 @@
         <div class="dato">
           <h1>Boletaje de venta</h1>
         </div>
-        <div class="dato">
+        <!-- <div class="dato">
           <h5>Fecha: <span class="badge badge-light">00/00/00</span></h5>
         </div>
         <div class="dato">
           <h5>Hora: <span class="badge badge-light">00:00:00</span></h5>
-        </div>
+        </div> -->
       </nav>
       <!-- CONTENIDO PRINCIPAL -->
       <div id="content" class="w-100">
@@ -97,7 +97,7 @@
                             styleSheetFile="carrito.component.css"
                             ngxPrint>
                             <a class="btn btn-agregar">
-                                print
+                                Imprimir
                             </a>
                             </button>
                         </div>

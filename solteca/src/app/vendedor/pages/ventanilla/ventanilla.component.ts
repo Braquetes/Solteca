@@ -236,7 +236,9 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
   precioDescuento1: any;
   longitudCamion: any;
   longitud = '';
-
+  vendedor: any;
+  turno: any;
+  tipoCamion: any;
   constructor(
     private VS: VendedorService,
     private CS: CookieService,
@@ -259,9 +261,10 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
     this.getLugares();
     this.getEscala();
     this.getAutobus();
-    this.recargar();
+    // this.recargar();
     this.getIdVenta();
     this.getDescuentos();
+    this.getInfo();
     // tslint:disable-next-line: deprecation
     this.suscription = this.VS.refresh$.subscribe(() => {
       this.recargar();
@@ -801,6 +804,8 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       this.VS.carrito(this.venta).subscribe((datos: ARequest) => {
         if (datos.resultado === 'OK') {
           console.log(datos.mensaje);
+        }else {
+          alert(datos.mensaje);
         }
       });
     }else {
@@ -921,6 +926,11 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       this.numeroFolio = this.results;
       this.CS.set('Folio', this.numeroFolio, 1, '/');
     }
+  }
+
+  getInfo(): void {
+    this.vendedor = this.CS.get('nombre');
+    this.turno = this.CS.get('turno');
   }
 
   permitirSalirDeRuta():

@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
         this.CS.set('client', datos.client, 1, '/');
         this.CS.set('sucursal', datos.sucursal.toString(), 1, '/');
         this.CS.set('nombre', datos.nombre, 1, '/');
+        this.CS.set('turno', datos.turno, 1, '/');
       }
       const cookie = this.CS.check('access_token');
       const client = this.CS.get('client');

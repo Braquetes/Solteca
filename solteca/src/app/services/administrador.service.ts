@@ -9,7 +9,9 @@ export class AdministradorService {
   constructor(private CS: CookieService, private router: Router) {}
 
   logout(): void {
-    this.CS.deleteAll();
+    this.CS.delete('client');
+    this.CS.delete('nombre');
+    this.CS.delete('access_token');
     this.router.navigate(['/']);
   }
 
