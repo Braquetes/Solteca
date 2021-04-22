@@ -18,6 +18,6 @@ $response = new Result();
 $response->resultado = 'OK';
 $response->mensaje = 'datos grabados';
 
-header('Content-Type: text/html');
+    header('Content-Type: text/html');
 echo json_encode($response);
 ?>
