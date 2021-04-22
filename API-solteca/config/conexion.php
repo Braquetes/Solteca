@@ -2,10 +2,10 @@
 
 //Conexión para la base de datos en un servidor
 
-$usr = "dbu161473"; //Usuario de la base de datos
-$pw = "Rodo137946*1902"; // Contraseña de la base de datos
-$db = "dbs1821050"; //Nombre de la base de datos
-$host = "db5002258886.hosting-data.io"; //Ip del servidor
+$usr = ""; //Usuario de la base de datos
+$pw = ""; // Contraseña de la base de datos
+$db = ""; //Nombre de la base de datos
+$host = ""; //Ip del servidor
 
 //Modelo Try - catch para la conexión
 
