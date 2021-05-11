@@ -124,7 +124,7 @@
                           <div class="col-sm col1">
                             <label for="" class="indicacion">Origen</label>
                             <select
-                              name="Escala"
+                              name="Origen"
                               class="input1"
                               [(ngModel)]="venta.Origen"
                               required
@@ -146,7 +146,7 @@
                           <div class="col-sm col1">
                             <label for="" class="indicacion">Destino</label>
                             <select
-                              name="Escala"
+                              name="Destino"
                               class="input1"
                               [(ngModel)]="venta.Destino"
                             >
@@ -171,6 +171,28 @@
                         </div>
                         <div class="row">
                           <div class="col-sm col1">
+                            <label for="" class="indicacion"
+                              >Fecha de salida</label
+                            >
+                            <input
+                              type="date"
+                              name="Fecha_Salida"
+                              class="input1"
+                              [(ngModel)]="venta.Fecha_salida"
+                            />
+                          </div>
+                          <div class="col-sm col1">
+                            <label for="" class="indicacion"
+                            >Hora de salida</label
+                            >
+                            <input
+                            type="time"
+                            name="Hora_Salida"
+                              class="input1"
+                              [(ngModel)]="venta.Hora_salida"
+                              />
+                            </div>
+                          <!-- <div class="col-sm col1">
                             <label for="" class="indicacion">Tipo de boleto</label>
                             <select
                               name="Escala"
@@ -212,11 +234,13 @@
                                 {{ escala.Escala }}
                               </option>
                             </select>
-                          </div>
+                          </div> -->
+
+
                           <div class="col-sm col1">    
                             <label for="" class="indicacion">Tipo de camión</label>
                             <select
-                              name="Camion"
+                              name="Id_autobus"
                               class="input1"
                               [(ngModel)]="venta.Id_autobus"
                             >
@@ -236,12 +260,37 @@
                         </div>
 
                         <div class="row">
+
+                          <div class="col-sm col1">
+                            <label for="" class="indicacion">Tipo de boleto</label>
+                            <select
+                              name="Tipo"
+                              class="input1"
+                              [(ngModel)]="venta.Tipo"
+                            >
+                            <option value="0" disabled selected *ngIf="!venta.Tipo">
+                                Selecciona el tipo
+                              </option>
+                              <option value="0" disabled selected *ngIf="venta.Tipo !== ''">
+                                  {{venta.Tipo}}
+                              </option>
+                              <option
+                                value="{{ boleto.Tipo }}"
+                                *ngFor="let boleto of bolets"
+                                [hidden]="!boleto.Tipo"
+                              >
+                                {{ boleto.Tipo }}
+                              </option>
+                            </select>
+                          </div>
+
+
                           <div class="col-sm col1">
                             <label for="" class="indicacion"
                               >Precio del boleto</label
                             >
                             <select
-                              name="Escala"
+                              name="Precio"
                               class="input1"
                               [(ngModel)]="venta.Precio"
                             >
@@ -256,7 +305,7 @@
                             </select>
                           </div>
 
-                          <div class="col-sm col1">
+                          <!-- <div class="col-sm col1">
                             <label for="" class="indicacion"
                               >Fecha de salida</label
                             >
@@ -277,6 +326,28 @@
                               class="input1"
                               [(ngModel)]="venta.Hora_salida"
                             />
+                          </div> -->
+
+                          <div class="col-sm col1">
+                            <label class="indicacion">Escala</label>
+                            <select
+                              name="Escala"
+                              class="input1"
+                              [(ngModel)]="venta.Escala"
+                            >
+                              <option value="0" disabled selected *ngIf="!venta.Escala">
+                                Selecciona la escala
+                              </option>
+                              <option value="0" disabled selected *ngIf="venta.Escala !== ''">
+                                  {{venta.Escala}}
+                              </option>
+                              <option
+                                value="{{ escala.Escala }}"
+                                *ngFor="let escala of escalas"
+                              >
+                                {{ escala.Escala }}
+                              </option>
+                            </select>
                           </div>
                         </div>
                         <div class="row">
@@ -292,7 +363,16 @@
                               required
                             />
                           </div>
-                          
+                          <div class="col-sm col1">
+                            <label class="indicacion">Referencias</label>
+                            <input
+                              name="Referencia"
+                              [(ngModel)]="venta.Referencia"
+                              type="text"
+                              class="input1"
+                              required
+                            />
+                          </div>
                           <div class="col-sm col1">
                             <label for="" class="indicacion"
                               >Numero de boletos</label
@@ -303,17 +383,6 @@
                               class="input1"
                               [(ngModel)]="venta.Cantidad"
                               disabled
-                            />
-                          </div>
-
-                          <div class="col-sm col1">
-                            <label class="indicacion">Referencias</label>
-                            <input
-                              name="Referencia"
-                              [(ngModel)]="venta.Referencia"
-                              type="text"
-                              class="input1"
-                              required
                             />
                           </div>
                         </div>

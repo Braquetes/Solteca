@@ -239,6 +239,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
   vendedor: any;
   turno: any;
   tipoCamion: any;
+  reload = 0;
   constructor(
     private VS: VendedorService,
     private CS: CookieService,
@@ -441,7 +442,10 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
           this.boletos.pop();
         }
       }
-      this.alerta = 'Actualizado';
+      this.reload++;
+      if (this.reload === 2){
+        this.alerta = 'Actualizado';
+      }
     }
     for (let i = 0; i < this.contador; i++) {
       console.log('Id_camion');

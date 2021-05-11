@@ -34,7 +34,6 @@
   padding-top: 10px;
   color: var(--blanco);
   text-align: center;
-  min-height: 100vh;
   background-color: var(--principal);
 }
 
@@ -48,8 +47,6 @@
 
 #content {
   overflow-y: auto;
-  height: 100vh;
-  padding-bottom: 3rem;
 }
 
 .logo img {
@@ -171,6 +168,7 @@ thead {
   font-weight: 700;
   text-align: center;
   font-size: 18px;
+  width: 100%;
 }
 
 .card2 .encabezado {
@@ -179,6 +177,7 @@ thead {
   font-weight: 700;
   text-align: center;
   font-size: 18px;
+  width: 100%;
 }
 
 /*ESTILOS COLUMNA DE DESTINOS*/
@@ -206,6 +205,7 @@ thead {
   font-weight: 700;
   text-align: center;
   font-size: 18px;
+  width: 100%;
 }
 
 .card-empleado {
