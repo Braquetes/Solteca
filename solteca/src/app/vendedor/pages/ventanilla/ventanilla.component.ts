@@ -50,7 +50,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
   autobus: any | undefined;
   autobs: any;
   lugares: any | undefined;
-  ruta: any  | undefined;
+  ruta: any | undefined;
 
   carrito = [
     {
@@ -188,6 +188,60 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
   asiento50 = 50;
   asiento51 = 51;
   asiento52 = 52;
+
+  venta0 = '';
+  venta1 = '';
+  venta2 = '';
+  venta3 = '';
+  venta4 = 4;
+  venta5 = 5;
+  venta6 = 6;
+  venta7 = 7;
+  venta8 = 8;
+  venta9 = 9;
+  venta10 = 10;
+  venta11 = 11;
+  venta12 = 12;
+  venta13 = 13;
+  venta14 = 14;
+  venta15 = 15;
+  venta16 = 16;
+  venta17 = 17;
+  venta18 = 18;
+  venta19 = 19;
+  venta20 = 20;
+  venta21 = 21;
+  venta22 = 22;
+  venta23 = 23;
+  venta24 = 24;
+  venta25 = 25;
+  venta26 = 26;
+  venta27 = 27;
+  venta28 = 28;
+  venta29 = 29;
+  venta30 = 30;
+  venta31 = 31;
+  venta32 = 32;
+  venta33 = 33;
+  venta34 = 34;
+  venta35 = 35;
+  venta36 = 36;
+  venta37 = 37;
+  venta38 = 38;
+  venta39 = 39;
+  venta40 = 40;
+  venta41 = 41;
+  venta42 = 42;
+  venta43 = 43;
+  venta44 = 44;
+  venta45 = 45;
+  venta46 = 46;
+  venta47 = 47;
+  venta48 = 48;
+  venta49 = 49;
+  venta50 = 50;
+  venta51 = 51;
+  venta52 = 52;
   total: any;
   xdxd = 0;
   origen: any;
@@ -232,7 +286,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
   referencia: any;
   descuentos: any;
   descuento: any;
-  descuents = [{Id_descuento: 0, Tipo: '', Descuento: ''}];
+  descuents = [{ Id_descuento: 0, Tipo: '', Descuento: '' }];
   precioDescuento1: any;
   longitudCamion: any;
   longitud = '';
@@ -415,20 +469,21 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
             console.log(this.bolets);
             this.descuento = this.descuentos;
             for (const vall of this.descuento) {
-              if (val.Tipo === vall.Tipo){
+              if (val.Tipo === vall.Tipo) {
                 this.descuents.push(vall);
                 console.log('Descuents');
                 console.log(this.descuents);
                 for (const valll of this.bolets) {
-                  if (valll.Tipo === vall.Tipo){
+                  if (valll.Tipo === vall.Tipo) {
                     console.log('Precio - Descuento');
                     console.log(valll.Precio);
                     console.log(vall.Descuento);
-                    if (vall.Descuento > 0){
-                    valll.Precio = valll.Precio - (valll.Precio * vall.Descuento) / 100;
-                  }else {
-                    valll.Precio = val.Precio;
-                  }
+                    if (vall.Descuento > 0) {
+                      valll.Precio =
+                        valll.Precio - (valll.Precio * vall.Descuento) / 100;
+                    } else {
+                      valll.Precio = val.Precio;
+                    }
                     this.bolts.push(valll);
                     console.log('Bolts');
                     console.log(this.bolts);
@@ -443,103 +498,93 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
         }
       }
       this.reload++;
-      if (this.reload === 2){
+      if (this.reload === 2) {
         this.alerta = 'Actualizado';
       }
     }
     for (let i = 0; i < this.contador; i++) {
       console.log('Id_camion');
       console.log(this.longitudCamion);
+      console.log('Carrito');
+      console.log(this.carrito);
       // tslint:disable-next-line: prefer-const
       let x = this.carrito[i].Asiento.toString();
       switch (x) {
-        case '0':
-          this.boton0 = this.carrito[i].Estado;
-          this.asiento0 = this.carrito[i].Asiento;
-          console.log('Arreglo: ' + i);
-          console.log('Asiento: ' + this.asiento0);
-          console.log('boton: ' + this.boton0);
-          console.log('asiento: ' + this.asiento0);
-          break;
         case '1':
-          this.boton1 = this.carrito[i].Estado;
-          this.asiento1 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
+          // tslint:disable-next-line: radix
+          this.venta1 = this.carrito[i].Id_venta;
+          console.log('Venta 1: ' + this.venta1);
+          if (this.venta1 === this.CS.get('Id_venta')){
+            console.log('Igual');
+            this.boton1 = 3;
+            this.asiento1 = this.carrito[i].Asiento;
+          }else{
+            console.log('Diferente');
+            this.boton1 = this.carrito[i].Estado;
+            this.asiento1 = this.carrito[i].Asiento;
+          }
+          console.log('Arreglo 1' + ' , ' + i);
           console.log(this.asiento1);
-          console.log('boton: ' + this.boton1);
-          console.log('asiento: ' + this.asiento1);
           break;
         case '2':
           this.boton2 = this.carrito[i].Estado;
           this.asiento2 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
-          console.log(this.asiento2);
+          this.venta2 = this.carrito[i].Id_venta;
+          console.log('Venta 2: ' + this.venta2);
           break;
         case '3':
           this.boton3 = this.carrito[i].Estado;
           this.asiento3 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
-          console.log(this.asiento3);
+          this.venta3 = this.carrito[i].Id_venta;
+          console.log('Venta 3: ' + this.venta3);
           break;
         case '4':
           this.boton4 = this.carrito[i].Estado;
           this.asiento4 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
           break;
         case '5':
           this.boton5 = this.carrito[i].Estado;
           this.asiento5 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
           break;
         case '6':
           this.boton6 = this.carrito[i].Estado;
           this.asiento6 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
           break;
         case '7':
           this.boton7 = this.carrito[i].Estado;
           this.asiento7 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
           break;
         case '8':
           this.boton8 = this.carrito[i].Estado;
           this.asiento8 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
           break;
         case '9':
           this.boton9 = this.carrito[i].Estado;
           this.asiento9 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
           break;
         case '10':
           this.boton10 = this.carrito[i].Estado;
           this.asiento10 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
           break;
         case '11':
           this.boton11 = this.carrito[i].Estado;
           this.asiento11 = this.carrito[i].Asiento;
-          console.log('Arreglo: ' + i);
           break;
         case '12':
           this.boton12 = this.carrito[i].Estado;
           this.asiento12 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
           break;
         case '13':
           this.boton13 = this.carrito[i].Estado;
           this.asiento13 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
           break;
         case '14':
           this.boton14 = this.carrito[i].Estado;
           this.asiento14 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
           break;
         case '15':
           this.boton15 = this.carrito[i].Estado;
           this.asiento15 = this.carrito[i].Asiento;
-          console.log('Arreglo' + ' , ' + i);
           break;
         case '16':
           this.boton16 = this.carrito[i].Estado;
@@ -783,6 +828,20 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
     this.folio();
   }
 
+  clean(asiento: number): void{
+    // tslint:disable-next-line: prefer-const
+    let idventa = this.CS.get('Id_venta');
+    console.log('clean');
+    // tslint:disable-next-line: radix
+    this.VS.deleteVentanilla(asiento, idventa).subscribe((datos: ARequest) => {
+      if (datos.resultado === 'OK') {
+        console.log(datos.mensaje);
+      } else {
+        alert(datos.mensaje);
+      }
+    });
+  }
+
   updateAsientos(asiento: number): void {
     if (
       this.venta.Nombre_cliente !== '' &&
@@ -794,7 +853,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       this.venta.Fecha_salida !== '' &&
       this.venta.Hora_salida !== '' &&
       this.venta.Telefono !== ''
-    ){
+    ) {
       console.log('Agregar');
       console.log(asiento);
       this.venta.Asiento = asiento;
@@ -804,17 +863,20 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       this.venta.Estado = this.estado;
       this.venta.Id_sucursal = this.CS.get('sucursal');
       this.venta.Id_venta = this.CS.get('Id_venta');
+      console.log(this.venta);
       // tslint:disable-next-line: deprecation
       this.VS.carrito(this.venta).subscribe((datos: ARequest) => {
         if (datos.resultado === 'OK') {
           console.log(datos.mensaje);
-        }else {
+        } else {
           alert(datos.mensaje);
+          this.recargar();
         }
       });
-    }else {
-      console.log('Agregar');
-      console.log(asiento);
+    } else {
+      console.log('Error');
+      // console.log('Agregar');
+      // console.log(asiento);
     }
     // tslint:disable-next-line: deprecation
     // this.VS.asientoPendiente(this.Camion).subscribe((datos: ARequest) => {
@@ -916,9 +978,9 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
   }
 
   folio(): void {
-    if (this.CS.get('Folio')){
+    if (this.CS.get('Folio')) {
       this.numeroFolio = this.CS.get('Folio');
-    }else {
+    } else {
       this.results = '';
       const characters = '0123456789012345678';
       const charactersLength = characters.length;

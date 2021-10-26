@@ -399,7 +399,7 @@
                         </div>
                         <div class="verificar">
                           <a (click)="enviar()" class="btn btn-agregar"
-                            ><i class="fas fa-cart-plus"></i> Agregar boleto
+                            ><i class="fas fa-cart-plus"></i> Continuar
                           </a>
                         </div>
                       </form>
@@ -454,6 +454,15 @@
                                     name="check"
                                   />
                                   <label for="asiento1"></label>
+                                </div>
+                                <div class="asiento3" *ngIf="boton1 == 3 && longitudCamion >= 1">
+                                  <input
+                                  type="checkbox" checked
+                                  (click)="clean(1)"
+                                  id="asiento01"
+                                  name="check"
+                                  />
+                                  <label for="asiento01"></label>
                                 </div>
                                 <div class="asiento1" *ngIf="boton1 == 2" >
                                   <input type="checkbox" checked disabled />

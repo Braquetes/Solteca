@@ -9,7 +9,7 @@ import { Sucursal } from '../models/auth/sucursales';
   providedIn: 'root',
 })
 export class TokenService {
-  URL = 'https://braquetes.mx/API-solteca/';
+  URL = 'https://integradora.ml/API-solteca/';
 
   constructor(private http: HttpClient) {}
 

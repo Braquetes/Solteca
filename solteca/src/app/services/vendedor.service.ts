@@ -21,7 +21,7 @@ export class VendedorService {
   // tslint:disable-next-line: variable-name
   private _refresh$ = new Subject<void>();
 
-  URL = 'https://braquetes.mx/API-solteca/vendedor/';
+  URL = 'https://integradora.ml/API-solteca/vendedor/';
 
   constructor(private http: HttpClient) {}
 
@@ -35,7 +35,7 @@ export class VendedorService {
     destino: string,
     fecha: string,
     hora: string
-    ): Observable<Carrito> {
+  ): Observable<Carrito> {
     return this.http.get<Carrito>(
       `${this.URL}asientos.php?origen=${origen}&destino=${destino}&fechaSalida=${fecha}&horaSalida=${hora}`
     );
@@ -46,7 +46,7 @@ export class VendedorService {
     destino: string,
     fecha: string,
     hora: string,
-    idVenta: string,
+    idVenta: string
   ): Observable<Carrito> {
     return this.http.get<Carrito>(
       `${this.URL}asientosCarro.php?origen=${origen}&destino=${destino}&fechaSalida=${fecha}&horaSalida=${hora}&Id_venta=${idVenta}`
@@ -66,6 +66,16 @@ export class VendedorService {
   deletePendiente(id: number): Observable<ARequest> {
     return this.http
       .get<ARequest>(`${this.URL}delete.php?Id_carrito=${id}`)
+      .pipe(
+        tap(() => {
+          this._refresh$.next();
+        })
+      );
+  }
+
+  deleteVentanilla(asiento: number, idventa: string): Observable<ARequest> {
+    return this.http
+      .get<ARequest>(`${this.URL}delete.php?Asiento=${asiento}&Id_venta=${idventa}`)
       .pipe(
         tap(() => {
           this._refresh$.next();
@@ -102,10 +112,14 @@ export class VendedorService {
   }
 
   ticket(idSucursal: string): Observable<Ticket> {
-    return this.http.get<Ticket>(`${this.URL}carro/ticket.php?Id_sucursal=${idSucursal}`);
+    return this.http.get<Ticket>(
+      `${this.URL}carro/ticket.php?Id_sucursal=${idSucursal}`
+    );
   }
 
   vender(vender: string): Observable<ARequest> {
-    return this.http.get<ARequest>(`${this.URL}carro/updateCarro.php?Id_venta=${vender}`);
+    return this.http.get<ARequest>(
+      `${this.URL}carro/updateCarro.php?Id_venta=${vender}`
+    );
   }
 }
