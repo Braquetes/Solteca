@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from 'src/app/services/token.service';
 import { Sucursal } from 'src/app/models/auth/sucursales';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -40,9 +41,21 @@ export class LoginComponent implements OnInit {
     // tslint:disable-next-line: deprecation
     this.TS.login(this.login).subscribe((datos: Request) => {
       if (datos.resultado === 'OK') {
-        alert(datos.mensaje);
+        // alert(datos.mensaje);
+        Swal.fire({
+          icon: 'success',
+          title: datos.mensaje,
+          showConfirmButton: false,
+          timer: 1000,
+        });
       } else {
-        alert(datos.mensaje);
+        // alert(datos.mensaje);
+        Swal.fire({
+          icon: 'error',
+          title: datos.mensaje,
+          showConfirmButton: false,
+          timer: 1000,
+        });
       }
       if (datos.access_token !== undefined) {
         this.CS.set('access_token', datos.access_token, 1, '/');

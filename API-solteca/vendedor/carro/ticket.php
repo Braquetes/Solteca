@@ -1,33 +1,18 @@
 <?php
-
-require "../../config/conexion.php";
-
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
-$registros=mysqli_query($conexion,"SELECT `Id_venta` FROM `carrito` WHERE `Id_carrito` = 1");
+require "../../config/conexion.php";
 
-while($row = mysqli_fetch_array($registros)){
-          $Id_venta = $row['Id_venta'];
-      }
+$registros=mysqli_query($conexion,"SELECT * FROM `ticket` WHERE `Id_sucursal`= '".$_GET[Id_sucursal]."'");
 
-class Result {}
-
-          // GENERA LOS DATOS DE RESPUESTA
-$response = new Result();
-
-if($registros->num_rows > 0) {
-    $response->resultado = 'OK';
-    $response->mensaje = 'Bienvenido';
-    $response->Id_venta = $Id_venta;
-    mysqli_query($conexion,"UPDATE `carrito` SET `Id_venta` = `Id_venta` + 1 WHERE `carrito`.`Id_carrito` = 1");
-} else {
-    $response->resultado = 'FAIL';
-    $response->mensaje = 'Error';
-    $response->Id_venta = 0;
+$vec=[];
+while ($reg=mysqli_fetch_array($registros))
+{
+$vec[]=$reg;
 }
 
-header('Content-Type: text/html');
-
-echo json_encode($response); // MUESTRA EL JSON GENERADO
+$cad=json_encode($vec);
+echo $cad;
+header('Content-Type: application/json');
 ?>

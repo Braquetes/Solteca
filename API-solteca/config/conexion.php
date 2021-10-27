@@ -2,10 +2,10 @@
 
 //Conexión para la base de datos en un servidor
 
-$usr = ""; //Usuario de la base de datos
-$pw = ""; // Contraseña de la base de datos
-$db = ""; //Nombre de la base de datos
-$host = ""; //Ip del servidor
+$usr = "ProSol_solteca"; //Usuario de la base de datos
+$pw = "rb137946"; // Contraseña de la base de datos
+$db = "ProSol_solteca"; //Nombre de la base de datos
+$host = "54.233.121.104"; //Ip del servidor
 
 //Modelo Try - catch para la conexión
 

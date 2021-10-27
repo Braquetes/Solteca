@@ -159,7 +159,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ticket" *ngFor="let carro of carrito;let i = index" [hidden]="carrito.length == 1 || i == 0">
+            <div class="ticket" *ngFor="let carro of carrito; let i = index" [hidden]="carrito.length == 1 || i == 0">
                 <div class="table" *ngFor="let ticket of ticket; let i = index">
                     <div class="encabezado-ticket">
                     <h5><strong>AUTOTRANSPORTES</strong></h5>

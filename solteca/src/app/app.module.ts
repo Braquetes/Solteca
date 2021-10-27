@@ -31,6 +31,7 @@ import { InfoComponent } from './vendedor/pages/info/info.component';
 import { ProofComponent } from './pages/proof/proof.component';
 import { NgxPrintModule } from 'ngx-print';
 import { ImprimirComponent } from './vendedor/pages/imprimir/imprimir.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ImprimirComponent } from './vendedor/pages/imprimir/imprimir.component'
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPrintModule
+    NgxPrintModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

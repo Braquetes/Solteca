@@ -16,6 +16,7 @@ import { Escala } from 'src/app/models/vendedor/escala';
 import { Autobus } from 'src/app/models/vendedor/camion';
 import { Rutas } from 'src/app/models/vendedor/rutas';
 import { Descuentos } from 'src/app/models/vendedor/descuentos';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ventanilla',
@@ -869,7 +870,13 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
         if (datos.resultado === 'OK') {
           console.log(datos.mensaje);
         } else {
-          alert(datos.mensaje);
+          // alert(datos.mensaje);
+          Swal.fire({
+            icon: 'info',
+            title: datos.mensaje,
+            showConfirmButton: false,
+            timer: 1500,
+          });
           this.recargar();
         }
       });

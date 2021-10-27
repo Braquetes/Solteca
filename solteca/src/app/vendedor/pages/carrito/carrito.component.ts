@@ -21,7 +21,6 @@ export class CarritoComponent implements OnInit {
       Destino: '',
       Tipo: '',
       Escala: '',
-      Cantidad: 0,
       Precio: 0,
       Fecha_salida: '',
       Hora_salida: '',
@@ -31,7 +30,8 @@ export class CarritoComponent implements OnInit {
       Id_venta: 0,
       Estado: 0,
       Id_autobus: 0,
-    },
+      Id_sucursal: 0,
+    }
   ];
   total = 0;
   origen: any;
@@ -116,7 +116,7 @@ export class CarritoComponent implements OnInit {
   eliminar(id: number): void {
     console.log('Eliminar');
     this.cantidadPre = this.cantidad;
-    this.cantidad = this.cantidad * 1 - 1;
+    this.cantidad = this.cantidadPre * 1 - 1;
     console.log(this.cantidad);
     localStorage.setItem('Cantidad', this.cantidad);
     // tslint:disable-next-line: deprecation
