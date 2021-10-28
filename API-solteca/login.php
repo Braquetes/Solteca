@@ -10,13 +10,14 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
   require "./config/conexion.php";  // IMPORTA EL ARCHIVO CON LA CONEXION A LA DB
 
   // REALIZA LA QUERY A LA DB
-  $resultado = mysqli_query($conexion, "SELECT * FROM `empleados` WHERE `usuario`='".$params->user."' AND `contraseña`='".$params->pass."' AND `Id_sucursal`='".$params->option."'");
+  $resultado = mysqli_query($conexion, "SELECT * FROM `empleados` WHERE `usuario`='".$params->user."' AND `Id_sucursal`='".$params->option."'");
   $access_token = "asd";
   while($row = mysqli_fetch_array($resultado)){
             $access_token = $row['access_token'];
             $tipo = $row['Cargo'];
             $nombre = $row['Nombre'];
             $sucursal = $row['Id_sucursal'];
+            $pass = $row['Pass'];
         }
 
 
@@ -25,7 +26,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
     // GENERA LOS DATOS DE RESPUESTA
     $response = new Result();
 
-    if($resultado->num_rows > 0) {
+    if(($resultado->num_rows > 0) && (password_verify($params->pass,$pass))) {
         $response->resultado = 'OK';
         $response->mensaje = 'Bienvenido';
         $response->access_token = $access_token;

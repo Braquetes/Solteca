@@ -28,14 +28,14 @@
                 </tr>
               </thead>
               <tbody class="card-body">
-                <tr>
-                  <th scope="row">Nombre</th>
-                  <td>Apellidos</td>
-                  <td>Sexo</td>
-                  <td>Usuario</td>
-                  <td>Contraseña</td>
-                  <td>Terminal</td>
-                  <td>Cargo</td>
+                <tr *ngFor="let empleado of empleados">
+                  <th scope="row">{{empleado.Nombre}}</th>
+                  <td>{{empleado.Apellido_paterno}} {{empleado.Apellido_materno}}</td>
+                  <td>{{empleado.Sexo}}</td>
+                  <td>{{empleado.Usuario}}</td>
+                  <td>{{empleado.Pass}}</td>
+                  <td>{{empleado.Id_sucursal}}</td>
+                  <td>{{empleado.Cargo}}</td>
                   <td>
                     <div class="d-grid gap-1 d-md-block">
                       <a

@@ -306,7 +306,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
     const cookie = this.CS.check('access_token');
     const client = this.CS.get('client');
     if (cookie) {
-      if (client === 'administrador') {
+      if (client === 'Administrador') {
         this.router.navigate(['/menu']);
       }
     }

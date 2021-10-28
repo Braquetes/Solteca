@@ -25,43 +25,55 @@
                             <div class="col-sm col1">
                                 <div class="mb-3">
                                     <label class="form-label">Nombre</label>
-                                    <input name="mensaje" [(ngModel)]="empleados.mensaje" type="text" class="form-control" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
+                                    <input name="Nombre" [(ngModel)]="empleados.Nombre" type="text" class="form-control" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
                                   </div>
                             </div>
                             <div class="col-sm col1">
                                 <div class="mb-3">
                                     <label class="form-label">Apellidos</label>
-                                    <input type="text" class="form-control" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
+                                    <input name="Apellido_paterno" [(ngModel)]="empleados.Apellido_paterno" type="text" class="form-control" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
+                                  </div>
+                            </div>
+                            <div class="col-sm col1">
+                                <div class="mb-3">
+                                    <label class="form-label">Apellidos</label>
+                                    <input name="Apellido_materno" [(ngModel)]="empleados.Apellido_materno" type="text" class="form-control" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
                                   </div>
                             </div>
                             <div class="col-sm col1">
                                 <div class="mb-3">
                                     <label class="form-label">Sexo</label>
-                                    <input type="number" class="form-control" placeholder="Ingresa numero telefonico de la terminal" aria-describedby="emailHelp">
+                                    <input name="Sexo" [(ngModel)]="empleados.Sexo" type="text" class="form-control" placeholder="Ingresa numero telefonico de la terminal" aria-describedby="emailHelp">
                                   </div>
                             </div>
                         </div>
                         <div class="row">
+                          <div class="col-sm col1">
+                                <div class="mb-3">
+                                    <label class="form-label">Teléfono</label>
+                                    <input name="Telefono" [(ngModel)]="empleados.Telefono" type="text" class="form-control" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
+                                  </div>
+                            </div>
                             <div class="col-sm col1">
                                 <div class="mb-3">
                                     <label class="form-label">Usuario</label>
-                                    <input type="text" class="form-control" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
+                                    <input name="Usuario" [(ngModel)]="empleados.Usuario" type="text" class="form-control" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
                                   </div>
                             </div>
                             <div class="col-sm col1">
                                 <div class="mb-3">
                                     <label class="form-label">Contraseña</label>
-                                    <input type="text" class="form-control" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
+                                    <input name="Pass" [(ngModel)]="empleados.Pass" type="password" class="form-control" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
                                   </div>
                             </div>
                             <div class="col-sm col1">
                                 <div class="mb-3">
                                     <div class="input-group mt-4 pt-2">
                                         <label class="input-group-text unidades" for="inputGroupSelect01">Cargo</label>
-                                        <select class="form-select">
+                                        <select class="form-select" name="Cargo" [(ngModel)]="empleados.Cargo">
                                           <option selected>Selecciona el cargo</option>
-                                          <option value="1">Administrador</option>
-                                          <option value="2">Vendedor</option>
+                                          <option value="administrador">Administrador</option>
+                                          <option value="vendedor">Vendedor</option>
                                         </select>
                                       </div>
                                   </div>
@@ -74,7 +86,7 @@
                                 <div class="mb-3">
                                     <div class="input-group mt-4 pt-2">
                                         <label class="input-group-text unidades" for="inputGroupSelect01">Terminal</label>
-                                        <select class="form-select">
+                                        <select class="form-select" name="Id_sucursal" [(ngModel)]="empleados.Id_sucursal">
                                           <option selected>Selecciona la terminal</option>
                                           <option value="1">Terminal 1</option>
                                           <option value="2">Terminal 2</option>
@@ -88,25 +100,9 @@
                         </div>
                        <div class="botones">
                         <a type="button" [routerLink]="['/empleados']" class="btn-cancelar btn-lg"><i class="fas fa-times"></i> Cancelar</a>
-                        <button (click)="enviar()" type="button" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Registrar</button>
+                        <button (click)="enviar()" type="button" class="btn-registrar btn-lg"><i class="fas fa-check"></i> Registrar</button>
                         
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title fw-bold" id="exampleModalLabel">Operación exitosa</h5>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body fw-bold">
-                                 El empleado se ha agregado correctamente.
-                                </div>
-                                <div class="modal-footer">
-                                  <a type="button" class="btn-registrar btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-check"></i> Aceptar</a>
 
-                                </div>
-                              </div>
-                            </div>
-                          </div>
                        </div>
                     </form>
                 </div>
@@ -116,5 +112,5 @@
     </div>
     <div class="col-md-4">
     <div class="card-body text-center">
-        <h3 class="card-title">{{empleados.mensaje}}</h3>
+        <h3 class="card-title">{{empleados.Nombre}}</h3>
     </div>

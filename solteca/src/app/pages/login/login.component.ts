@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     const client = this.CS.get('client');
-    if (client === 'administrador') {
+    if (client === 'Administrador') {
       this.router.navigate(['/menu']);
     } else {
       this.router.navigate(['/ventanilla']);
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
       }
       const cookie = this.CS.check('access_token');
       const client = this.CS.get('client');
-      if (client === 'administrador') {
+      if (client === 'Administrador') {
         this.router.navigate(['/menu']);
       } else {
         this.router.navigate(['/ventanilla']);
