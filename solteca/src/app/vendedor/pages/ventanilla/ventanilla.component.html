@@ -7,11 +7,11 @@
         <img src="../../../../assets/img/user1.png" alt="" />
         <h3 class="d-block p-1 border-0">Vendedor</h3>
         <p class="d-block p-1 border-0">{{vendedor}}</p>
-        <p class="d-block p-1 border-0">Turno: {{turno}}</p>
+        <p class="d-block p-1 border-0">Cargo: {{cargo}}</p>
       </div>
       <div class="menu">
-        <a class="d-block p-3 border-0"
-          ><i class="icon ion-md-cash lead mr-2"></i> Ventas</a
+        <a [routerLink]="['/recientes']" class="d-block p-3 border-0"
+          ><i class="icon ion-md-cash lead mr-2"></i>Recientes</a
         >
 
         <a [routerLink]="['/reporte']" class="d-block p-3 border-0"
@@ -455,7 +455,7 @@
                                   />
                                   <label for="asiento1"></label>
                                 </div>
-                                <div class="asiento3" *ngIf="boton1 == 3 && longitudCamion >= 1">
+                                <!-- <div class="asiento3" *ngIf="boton1 == 3 && longitudCamion >= 1">
                                   <input
                                   type="checkbox" checked
                                   (click)="clean(1)"
@@ -463,7 +463,7 @@
                                   name="check"
                                   />
                                   <label for="asiento01"></label>
-                                </div>
+                                </div> -->
                                 <div class="asiento1" *ngIf="boton1 == 2" >
                                   <input type="checkbox" checked disabled />
                                   <label></label>

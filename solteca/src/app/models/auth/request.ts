@@ -5,6 +5,6 @@ export interface Request {
         client: string;
         sucursal: string;
         nombre: string;
-        turno: string;
+        cargo: string;
 }
 

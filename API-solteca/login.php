@@ -14,7 +14,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
   $access_token = "asd";
   while($row = mysqli_fetch_array($resultado)){
             $access_token = $row['access_token'];
-            $tipo = $row['Cargo'];
+            $cargo = $row['Cargo'];
             $nombre = $row['Nombre'];
             $sucursal = $row['Id_sucursal'];
             $pass = $row['Pass'];
@@ -30,7 +30,8 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
         $response->resultado = 'OK';
         $response->mensaje = 'Bienvenido';
         $response->access_token = $access_token;
-        $response->client = $tipo;
+        $response->client = $cargo;
+        $response->cargo = $cargo;
         $response->sucursal = $sucursal;
         $response->nombre = $nombre;
     } else {

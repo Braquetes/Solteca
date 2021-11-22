@@ -13,6 +13,7 @@ import { Escala } from '../models/vendedor/escala';
 import { Autobus } from '../models/vendedor/camion';
 import { Rutas } from '../models/vendedor/rutas';
 import { Ticket } from '../models/vendedor/ticket';
+import { Recientes } from '../models/vendedor/recientes';
 
 @Injectable({
   providedIn: 'root',
@@ -75,7 +76,9 @@ export class VendedorService {
 
   deleteVentanilla(asiento: number, idventa: string): Observable<ARequest> {
     return this.http
-      .get<ARequest>(`${this.URL}delete.php?Asiento=${asiento}&Id_venta=${idventa}`)
+      .get<ARequest>(
+        `${this.URL}delete.php?Asiento=${asiento}&Id_venta=${idventa}`
+      )
       .pipe(
         tap(() => {
           this._refresh$.next();
@@ -121,5 +124,13 @@ export class VendedorService {
     return this.http.get<ARequest>(
       `${this.URL}carro/updateCarro.php?Id_venta=${vender}`
     );
+  }
+
+  recientes(): Observable<Recientes> {
+    return this.http.get<Recientes>(`${this.URL}recientes.php`);
+  }
+
+  deleteCarrito( idventa: string): Observable<ARequest> {
+    return this.http.get<ARequest>(`${this.URL}deleteCarrito.php?Id_venta=${idventa}`);
   }
 }

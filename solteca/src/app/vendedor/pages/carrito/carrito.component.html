@@ -10,8 +10,14 @@
         <p class="d-block p-1 border-0">Turno: {{turno}}</p>
       </div>
       <div class="menu">
+        <a [routerLink]="['/recientes']" class="d-block p-3 border-0"
+          ><i class="icon ion-md-cash lead mr-2"></i>Recientes</a
+        >
         <a [routerLink]="['/ventanilla']" class="d-block p-3 border-0"
           ><i class="icon ion-md-cash lead mr-2"></i> Ventas</a
+        >
+        <a [routerLink]="['/imprimir']" class="d-block p-3 border-0"
+          ><i class="icon ion-md-qr-scanner lead mr-2"></i> Imprimir</a
         >
         <a [routerLink]="['/reporte']" class="d-block p-3 border-0"
           ><i class="icon ion-md-analytics lead mr-2"></i> Reportes</a
@@ -84,7 +90,7 @@
                     <div class="row">
                       <div class="col">
                         <a
-                          [routerLink]="['/ventanilla']"
+                          (click)="clean()"
                           class="btn btn-cancelar"
                           ><i class="fas fa-times-circle"></i> Cancelar</a
                         >

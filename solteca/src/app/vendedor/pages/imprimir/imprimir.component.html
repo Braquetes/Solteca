@@ -1,1 +1,47 @@
-<p>imprimir works!</p>
+<app-link></app-link>
+<div class="body">
+    <div class="d-flex" id="content-wrapper">
+    <!-- BARRA LATERAL -->
+    <div id="sidebar-container" class="">
+      <div class="logo">
+        <img src="../../../../assets/img/user1.png" alt="" />
+        <h3 class="d-block p-1 border-0">Vendedor</h3>
+        <p class="d-block p-1 border-0">{{vendedor}}</p>
+        <p class="d-block p-1 border-0">Cargo: {{cargo}}</p>
+      </div>
+      <div class="menu">
+          <a [routerLink]="['/recientes']" class="d-block  p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
+                Recientes</a>
+        <a [routerLink]="['/ventanilla']" class="d-block p-3 border-0"
+          ><i class="icon ion-md-cash lead mr-2"></i> Ventas</a
+        >
+        
+        <a [routerLink]="['/reporte']" class="d-block p-3 border-0"
+          ><i class="icon ion-md-analytics lead mr-2"></i> Reportes</a
+        >
+
+        <a [routerLink]="['/info']" class="d-block p-3 border-0"
+          ><i class="icon ion-md-information-circle-outline lead mr-2"></i> Mas
+          información</a
+        >
+      </div>
+    </div>
+    <!-- FIN BARRA LATERAL -->
+
+    <div class="w-100">
+        <nav class="header">
+        <div class="dato">
+            <a type="button" (click)="salir()"class="btn btn-terminar"
+            ><i class="fas fa-sign-out-alt"></i> Terminar Turno</a
+            >
+        </div>
+        <div class="dato">
+            <h1>Recientes</h1>
+        </div>
+        </nav>
+
+        
+    </div>
+    
+    </div>
+</div>

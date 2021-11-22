@@ -22,12 +22,30 @@ if($resultado->num_rows > 0) {
     $response->resultado = 'FAIL';
     $response->mensaje = 'Vendido';
   }
+}
+
+$results = mysqli_query($conexion, "SELECT * FROM `carrito` WHERE `Origen`= '".$params->Origen."' AND `Destino` = '".$params->Destino."' AND `Fecha_salida` = '".$params->Fecha_salida."' AND `Hora_salida` = '".$params->Hora_salida."'");
+
+if($results->num_rows > 0) {
+  while($row = mysqli_fetch_array($results)){
+            $numeroAutobus = $row['Numero_Autobus'];
+        }
+    mysqli_query($conexion,"INSERT INTO `carrito` (`Id_carrito`, `Nombre_cliente`, `Origen`, `Destino`, `Tipo`, `Escala`, `Precio`, `Fecha_salida`, `Hora_salida`, `Telefono`, `Asiento`, `Id_venta`,`Estado`,`Id_autobus`, `Id_sucursal`, `Referencia`,`Numero_Autobus`) VALUES
+    (NULL,'".$params->Nombre_cliente."','".$params->Origen."','".$params->Destino."','".$params->Tipo."', '".$params->Escala."', '".$params->Precio."','".$params->Fecha_salida."', '".$params->Hora_salida."','".$params->Telefono."','".$params->Asiento."','".$params->Id_venta."',
+    '".$params->Estado."','".$params->Id_autobus."','".$params->Id_sucursal."','".$params->Referencia."', '".$numeroAutobus."');");
+    $response->resultado = 'OK';
+    $response->mensaje = 'datos grabados';
 } else {
-mysqli_query($conexion,"INSERT INTO `carrito` (`Id_carrito`, `Nombre_cliente`, `Origen`, `Destino`, `Tipo`, `Escala`, `Precio`, `Fecha_salida`, `Hora_salida`, `Telefono`, `Asiento`, `Id_venta`,`Estado`,`Id_autobus`, `Id_sucursal`, `Referencia`) VALUES
-(NULL,'".$params->Nombre_cliente."','".$params->Origen."','".$params->Destino."','".$params->Tipo."', '".$params->Escala."', '".$params->Precio."','".$params->Fecha_salida."', '".$params->Hora_salida."','".$params->Telefono."','".$params->Asiento."','".$params->Id_venta."',
-'".$params->Estado."','".$params->Id_autobus."','".$params->Id_sucursal."','".$params->Referencia."');");
-$response->resultado = 'OK';
-$response->mensaje = 'datos grabados';
+  $registros=mysqli_query($conexion,"SELECT `Numero_Autobus` FROM `carrito` WHERE `Id_carrito` = 1");
+  while($row = mysqli_fetch_array($registros)){
+            $numeroAuto = $row['Numero_Autobus'];
+        }
+  mysqli_query($conexion,"INSERT INTO `carrito` (`Id_carrito`, `Nombre_cliente`, `Origen`, `Destino`, `Tipo`, `Escala`, `Precio`, `Fecha_salida`, `Hora_salida`, `Telefono`, `Asiento`, `Id_venta`,`Estado`,`Id_autobus`, `Id_sucursal`, `Referencia`,`Numero_Autobus`) VALUES
+  (NULL,'".$params->Nombre_cliente."','".$params->Origen."','".$params->Destino."','".$params->Tipo."', '".$params->Escala."', '".$params->Precio."','".$params->Fecha_salida."', '".$params->Hora_salida."','".$params->Telefono."','".$params->Asiento."','".$params->Id_venta."',
+  '".$params->Estado."','".$params->Id_autobus."','".$params->Id_sucursal."','".$params->Referencia."', '".$numeroAuto."');");
+  mysqli_query($conexion,"UPDATE `carrito` SET `Numero_Autobus` = `Numero_Autobus` + 1 WHERE `carrito`.`Id_carrito` = 1");
+  $response->resultado = 'OK';
+  $response->mensaje = 'datos grabados';
 }
 
 header('Content-Type: text/html');

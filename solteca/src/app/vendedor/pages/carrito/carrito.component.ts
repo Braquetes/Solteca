@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { VendedorService } from 'src/app/services/vendedor.service';
 import { ARequest } from 'src/app/models/vendedor/asientoRequest';
 import { Ticket } from 'src/app/models/vendedor/ticket';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-carrito',
@@ -31,7 +32,7 @@ export class CarritoComponent implements OnInit {
       Estado: 0,
       Id_autobus: 0,
       Id_sucursal: 0,
-    }
+    },
   ];
   total = 0;
   origen: any;
@@ -80,33 +81,37 @@ export class CarritoComponent implements OnInit {
     console.log(this.fecha);
     console.log(this.hora);
     // tslint:disable-next-line: deprecation
-    this.VS.camionCarro(this.origen, this.destino, this.fecha, this.hora, this.idVenta).subscribe(
-      (data: Carrito) => {
-        this.carro = data;
-        for (const val of this.carro) {
-          this.carrito.push(val);
-          this.total += val.Precio * 1;
-          console.log('Total');
-          console.log(this.total);
-          localStorage.setItem('Total', this.total.toString());
-          console.log('Proof');
-          console.log(this.carrito.length);
-        }
-        console.log('DB');
-        console.log(this.carro);
-        // tslint:disable-next-line: only-arrow-functions tslint:disable-next-line: typedef space-before-function-paren
-        this.carrito.sort(function (a, b) {
-          if (a.Asiento > b.Asiento) {
-            return 1;
-          }
-          if (a.Asiento < b.Asiento) {
-            return -1;
-          }
-          // a must be equal to b
-          return 0;
-        });
+    this.VS.camionCarro(
+      this.origen,
+      this.destino,
+      this.fecha,
+      this.hora,
+      this.idVenta
+    ).subscribe((data: Carrito) => {
+      this.carro = data;
+      for (const val of this.carro) {
+        this.carrito.push(val);
+        this.total += val.Precio * 1;
+        console.log('Total');
+        console.log(this.total);
+        localStorage.setItem('Total', this.total.toString());
+        console.log('Proof');
+        console.log(this.carrito.length);
       }
-    );
+      console.log('DB');
+      console.log(this.carro);
+      // tslint:disable-next-line: only-arrow-functions tslint:disable-next-line: typedef space-before-function-paren
+      this.carrito.sort(function (a, b) {
+        if (a.Asiento > b.Asiento) {
+          return 1;
+        }
+        if (a.Asiento < b.Asiento) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      });
+    });
     while (this.carrito.length > 0) {
       this.carrito.pop();
     }
@@ -114,7 +119,7 @@ export class CarritoComponent implements OnInit {
   }
 
   eliminar(id: number): void {
-    console.log('Eliminar');
+    console.log('Eliminar' + id);
     this.cantidadPre = this.cantidad;
     this.cantidad = this.cantidadPre * 1 - 1;
     console.log(this.cantidad);
@@ -144,12 +149,18 @@ export class CarritoComponent implements OnInit {
     // tslint:disable-next-line: deprecation
     this.VS.vender(idVenta).subscribe((datos: ARequest) => {
       if (datos.resultado === 'OK') {
-        console.log(datos.mensaje);
+        Swal.fire({
+          icon: 'success',
+          title: datos.mensaje,
+          showConfirmButton: false,
+          timer: 1000,
+        });
         localStorage.clear();
         this.carrito = [];
         this.ngOnInit();
         this.CS.delete('Folio');
         this.CS.delete('Id_venta');
+        this.router.navigate(['/recientes']);
       }
     });
   }
@@ -166,6 +177,22 @@ export class CarritoComponent implements OnInit {
     this.VS.ticket(idSucursal).subscribe((data: Ticket) => {
       this.ticket = data;
       console.log(this.ticket);
+    });
+  }
+
+  clean(): void {
+    // tslint:disable-next-line: prefer-const
+    let idventa = this.CS.get('Id_venta');
+    console.log('clean');
+    // tslint:disable-next-line: radix
+    this.VS.deleteCarrito(idventa).subscribe((datos: ARequest) => {
+      if (datos.resultado === 'OK') {
+        console.log(datos.mensaje);
+        localStorage.clear();
+        this.router.navigate(['/recientes']);
+      } else {
+        alert(datos.mensaje);
+      }
     });
   }
 }

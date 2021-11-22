@@ -32,6 +32,7 @@ import { ProofComponent } from './pages/proof/proof.component';
 import { NgxPrintModule } from 'ngx-print';
 import { ImprimirComponent } from './vendedor/pages/imprimir/imprimir.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { RecientesComponent } from './vendedor/pages/recientes/recientes.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     InfoComponent,
     ProofComponent,
     ImprimirComponent,
+    RecientesComponent,
   ],
   imports: [
     BrowserModule,

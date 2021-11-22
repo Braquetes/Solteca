@@ -10,11 +10,11 @@
                 <p class="d-block  p-1 border-0">Turno</p>
             </div>
             <div class="menu">
+                <a [routerLink]="['/recientes']" class="d-block  p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
+                Recientes</a>
                 <a [routerLink]="['/ventanilla']" class="d-block  p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
                 Ventas</a>
-                <a [routerLink]="['/reportess']"class="d-block  p-3 border-0"><i class="icon ion-md-analytics lead mr-2"></i>
-                    Reportes</a>
-                <a class="d-block  p-3 border-0"><i class="icon ion-md-qr-scanner lead mr-2"></i>
+                <a [routerLink]="['/imprimir']" class="d-block  p-3 border-0"><i class="icon ion-md-qr-scanner lead mr-2"></i>
                     Imprimir</a>
                 <a [routerLink]="['/info']" class="d-block  p-3 border-0"><i class="icon ion-md-information-circle-outline lead mr-2"></i>
                     Mas información</a>
@@ -30,12 +30,6 @@
                 <div class="dato">
                   <h1>Reportes de ventas</h1>
                 </div>
-              <div class="dato">
-                <h5>Fecha: <span class="badge badge-light">00/00/00</span></h5>
-              </div>
-              <div class="dato">
-                <h5>Hora: <span class="badge badge-light">00:00:00</span></h5>
-              </div>
             </nav>
        
 
@@ -53,11 +47,11 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col selecciona">
-                                                <label for="">Fecha de inicio</label>
+                                                <label for="">Fecha de inicio</label><br>
                                                 <input type="date">
                                             </div>
                                             <div class="col selecciona">
-                                                <label for="">Fecha de inicio</label>
+                                                <label for="">Fecha de inicio</label><br>
                                                 <input type="date">
                                             </div>
                                             <div class="col selecciona">

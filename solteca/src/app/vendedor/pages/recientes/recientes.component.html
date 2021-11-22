@@ -1,0 +1,106 @@
+<app-link></app-link>
+<div class="body">
+    <div class="d-flex" id="content-wrapper">
+    <!-- BARRA LATERAL -->
+    <div id="sidebar-container" class="">
+      <div class="logo">
+        <img src="../../../../assets/img/user1.png" alt="" />
+        <h3 class="d-block p-1 border-0">Vendedor</h3>
+        <p class="d-block p-1 border-0">{{vendedor}}</p>
+        <p class="d-block p-1 border-0">Cargo: {{cargo}}</p>
+      </div>
+      <div class="menu">
+        <a [routerLink]="['/ventanilla']" class="d-block p-3 border-0"
+          ><i class="icon ion-md-cash lead mr-2"></i> Ventas</a
+        >
+
+        <a [routerLink]="['/reporte']" class="d-block p-3 border-0"
+          ><i class="icon ion-md-analytics lead mr-2"></i> Reportes</a
+        >
+
+        <a [routerLink]="['/imprimir']" class="d-block p-3 border-0"
+          ><i class="icon ion-md-qr-scanner lead mr-2"></i> Imprimir</a
+        >
+        <a [routerLink]="['/info']" class="d-block p-3 border-0"
+          ><i class="icon ion-md-information-circle-outline lead mr-2"></i> Mas
+          información</a
+        >
+      </div>
+    </div>
+    <!-- FIN BARRA LATERAL -->
+
+    <div class="w-100">
+        <nav class="header">
+        <div class="dato">
+            <a type="button" (click)="salir()"class="btn btn-terminar"
+            ><i class="fas fa-sign-out-alt"></i> Terminar Turno</a
+            >
+        </div>
+        <div class="dato">
+            <h1>Recientes</h1>
+        </div>
+        </nav>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div id="content" class="w-100">
+        <div class="contenedor-general">
+            <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                    <div class="row">
+                        <div class="col-10">
+                        <h5>
+                            Selecciona una ruta para realizar una venta una venta a
+                            partir de los datos registrados. <br />
+                            Si desea agregar una nueva ruta, de click en el botón
+                            "Añadir Ruta"
+                        </h5>
+                        </div>
+                        <div class="col-2 selecciona">
+                        <a (click)="nueva()" type="submit" class="btn btn-agregar mb-3">
+                            <i class="fas fa-plus"></i> Añadir Ruta</a
+                        >
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="card-body">
+                    <div class="row recientes">
+                        <table class="table">
+                        <thead class="">
+                            <tr>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Partida</th>
+                            <th scope="col">Destino</th>
+                            <th scope="col">Generar Venta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let recien of recients; let i = index;">
+                            <td [hidden]="i == 0">{{recien.Fecha_salida}}</td>
+                            <td [hidden]="i == 0">{{recien.Hora_salida}}</td>
+                            <td [hidden]="i == 0">{{recien.Origen}}</td>
+                            <td [hidden]="i == 0">{{recien.Destino}}</td>
+                            <td [hidden]="i == 0">
+                                <a (click)="seleccion(recien.Hora_salida, recien.Fecha_salida, recien.Origen, recien.Destino)" class="btn-añadir" type="submit"
+                                >Generar Venta</a
+                                >
+                            </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    </div>
+</div>

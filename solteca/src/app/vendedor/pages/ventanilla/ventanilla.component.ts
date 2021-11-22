@@ -1,3 +1,4 @@
+import { Lugares } from './../../../models/vendedor/lugares';
 import { Idventa } from './../../../models/vendedor/idVenta';
 import { Carrito } from './../../../models/vendedor/carrito';
 import { Camion } from 'src/app/models/vendedor/botones';
@@ -11,7 +12,6 @@ import { Asiento } from 'src/app/models/vendedor/asiento';
 import { ARequest } from 'src/app/models/vendedor/asientoRequest';
 import { VendedorService } from 'src/app/services/vendedor.service';
 import { Boletos } from 'src/app/models/vendedor/boletos';
-import { Lugares} from 'src/app/models/vendedor/lugares';
 import { Escala } from 'src/app/models/vendedor/escala';
 import { Autobus } from 'src/app/models/vendedor/camion';
 import { Rutas } from 'src/app/models/vendedor/rutas';
@@ -292,9 +292,12 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
   longitudCamion: any;
   longitud = '';
   vendedor: any;
-  turno: any;
+  cargo: any;
   tipoCamion: any;
   reload = 0;
+  lugarDest = '';
+  lugarSali = '';
+  i = 0;
   constructor(
     private VS: VendedorService,
     private CS: CookieService,
@@ -406,6 +409,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
   }
 
   recargar(): void {
+    this.i = 0;
     localStorage.removeItem('Longitud');
     if (this.venta.Destino !== '') {
       // if (!localStorage.getItem('Longitud')) {
@@ -450,9 +454,11 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       if (this.venta.Destino !== '' && this.venta.Origen !== '') {
         this.ruta = this.rutas;
         for (const val of this.ruta) {
+          this.lugarDest = val.Lugar_destino;
+          this.lugarSali =  val.Lugar_salida;
           if (
-            val.Lugar_salida === this.venta.Origen &&
-            val.Lugar_destino === this.venta.Destino
+            this.lugarDest === this.venta.Origen &&
+            this.lugarSali === this.venta.Destino
           ) {
             this.rutaSelect = val.Precio;
             console.log(this.rutaSelect);
@@ -460,6 +466,18 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
             console.log(this.lugarSelect);
             this.lugarSelectRuta = val.Linea;
             console.log(this.lugarSelectRuta);
+            this.i--;
+          }
+          this.i++;
+          console.log(this.i);
+          console.log(this.ruta.length);
+          if (this.i === this.ruta.length){
+            Swal.fire({
+              icon: 'error',
+              title: 'Esa ruta no existe',
+              showConfirmButton: false,
+              timer: 1000,
+            });
           }
         }
         this.boleto = this.boletos;
@@ -513,31 +531,16 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       switch (x) {
         case '1':
           // tslint:disable-next-line: radix
-          this.venta1 = this.carrito[i].Id_venta;
-          console.log('Venta 1: ' + this.venta1);
-          if (this.venta1 === this.CS.get('Id_venta')){
-            console.log('Igual');
-            this.boton1 = 3;
-            this.asiento1 = this.carrito[i].Asiento;
-          }else{
-            console.log('Diferente');
-            this.boton1 = this.carrito[i].Estado;
-            this.asiento1 = this.carrito[i].Asiento;
-          }
-          console.log('Arreglo 1' + ' , ' + i);
-          console.log(this.asiento1);
+          this.asiento1 = this.carrito[i].Asiento;
+          this.boton1 = this.carrito[i].Estado;
           break;
         case '2':
           this.boton2 = this.carrito[i].Estado;
           this.asiento2 = this.carrito[i].Asiento;
-          this.venta2 = this.carrito[i].Id_venta;
-          console.log('Venta 2: ' + this.venta2);
           break;
         case '3':
           this.boton3 = this.carrito[i].Estado;
           this.asiento3 = this.carrito[i].Asiento;
-          this.venta3 = this.carrito[i].Id_venta;
-          console.log('Venta 3: ' + this.venta3);
           break;
         case '4':
           this.boton4 = this.carrito[i].Estado;
@@ -858,8 +861,6 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       console.log('Agregar');
       console.log(asiento);
       this.venta.Asiento = asiento;
-      this.venta.Cantidad = this.venta.Cantidad * 1 + 1;
-      this.total = this.venta.Cantidad * this.venta.Precio;
       // this.venta.Numero_asiento += asiento + ', ';
       this.venta.Estado = this.estado;
       this.venta.Id_sucursal = this.CS.get('sucursal');
@@ -869,17 +870,33 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       this.VS.carrito(this.venta).subscribe((datos: ARequest) => {
         if (datos.resultado === 'OK') {
           console.log(datos.mensaje);
-        } else {
-          // alert(datos.mensaje);
-          Swal.fire({
-            icon: 'info',
-            title: datos.mensaje,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          this.recargar();
-        }
-      });
+          this.venta.Cantidad = this.venta.Cantidad * 1 + 1;
+          this.total = this.venta.Cantidad * this.venta.Precio;
+        // } else if (datos.idventa === this.CS.get('Id_venta')){
+        //     console.log('Igual');
+        //     // tslint:disable-next-line: prefer-const
+        //     let idventa = this.CS.get('Id_venta');
+        //     console.log('clean');
+        //     // tslint:disable-next-line: no-shadowed-variable
+        //     this.VS.deleteVentanilla(this.venta.Asiento, idventa).subscribe((datos: ARequest) => {
+        //         if (datos.resultado === 'OK') {
+        //           console.log(datos.mensaje);
+        //         } else {
+        //           alert(datos.mensaje);
+        //         }
+        //       }
+        //     );
+          } else {
+            // alert(datos.mensaje);
+            Swal.fire({
+              icon: 'info',
+              title: datos.mensaje,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            this.recargar();
+          }
+        });
     } else {
       console.log('Error');
       // console.log('Agregar');
@@ -1003,7 +1020,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
 
   getInfo(): void {
     this.vendedor = this.CS.get('nombre');
-    this.turno = this.CS.get('turno');
+    this.cargo = this.CS.get('cargo');
   }
 
   permitirSalirDeRuta():

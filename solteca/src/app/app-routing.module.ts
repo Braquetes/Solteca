@@ -1,3 +1,4 @@
+import { RecientesComponent } from './vendedor/pages/recientes/recientes.component';
 import { ReporteComponent } from './vendedor/pages/reporte/reporte.component';
 import { InfoComponent } from './vendedor/pages/info/info.component';
 import { ReporteSucursalComponent } from './admin/pages/estadisticasMENU/reporte-sucursal/reporte-sucursal.component';
@@ -106,6 +107,11 @@ const routes: Routes = [
   {
     path: 'imprimir',
     component: ImprimirComponent,
+  },
+  {
+    path: 'recientes',
+    component: RecientesComponent,
+    canActivate: [VigilanteGuard],
   },
   {
     path: '**',
