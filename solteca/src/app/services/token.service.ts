@@ -20,8 +20,14 @@ export class TokenService {
     );
   }
 
+  loginUpdate(login: Login): Observable<Request> {
+    return this.http.post<Request>(
+      `${this.URL}loginUpdate.php`,
+      JSON.stringify(login)
+    );
+  }
+
   sucursales(): Observable<Sucursal> {
     return this.http.get<Sucursal>(`${this.URL}sucursales.php`);
   }
-
 }

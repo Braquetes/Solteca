@@ -10,6 +10,7 @@ import { Respuesta } from '../models/admin/response';
   providedIn: 'root',
 })
 export class AdministradorService {
+  enviado: any;
   constructor(
     private CS: CookieService,
     private router: Router,
@@ -24,14 +25,34 @@ export class AdministradorService {
     );
   }
 
-  getEmpleado(): Observable<Respuesta> {
+  editEmpleado(empleado: Empleado): Observable<Respuesta> {
+    return this.http.post<Respuesta>(
+      `${this.URL}empleados/updateEmpleado.php`,
+      JSON.stringify(empleado)
+    );
+  }
+
+  getEmpleados(): Observable<Respuesta> {
     return this.http.get<Respuesta>(`${this.URL}empleados/empleados.php`);
+  }
+
+  getEmpleado(id: number): Observable<Empleado> {
+    return this.http.get<Empleado>(`${this.URL}empleados/getEmpleado.php?Id_usuario=${id}`);
+  }
+
+  deleteEmpleado(id: number): Observable<Respuesta> {
+    return this.http.get<Respuesta>(`${this.URL}empleados/deleteEmpleado.php?Id_usuario=${id}`);
   }
 
   logout(): void {
     this.CS.delete('client');
     this.CS.delete('nombre');
     this.CS.delete('access_token');
+    this.CS.delete('id');
+    this.CS.delete('cargo');
+    this.CS.delete('sucursal');
+    // tslint:disable-next-line: no-unused-expression
+    this.enviado === true;
     this.router.navigate(['/']);
   }
 }

@@ -6,41 +6,35 @@ import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from 'src/app/services/token.service';
 import { Sucursal } from 'src/app/models/auth/sucursales';
 import Swal from 'sweetalert2';
+import { AdministradorService } from 'src/app/services/administrador.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-actualizar',
+  templateUrl: './actualizar.component.html',
+  styleUrls: ['./actualizar.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class ActualizarComponent implements OnInit {
   login = {
     user: '',
     pass: '',
     option: 0,
-    passNew: ''
+    passNew: '',
   };
 
   sucursal: any;
 
   constructor(
+    private AS: AdministradorService,
     private TS: TokenService,
     private CS: CookieService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    const client = this.CS.get('client');
-    if (client === 'Administrador') {
-      this.router.navigate(['/menu']);
-    } else {
-      this.router.navigate(['/ventanilla']);
-    }
-    this.getSucursales();
-  }
+  ngOnInit(): void {}
 
   loginUsuario(): void {
     // tslint:disable-next-line: deprecation
-    this.TS.login(this.login).subscribe((datos: Request) => {
+    this.TS.loginUpdate(this.login).subscribe((datos: Request) => {
       if (datos.resultado === 'OK') {
         // alert(datos.mensaje);
         Swal.fire({
@@ -64,7 +58,7 @@ export class LoginComponent implements OnInit {
         this.CS.set('sucursal', datos.sucursal.toString(), 1, '/');
         this.CS.set('nombre', datos.nombre, 1, '/');
         this.CS.set('cargo', datos.cargo, 1, '/');
-        this.CS.set('id', datos.id , 1, '/');
+        this.CS.set('id', datos.id, 1, '/');
       }
       const cookie = this.CS.check('access_token');
       const client = this.CS.get('client');
@@ -76,7 +70,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  getSucursales(): void{
+  getSucursales(): void {
     // tslint:disable-next-line: deprecation
     this.TS.sucursales().subscribe((data: Sucursal) => {
       this.sucursal = data;
@@ -84,4 +78,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  salir(): void {
+    this.AS.logout();
+  }
 }

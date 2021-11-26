@@ -1,58 +1,48 @@
 <app-link></app-link>
 <app-header-opciones></app-header-opciones>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="container-fluid">
-      <div class="contenedor-general">
-        <div class="titulo">
-          <h1>Registro de empleados</h1>
-        </div>
-        <div class="agregar">
-          <a class="btn btn-agregar" [routerLink]="['/empleados/form']"
-            >Agregar empleado <i class="icon ion-md-add"></i
-          ></a>
-        </div>
-        <div class="container-fluid pt-4">
-          <div class="card">
-            <table class="table">
-              <thead class="card-header">
-                <tr>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Apellidos</th>
-                  <th scope="col">Sexo</th>
-                  <th scope="col">Usuario</th>
-                  <th scope="col">Contraseña</th>
-                  <th scope="col">Terminal</th>
-                  <th scope="col">Cargo</th>
-                  <th scope="col">Opciones</th>
-                </tr>
-              </thead>
-              <tbody class="card-body">
-                <tr *ngFor="let empleado of empleados">
-                  <th scope="row">{{empleado.Nombre}}</th>
-                  <td>{{empleado.Apellido_paterno}} {{empleado.Apellido_materno}}</td>
-                  <td>{{empleado.Sexo}}</td>
-                  <td>{{empleado.Usuario}}</td>
-                  <td>{{empleado.Pass}}</td>
-                  <td>{{empleado.Id_sucursal}}</td>
-                  <td>{{empleado.Cargo}}</td>
-                  <td>
-                    <div class="d-grid gap-1 d-md-block">
-                      <a
-                        class="btn-editar"
-                        [routerLink]="['/empleados/form']"
-                        type="button"
-                        ><i class="fas fa-pen"></i
-                      ></a>
-                      <a class="btn-eliminar" type="button"
-                        ><i class="fas fa-trash"></i
-                      ></a>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+<!-- CONTENIDO PRINCIPAL -->
+<div class="container-fluid">
+  <div class="contenedor-general">
+    <div class="titulo">
+      <h1>Registro de empleados</h1>
+    </div>
+    <div class="agregar">
+      <a class="btn btn-agregar" [routerLink]="['/empleados/form']">Agregar empleado <i class="icon ion-md-add"></i></a>
+    </div>
+    <div class="container-fluid pt-4">
+      <div class="card">
+        <table class="table">
+          <thead class="card-header">
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Sexo</th>
+              <th scope="col">Usuario</th>
+              <th scope="col">Contraseña</th>
+              <th scope="col">Terminal</th>
+              <th scope="col">Cargo</th>
+              <th scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody class="card-body">
+            <tr *ngFor="let empleado of empleados">
+              <th scope="row">{{empleado.Nombre}}</th>
+              <td>{{empleado.Apellido_paterno}} {{empleado.Apellido_materno}}</td>
+              <td>{{empleado.Sexo}}</td>
+              <td>{{empleado.Usuario}}</td>
+              <td>{{empleado.Pass}}</td>
+              <td *ngFor="let suc of sucursal" [hidden]="suc.Id_sucursal!= empleado.Id_sucursal">{{suc.Nombre}}</td>
+            <td>{{empleado.Cargo}}</td>
+            <td>
+              <div class="d-grid gap-1 d-md-block">
+                <a class="btn-editar" (click)="editar(empleado.Id_usuario)" type="button"><i class="fas fa-pen"></i></a>
+                <a class="btn-eliminar" (click)="eliminar(empleado.Id_usuario)" type="button"><i class="fas fa-trash"></i></a>
+              </div>
+            </td>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
+</div>

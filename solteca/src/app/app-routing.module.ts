@@ -1,3 +1,4 @@
+import { ActualizarComponent } from './pages/actualizar/actualizar.component';
 import { RecientesComponent } from './vendedor/pages/recientes/recientes.component';
 import { ReporteComponent } from './vendedor/pages/reporte/reporte.component';
 import { InfoComponent } from './vendedor/pages/info/info.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'actualizar',
+    component: ActualizarComponent,
   },
   {
     path: 'ventanilla',
@@ -68,6 +73,12 @@ const routes: Routes = [
     path: 'empleados',
     component: EmpleadosComponent,
     canActivate: [VigilanteGuard],
+  },
+  {
+    path: 'empleados/form/:id',
+    component: FormEmpleadoComponent,
+    canActivate: [VigilanteGuard],
+    canDeactivate: [FormsGuard],
   },
   {
     path: 'empleados/form',

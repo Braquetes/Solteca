@@ -1,116 +1,128 @@
 <app-link></app-link>
 <!-- BARRA DE NAVEGACION -->
 <app-header-void [ruta]="ruta"></app-header-void>
-    <div class="container">
-        <div class="contenedor-general">
-        <!--   <div class="titulo">
+<div class="container">
+  <div class="contenedor-general">
+    <!--   <div class="titulo">
               <h1>Registro de sucursales</h1>
           </div>
           <div class="agregar ">
               <a class="btn btn-agregar" href="agregarsucursal.html">Agregar sucursal <i class="icon ion-md-add"></i></a>
           </div> -->
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item h5"><a [routerLink]="['/empleados']">Empleados</a></li>
-              <li class="breadcrumb-item active h5" aria-current="page">Agregar Empleado</li>
-            </ol>
-          <div class="container pt-4 d-flex justify-content-center">
-              <div class="card">
-                <div class="titulo">
-                    <h1>Agregar empleado</h1>
-                    <p>Rellene los campos para añadir un nuevo empleado</p>
-                </div>
-                <div class="formulario">
-                    <form>
-                        <div class="row">
-                            <div class="col-sm col1">
-                                <div class="mb-3">
-                                    <label class="form-label">Nombre</label>
-                                    <input name="Nombre" [(ngModel)]="empleados.Nombre" type="text" class="form-control" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
-                                  </div>
-                            </div>
-                            <div class="col-sm col1">
-                                <div class="mb-3">
-                                    <label class="form-label">Apellidos</label>
-                                    <input name="Apellido_paterno" [(ngModel)]="empleados.Apellido_paterno" type="text" class="form-control" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
-                                  </div>
-                            </div>
-                            <div class="col-sm col1">
-                                <div class="mb-3">
-                                    <label class="form-label">Apellidos</label>
-                                    <input name="Apellido_materno" [(ngModel)]="empleados.Apellido_materno" type="text" class="form-control" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
-                                  </div>
-                            </div>
-                            <div class="col-sm col1">
-                                <div class="mb-3">
-                                    <label class="form-label">Sexo</label>
-                                    <input name="Sexo" [(ngModel)]="empleados.Sexo" type="text" class="form-control" placeholder="Ingresa numero telefonico de la terminal" aria-describedby="emailHelp">
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-sm col1">
-                                <div class="mb-3">
-                                    <label class="form-label">Teléfono</label>
-                                    <input name="Telefono" [(ngModel)]="empleados.Telefono" type="text" class="form-control" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
-                                  </div>
-                            </div>
-                            <div class="col-sm col1">
-                                <div class="mb-3">
-                                    <label class="form-label">Usuario</label>
-                                    <input name="Usuario" [(ngModel)]="empleados.Usuario" type="text" class="form-control" placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
-                                  </div>
-                            </div>
-                            <div class="col-sm col1">
-                                <div class="mb-3">
-                                    <label class="form-label">Contraseña</label>
-                                    <input name="Pass" [(ngModel)]="empleados.Pass" type="password" class="form-control" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
-                                  </div>
-                            </div>
-                            <div class="col-sm col1">
-                                <div class="mb-3">
-                                    <div class="input-group mt-4 pt-2">
-                                        <label class="input-group-text unidades" for="inputGroupSelect01">Cargo</label>
-                                        <select class="form-select" name="Cargo" [(ngModel)]="empleados.Cargo">
-                                          <option selected>Selecciona el cargo</option>
-                                          <option value="administrador">Administrador</option>
-                                          <option value="vendedor">Vendedor</option>
-                                        </select>
-                                      </div>
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm col1">
-                            </div>
-                            <div class="col-sm col1 text-center">
-                                <div class="mb-3">
-                                    <div class="input-group mt-4 pt-2">
-                                        <label class="input-group-text unidades" for="inputGroupSelect01">Terminal</label>
-                                        <select class="form-select" name="Id_sucursal" [(ngModel)]="empleados.Id_sucursal">
-                                          <option selected>Selecciona la terminal</option>
-                                          <option value="1">Terminal 1</option>
-                                          <option value="2">Terminal 2</option>
-                                          <option value="3">Terminal 3</option>
-                                        </select>
-                                      </div>
-                                  </div>
-                            </div>
-                            <div class="col-sm col1">
-                            </div>
-                        </div>
-                       <div class="botones">
-                        <a type="button" [routerLink]="['/empleados']" class="btn-cancelar btn-lg"><i class="fas fa-times"></i> Cancelar</a>
-                        <button (click)="enviar()" type="button" class="btn-registrar btn-lg"><i class="fas fa-check"></i> Registrar</button>
-                        
-
-                       </div>
-                    </form>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item h5"><a [routerLink]="['/empleados']">Empleados</a></li>
+      <li class="breadcrumb-item active h5" aria-current="page">Agregar Empleado</li>
+    </ol>
+    <div class="container pt-4 d-flex justify-content-center">
+      <div class="card">
+        <div class="titulo">
+          <h1>Agregar empleado</h1>
+          <p>Rellene los campos para añadir un nuevo empleado</p>
+        </div>
+        <div class="formulario">
+          <form (ngSubmit)="enviar(form)" #form="ngForm">
+            <div class="row">
+              <div class="col-sm col1">
+                <div class="mb-3">
+                  <label class="form-label">Nombre</label>
+                  <input name="Nombre" [(ngModel)]="empleado.Nombre" type="text" class="form-control"
+                    placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
                 </div>
               </div>
-          </div>
+              <div class="col-sm col1">
+                <div class="mb-3">
+                  <label class="form-label">Apellidos</label>
+                  <input name="Apellido_paterno" [(ngModel)]="empleado.Apellido_paterno" type="text"
+                    class="form-control" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
+                </div>
+              </div>
+              <div class="col-sm col1">
+                <div class="mb-3">
+                  <label class="form-label">Apellidos</label>
+                  <input name="Apellido_materno" [(ngModel)]="empleado.Apellido_materno" type="text"
+                    class="form-control" placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
+                </div>
+              </div>
+              <div class="col-sm col1">
+                <div class="mb-3">
+                  <label class="form-label">Sexo</label>
+                  <input name="Sexo" [(ngModel)]="empleado.Sexo" type="text" class="form-control"
+                    placeholder="Ingresa numero telefonico de la terminal" aria-describedby="emailHelp">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm col1">
+                <div class="mb-3">
+                  <label class="form-label">Teléfono</label>
+                  <input name="Telefono" [(ngModel)]="empleado.Telefono" type="text" class="form-control"
+                    placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
+                </div>
+              </div>
+              <div class="col-sm col1">
+                <div class="mb-3">
+                  <label class="form-label">Usuario</label>
+                  <input name="Usuario" [(ngModel)]="empleado.Usuario" type="text" class="form-control"
+                    placeholder="Ingresa el nombre de la terminal" aria-describedby="emailHelp">
+                </div>
+              </div>
+              <div class="col-sm col1" *ngIf="id">
+                <div class="mb-3">
+                  <label class="form-label">Contraseña</label>
+                  <input name="Pass" disabled type="password" class="form-control" placeholder="**********"
+                    aria-describedby="emailHelp">
+                </div>
+              </div>
+              <div class="col-sm col1" *ngIf="!id">
+                <div class="mb-3">
+                  <label class="form-label">Contraseña</label>
+                  <input name="Pass" [(ngModel)]="empleado.Pass" type="password" class="form-control"
+                    placeholder="Ingresa la dirección de la terminal" aria-describedby="emailHelp">
+                </div>
+              </div>
+              <div class="col-sm col1">
+                <div class="mb-3">
+                  <div class="input-group mt-4 pt-2">
+                    <label class="input-group-text unidades" for="inputGroupSelect01">Cargo</label>
+                    <select class="form-select" name="Cargo" [(ngModel)]="empleado.Cargo">
+                      <option selected disabled>Selecciona el cargo</option>
+                      <option value="Administrador">Administrador</option>
+                      <option value="Vendedor">Vendedor</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm col1">
+              </div>
+              <div class="col-sm col1 text-center">
+                <div class="mb-3">
+                  <div class="input-group mt-4 pt-2">
+                    <label>Selecciona la terminal</label>
+                    <select name="Id_sucursal" [(ngModel)]="empleado.Id_sucursal" class="elige" required>
+                      <option value="0" selected disabled>
+                        Selecciona tu sucursal
+                      </option>
+                      <option *ngFor="let sucsal of sucursal" value="{{ sucsal.Id_sucursal }}">
+                        {{ sucsal.Nombre }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm col1">
+              </div>
+            </div>
+            <div class="botones">
+              <a type="button" [routerLink]="['/empleados']" class="btn-cancelar btn-lg"><i class="fas fa-times"></i>
+                Cancelar</a>
+              <button *ngIf="empleado.Id_sucursal" type="submit" class="btn-registrar btn-lg"><i
+                  class="fas fa-check"></i> Registrar</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-    <div class="col-md-4">
-    <div class="card-body text-center">
-        <h3 class="card-title">{{empleados.Nombre}}</h3>
-    </div>
+  </div>
+</div>

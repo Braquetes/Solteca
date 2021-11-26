@@ -1,8 +1,13 @@
+import { TokenService } from 'src/app/services/token.service';
 import { PuedeDesactivar } from './../../../../guards/forms.guard';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { AdministradorService } from 'src/app/services/administrador.service';
 import { Respuesta } from 'src/app/models/admin/response';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Empleado } from 'src/app/models/admin/empleado';
+import { NgForm } from '@angular/forms';
+import { Sucursal } from 'src/app/models/auth/sucursales';
 
 @Component({
   selector: 'app-form-empleado',
@@ -11,7 +16,10 @@ import { Respuesta } from 'src/app/models/admin/response';
 })
 export class FormEmpleadoComponent implements OnInit, PuedeDesactivar {
   enviado = false;
-  empleados = {
+  empleados: Empleado | undefined;
+  ruta = 'empleados';
+  id: any;
+  empleado = {
     Id_usuario: 0,
     Nombre: '',
     Apellido_paterno: '',
@@ -21,25 +29,36 @@ export class FormEmpleadoComponent implements OnInit, PuedeDesactivar {
     Pass: '',
     Cargo: '',
     Id_sucursal: '',
-    Telefono: ''
+    Telefono: '',
   };
-  ruta = 'empleados';
-  constructor(private AS: AdministradorService) {}
+  sucursal: any;
+  constructor(private AS: AdministradorService, private AR: ActivatedRoute, private TS: TokenService, private router: Router) {}
 
-  enviar(): void{
-    if (
-      this.empleados.Nombre !== '' &&
-      this.empleados.Apellido_paterno !== '' &&
-      this.empleados.Apellido_materno !== '' &&
-      this.empleados.Sexo !== '' &&
-      this.empleados.Usuario !== '' &&
-      this.empleados.Pass !== '' &&
-      this.empleados.Cargo !== '' &&
-      this.empleados.Id_sucursal !== '' &&
-      this.empleados.Telefono !== ''
-    ) {
-      console.log(JSON.stringify(this.empleados));
-      this.AS.addEmpleado(this.empleados).subscribe((datos: Respuesta) => {
+  ngOnInit(): void {
+    this.id = this.AR.snapshot.params.id;
+    if (this.id) {
+      console.log('Editar');
+      this.AS.getEmpleado(this.id).subscribe((datos: Empleado) => {
+        this.empleado = datos;
+        console.log(this.empleado);
+      });
+    }
+    this.getSucursales();
+  }
+
+  getSucursales(): void {
+    // tslint:disable-next-line: deprecation
+    this.TS.sucursales().subscribe((data: Sucursal) => {
+      this.sucursal = data;
+      console.log(this.sucursal);
+    });
+  }
+
+  enviar(form: NgForm): void {
+    console.log(JSON.stringify(this.empleado));
+    if (this.id) {
+      console.log('Editar');
+      this.AS.editEmpleado(this.empleado).subscribe((datos: Respuesta) => {
         if (datos.resultado === 'OK') {
           Swal.fire({
             icon: 'info',
@@ -47,6 +66,29 @@ export class FormEmpleadoComponent implements OnInit, PuedeDesactivar {
             showConfirmButton: false,
             timer: 1500,
           });
+          this.router.navigate(['/empleados']);
+        } else {
+          // alert(datos.mensaje);
+          Swal.fire({
+            icon: 'info',
+            title: datos.mensaje,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+      this.enviado = true;
+    } else {
+      console.log('Crear');
+      this.AS.addEmpleado(this.empleado).subscribe((datos: Respuesta) => {
+        if (datos.resultado === 'OK') {
+          Swal.fire({
+            icon: 'info',
+            title: datos.mensaje,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.router.navigate(['/empleados']);
         } else {
           // alert(datos.mensaje);
           Swal.fire({
@@ -59,10 +101,13 @@ export class FormEmpleadoComponent implements OnInit, PuedeDesactivar {
       });
       this.enviado = true;
     }
-}
+  }
 
-  permitirSalirDeRuta(): | boolean | import('rxjs').Observable<boolean> | Promise<boolean> {
-    if (this.empleados.Nombre !== '' && this.enviado === true) {
+  permitirSalirDeRuta():
+    | boolean
+    | import('rxjs').Observable<boolean>
+    | Promise<boolean> {
+    if (this.enviado === true) {
       return true;
     }
 
@@ -71,7 +116,4 @@ export class FormEmpleadoComponent implements OnInit, PuedeDesactivar {
     );
     return confirmacion;
   }
-
-  ngOnInit(): void {}
-
 }

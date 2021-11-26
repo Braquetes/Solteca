@@ -11,7 +11,11 @@ import { CookieService } from 'ngx-cookie-service';
 export class MenuComponent implements OnInit {
   constructor(private CS: CookieService, private router: Router, private AS: AdministradorService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.CS.get('access_token') === 'actualizar') {
+      this.router.navigate(['/actualizar']);
+    }
+  }
 
   salir(): void {
     this.AS.logout();

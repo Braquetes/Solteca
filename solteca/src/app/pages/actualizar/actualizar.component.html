@@ -1,0 +1,41 @@
+<nav>
+    <a [routerLink]="['/login']" class="nav-enlace">La Solteca</a>
+</nav>
+<div class="container">
+    <div class="general">
+        <div class="imagen">
+            <div class="fondo-blanco"></div>
+        </div>
+        <div class="info">
+            <div class="encabezado">
+                <h1 class="titulo">La Solteca</h1>
+                <h3 class="iniciar">Iniciar Sesión</h3>
+                <p class="text">Ingresa tus datos para ingresar al sistema.</p>
+            </div>
+            <div class="formulario">
+                <form>
+                    <div class="campos">
+                        <label for="">Ingresa tu nombre del usuario</label>
+                        <input class="usuario" name="user" type="text" placeholder="Nombre de usuario"
+                            [(ngModel)]="login.user" />
+                    </div>
+                    <div class="campos">
+                        <label for="">Ingresa tu contraseña actual</label>
+                        <input class="contraseña" name="pass" type="password" placeholder="*************"
+                            [(ngModel)]="login.pass" />
+                    </div>
+                    <div class="campos">
+                        <label for="">Ingresa una contraseña nueva</label>
+                        <input class="contraseña" name="passNew" type="password" placeholder="*************"
+                            [(ngModel)]="login.passNew" />
+                    </div>
+                    <div class="boton">
+                        <button class="btn btn-ingresar" (click)="loginUsuario()">
+                            Actualizar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
