@@ -14,6 +14,10 @@ import { Autobus } from '../models/vendedor/camion';
 import { Rutas } from '../models/vendedor/rutas';
 import { Ticket } from '../models/vendedor/ticket';
 import { Recientes } from '../models/vendedor/recientes';
+import { Report } from '../models/vendedor/report';
+import { Reports } from '../models/vendedor/reports';
+import { Empleado } from '../models/admin/empleado';
+import { Imprime } from '../models/vendedor/imprimir';
 
 @Injectable({
   providedIn: 'root',
@@ -130,7 +134,25 @@ export class VendedorService {
     return this.http.get<Recientes>(`${this.URL}recientes.php`);
   }
 
-  deleteCarrito( idventa: string): Observable<ARequest> {
-    return this.http.get<ARequest>(`${this.URL}deleteCarrito.php?Id_venta=${idventa}`);
+  deleteCarrito(idventa: string): Observable<ARequest> {
+    return this.http.get<ARequest>(
+      `${this.URL}deleteCarrito.php?Id_venta=${idventa}`
+    );
+  }
+
+  reportes(report: Reports): Observable<Report> {
+    return this.http.post<Report>(`${this.URL}reporte/getReporte.php`, JSON.stringify(report));
+  }
+
+  empleados(): Observable<Empleado> {
+    return this.http.get<Empleado>(`${this.URL}info/empleados.php`);
+  }
+
+  imprimir(report: Imprime): Observable<Report> {
+    return this.http.post<Report>(`${this.URL}info/imprimir.php`, JSON.stringify(report));
+  }
+
+  boleta(id: number): Observable<Report> {
+    return this.http.get<Report>(`${this.URL}info/boleta.php?Id_carrito=${id}`);
   }
 }

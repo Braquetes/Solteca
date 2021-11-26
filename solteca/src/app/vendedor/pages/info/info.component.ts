@@ -1,5 +1,7 @@
 import { AdministradorService } from './../../../services/administrador.service';
 import { Component, OnInit } from '@angular/core';
+import { VendedorService } from 'src/app/services/vendedor.service';
+import { Empleado } from 'src/app/models/admin/empleado';
 
 @Component({
   selector: 'app-info',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info.component.css'],
 })
 export class InfoComponent implements OnInit {
-  constructor(private AS: AdministradorService) {}
+  empleado: any;
+  constructor(private AS: AdministradorService, private VS: VendedorService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.empleados();
+  }
+
+  empleados(): void{
+    this.VS.empleados().subscribe((data: Empleado) => {
+      this.empleado = data;
+      console.log(this.empleado);
+    });
+  }
 
   salir(): void {
     this.AS.logout();

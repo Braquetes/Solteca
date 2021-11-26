@@ -1,38 +1,38 @@
-import { TokenService } from 'src/app/services/token.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Sucursal } from 'src/app/models/auth/sucursales';
+import { Autobus } from 'src/app/models/vendedor/camion';
+import { Lugares } from 'src/app/models/vendedor/lugares';
 import { Report } from 'src/app/models/vendedor/report';
 import { AdministradorService } from 'src/app/services/administrador.service';
+import { TokenService } from 'src/app/services/token.service';
 import { VendedorService } from 'src/app/services/vendedor.service';
-import { Lugares } from 'src/app/models/vendedor/lugares';
 
 @Component({
-  selector: 'app-imprimir',
-  templateUrl: './imprimir.component.html',
-  styleUrls: ['./imprimir.component.css'],
+  selector: 'app-boleta',
+  templateUrl: './boleta.component.html',
+  styleUrls: ['./boleta.component.css'],
 })
-export class ImprimirComponent implements OnInit {
+export class BoletaComponent implements OnInit {
   vendedor: any;
+  autobus: any;
   cargo: any;
-  impresion = {
-    fecha: '',
-    destino: '',
-    sucursal: '',
-  };
   sucursal: any;
   lugares: any;
   reportes: any;
+  id: any;
   constructor(
     private TS: TokenService,
     private VS: VendedorService,
     private CS: CookieService,
     private router: Router,
-    private AS: AdministradorService
+    private AS: AdministradorService,
+    private AR: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.id = this.AR.snapshot.params.id;
     const cookie = this.CS.check('access_token');
     const client = this.CS.get('client');
     if (cookie) {
@@ -42,7 +42,8 @@ export class ImprimirComponent implements OnInit {
     }
     this.getInfo();
     this.getSucursales();
-    this.getLugares();
+    this.getReporte();
+    this.getAutobus();
   }
 
   getInfo(): void {
@@ -63,8 +64,8 @@ export class ImprimirComponent implements OnInit {
   }
 
   getReporte(): void {
-    console.log(this.impresion);
-    this.VS.imprimir(this.impresion).subscribe((data: Report) => {
+    console.log(this.id);
+    this.VS.boleta(this.id).subscribe((data: Report) => {
       this.reportes = data;
       console.log(this.reportes);
     });
@@ -78,8 +79,16 @@ export class ImprimirComponent implements OnInit {
     });
   }
 
-  print(id: number): void{
+  print(id: number): void {
     console.log(id);
     this.router.navigate(['/boleta', id]);
+  }
+
+  getAutobus(): void {
+    // tslint:disable-next-line: deprecation
+    this.VS.autobus().subscribe((data: Autobus) => {
+      this.autobus = data;
+      console.log(this.autobus);
+    });
   }
 }

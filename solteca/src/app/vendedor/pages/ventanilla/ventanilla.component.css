@@ -281,14 +281,64 @@
   border: 6px solid var(--rojo);
 }
 
-
-
 .container-autobus {
   /*Alto contenedor del autobus
     height: 70vh;
     */
   height: 70vh;
   background-image: url("../../../../assets/img/bus1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 2px solid rgba(255, 255, 255, 0);
+}
+
+.container-autobus12 {
+  /*Alto contenedor del autobus
+    height: 70vh;
+    */
+    
+  height: 60vh;
+  background-image: url("../../../../assets/img/12.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 2px solid rgba(255, 255, 255, 0);
+}
+
+.container-autobus13 {
+  /*Alto contenedor del autobus
+    height: 70vh;
+    */
+
+  height: 70vh;
+  background-image: url("../../../../assets/img/13.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 2px solid rgba(255, 255, 255, 0);
+}
+
+.container-autobus16 {
+  /*Alto contenedor del autobus
+    height: 70vh;
+    */
+
+  height: 70vh;
+  background-image: url("../../../../assets/img/16.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 2px solid rgba(255, 255, 255, 0);
+}
+
+.container-autobus19 {
+  /*Alto contenedor del autobus
+    height: 70vh;
+    */
+
+  height: 70vh;
+  background-image: url("../../../../assets/img/19.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -311,7 +361,7 @@ input[type=checkbox] {
 }
 
 .autobus {
-  margin-left: 5%;
+  margin-left: 12%;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -337,7 +387,7 @@ input[type=checkbox] {
   color: white;
   font-size: 10;
   text-align: center;
-  background: #fcfff4;
+  background: #FFFF;
   background: linear-gradient(flex, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
   margin: 5px auto;
   box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);

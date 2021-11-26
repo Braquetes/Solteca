@@ -41,6 +41,7 @@ export class CarritoComponent implements OnInit {
   hora: any;
   idVenta: any;
   vendedor: any;
+  cargo: any;
   ticket: any;
   Folio: any;
   estilo: string | undefined;
@@ -169,6 +170,7 @@ export class CarritoComponent implements OnInit {
     this.vendedor = this.CS.get('nombre');
     this.Folio = this.CS.get('Folio');
     this.turno = this.CS.get('turno');
+    this.cargo = this.CS.get('cargo');
   }
 
   getTicket(): void {

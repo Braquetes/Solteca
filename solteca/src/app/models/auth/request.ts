@@ -6,5 +6,6 @@ export interface Request {
         sucursal: string;
         nombre: string;
         cargo: string;
+        id: any;
 }
 

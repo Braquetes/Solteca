@@ -31,12 +31,6 @@
                 <div class="dato">
                   <h1>Más Información</h1>
                 </div>
-              <div class="dato">
-                <h5>Fecha: <span class="badge badge-light">00/00/00</span></h5>
-              </div>
-              <div class="dato">
-                <h5>Hora: <span class="badge badge-light">00:00:00</span></h5>
-              </div>
             </nav>
        
 
@@ -49,9 +43,6 @@
                                 <div class="card card-table">
                                     <div class="tabla">
                                         <table class="table">
-                                         <div class="title-table">
-                                             <h4>Tipos de boletos</h4>
-                                           </div>
                                            <thead class="thead">
                                             <tr>
                                                 <th class="columna1" >Tipo</th>
@@ -151,51 +142,19 @@
                     <div class="card card3">
                         <li class="list-group-item encabezado" aria-current="true">Empleados</li>
                         <div class="row">
-                            <div class="col">
+                            <div class="col" *ngFor="let emple of empleado">
                                 <div class="card card-empleado">
                                     <div class="img-card">
                                         <img src="../../../../assets/img/user.png" alt="">
                                     </div>
                                     <div class="card-header">
-                                        <strong>Nombre: </strong> User
+                                        Nombre: <strong>{{emple.Nombre}}</strong>
                                       </div>
                                       <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><strong>Edad</strong></li>
-                                        <li class="list-group-item"><strong>Puesto</strong></li>
-                                        <li class="list-group-item"><strong>Telefono</strong></li>
-                                        <li class="list-group-item"><strong>Campo Extra</strong></li>
-                                      </ul>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card card-empleado">
-                                    <div class="img-card">
-                                        <img src="../../../../assets/img/user.png" alt="">
-                                    </div>
-                                    <div class="card-header">
-                                        <strong>Nombre: </strong> User
-                                      </div>
-                                      <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><strong>Edad</strong></li>
-                                        <li class="list-group-item"><strong>Puesto</strong></li>
-                                        <li class="list-group-item"><strong>Telefono</strong></li>
-                                        <li class="list-group-item"><strong>Campo Extra</strong></li>
-                                      </ul>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card card-empleado">
-                                    <div class="img-card">
-                                        <img src="../../../../assets/img/user.png" alt="">
-                                    </div>
-                                    <div class="card-header">
-                                        <strong>Nombre: </strong> User
-                                      </div>
-                                      <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><strong>Edad</strong></li>
-                                        <li class="list-group-item"><strong>Puesto</strong></li>
-                                        <li class="list-group-item"><strong>Telefono</strong></li>
-                                        <li class="list-group-item"><strong>Campo Extra</strong></li>
+                                        <li class="list-group-item">Sexo: <strong>{{emple.Sexo}}</strong></li>
+                                        <li class="list-group-item">Cargo: <strong>{{emple.Cargo}}</strong></li>
+                                        <li class="list-group-item">Teléfono: <strong>{{emple.Telefono}}</strong></li>
+                                        <li class="list-group-item">Sucursal: <strong>{{emple.Id_sucursal}}</strong></li>
                                       </ul>
                                 </div>
                             </div>

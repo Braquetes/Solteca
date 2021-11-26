@@ -42,6 +42,8 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
     Estado: 0,
     Id_autobus: 0,
     Id_sucursal: '',
+    Nombre: '',
+    Id_usuario: ''
   };
 
   boletos: any | undefined;
@@ -865,6 +867,8 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       this.venta.Estado = this.estado;
       this.venta.Id_sucursal = this.CS.get('sucursal');
       this.venta.Id_venta = this.CS.get('Id_venta');
+      this.venta.Nombre = this.CS.get('nombre');
+      this.venta.Id_usuario = this.CS.get('id');
       console.log(this.venta);
       // tslint:disable-next-line: deprecation
       this.VS.carrito(this.venta).subscribe((datos: ARequest) => {

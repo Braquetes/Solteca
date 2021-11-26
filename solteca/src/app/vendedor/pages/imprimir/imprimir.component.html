@@ -1,6 +1,6 @@
 <app-link></app-link>
 <div class="body">
-    <div class="d-flex" id="content-wrapper">
+  <div class="d-flex" id="content-wrapper">
     <!-- BARRA LATERAL -->
     <div id="sidebar-container" class="">
       <div class="logo">
@@ -10,38 +10,128 @@
         <p class="d-block p-1 border-0">Cargo: {{cargo}}</p>
       </div>
       <div class="menu">
-          <a [routerLink]="['/recientes']" class="d-block  p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
-                Recientes</a>
-        <a [routerLink]="['/ventanilla']" class="d-block p-3 border-0"
-          ><i class="icon ion-md-cash lead mr-2"></i> Ventas</a
-        >
-        
-        <a [routerLink]="['/reporte']" class="d-block p-3 border-0"
-          ><i class="icon ion-md-analytics lead mr-2"></i> Reportes</a
-        >
+        <a [routerLink]="['/recientes']" class="d-block  p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
+          Recientes</a>
+        <a [routerLink]="['/ventanilla']" class="d-block p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
+          Ventas</a>
 
-        <a [routerLink]="['/info']" class="d-block p-3 border-0"
-          ><i class="icon ion-md-information-circle-outline lead mr-2"></i> Mas
-          información</a
-        >
+        <a [routerLink]="['/reporte']" class="d-block p-3 border-0"><i class="icon ion-md-analytics lead mr-2"></i>
+          Reportes</a>
+
+        <a [routerLink]="['/info']" class="d-block p-3 border-0"><i
+            class="icon ion-md-information-circle-outline lead mr-2"></i> Mas
+          información</a>
       </div>
     </div>
     <!-- FIN BARRA LATERAL -->
 
     <div class="w-100">
-        <nav class="header">
+      <nav class="header">
         <div class="dato">
-            <a type="button" (click)="salir()"class="btn btn-terminar"
-            ><i class="fas fa-sign-out-alt"></i> Terminar Turno</a
-            >
+          <a type="button" (click)="salir()" class="btn btn-terminar"><i class="fas fa-sign-out-alt"></i> Terminar
+            Turno</a>
         </div>
         <div class="dato">
-            <h1>Recientes</h1>
+          <h1>Imprimir</h1>
         </div>
-        </nav>
+      </nav>
 
-        
+      <!-- CONTENIDO PRINCIPAL -->
+      <div id="content" class="w-100">
+        <div class="contenedor-general">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <div class="card">
+                  <h5 class="card-header">
+                    Selecciona la <strong>fecha inicial</strong>, la
+                    <strong>fecha final</strong> y la
+                    <strong>sucursal</strong> correspondiente para generar el
+                    reporte de ventas
+                  </h5>
+                  <div class="card-body">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col selecciona">
+                          <label for="">Fecha de inicio</label><br />
+                          <input type="date" [(ngModel)]="impresion.fecha" />
+                        </div>
+                        <div class="col selecciona">
+                          <div class="col-sm col1">
+                            <label for="" class="indicacion">Destino</label>
+                            <select name="Destino" class="input1" [(ngModel)]="impresion.destino">
+                              <option value="0" disabled selected *ngIf="!impresion.destino">
+                                Selecciona el destino
+                              </option>
+                              <option value="0" disabled selected *ngIf="impresion.destino !== ''">
+                                {{impresion.destino}}
+                              </option>
+                              <option *ngFor="let lugar of lugares" value="{{lugar.Lugar}}">
+                                {{ lugar.Lugar }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col selecciona">
+                          <label>Selecciona la sucursal</label>
+                          <select name="Sucursal" [(ngModel)]="impresion.sucursal" class="elige" required>
+                            <option value="0" selected disabled>
+                              Selecciona tu sucursal
+                            </option>
+                            <option *ngFor="let sucsal of sucursal" value="{{ sucsal.Id_sucursal }}">
+                              {{ sucsal.Nombre }}
+                            </option>
+                          </select>
+                        </div>
+                        <div class="col selecciona">
+                          <a (click)="getReporte()" class="btn btn-agregar mb-3">
+                            <i class="fas fa-check"></i> Generar Reporte</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <div class="card">
+                  <table class="table" border="5px">
+                    <thead class="">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Partida</th>
+                        <th scope="col">Destino</th>
+                        <th scope="col">Vendidos</th>
+                        <th scope="col">Opciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let repor of reportes; let i = index;">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{repor.Fecha_salida}}</td>
+                        <td>{{repor.Hora_salida}}</td>
+                        <td>{{repor.Origen}}</td>
+                        <td>{{repor.Destino}}</td>
+                        <td>{{repor.Count}}</td>
+                        <td>
+                          <div class="col selecciona">
+                            <a class="btn btn-agregar mb-3" (click)="print(repor.Id_carrito)">Imprimir</a>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    </div>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-export interface Carrito {
+export interface Report {
     Id_carrito: number;
     Nombre_cliente: string;
     Origen: string;
@@ -16,6 +16,9 @@ export interface Carrito {
     Estado: number;
     Id_autobus: number;
     Id_sucursal: string;
-    Nombre: any;
-    Id_usuario: any;
+    Numero_Autobus: string;
+    Boletos: any;
+    Suma: any;
+    Trabajador: any;
+    Count: any;
 }

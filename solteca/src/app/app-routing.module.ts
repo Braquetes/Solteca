@@ -20,6 +20,7 @@ import { FormPreciosComponent } from './admin/pages/preciosCRUD/form-precios/for
 import { FormsGuard } from './guards/forms.guard';
 import { ProofComponent } from './pages/proof/proof.component';
 import { ImprimirComponent } from './vendedor/pages/imprimir/imprimir.component';
+import { BoletaComponent } from './vendedor/pages/boleta/boleta.component';
 
 const routes: Routes = [
   {
@@ -107,6 +108,10 @@ const routes: Routes = [
   {
     path: 'imprimir',
     component: ImprimirComponent,
+  },
+  {
+    path: 'boleta/:id',
+    component: BoletaComponent,
   },
   {
     path: 'recientes',

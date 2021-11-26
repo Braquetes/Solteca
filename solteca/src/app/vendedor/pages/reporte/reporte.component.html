@@ -1,113 +1,197 @@
 <app-link></app-link>
 <div class="d-flex" id="content-wrapper">
-
-        <!-- BARRA LATERAL -->
-        <div id="sidebar-container" class="">
-            <div class="logo">
-                <img src="../../../../assets/img/user1.png" alt="">
-                <h3 class="d-block  p-1 border-0">Vendedor</h3>
-                <p class="d-block  p-1 border-0">Nombre Vendedor</p>
-                <p class="d-block  p-1 border-0">Turno</p>
-            </div>
-            <div class="menu">
-                <a [routerLink]="['/recientes']" class="d-block  p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
-                Recientes</a>
-                <a [routerLink]="['/ventanilla']" class="d-block  p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
-                Ventas</a>
-                <a [routerLink]="['/imprimir']" class="d-block  p-3 border-0"><i class="icon ion-md-qr-scanner lead mr-2"></i>
-                    Imprimir</a>
-                <a [routerLink]="['/info']" class="d-block  p-3 border-0"><i class="icon ion-md-information-circle-outline lead mr-2"></i>
-                    Mas información</a>
-            </div>
-        </div>
-        <!-- FIN BARRA LATERAL -->
-
-        <div class="w-100">
-            <nav class="header">
-                <div class="dato">
-                    <a type="button" (click)="salir()" class="btn btn-terminar"><i class="fas fa-sign-out-alt"></i> Terminar Turno</a>
-              </div>
-                <div class="dato">
-                  <h1>Reportes de ventas</h1>
-                </div>
-            </nav>
-       
-
-        <!-- CONTENIDO PRINCIPAL -->
-        <div id="content" class=" w-100">
-            <div class="contenedor-general">
-               <div class="container-fluid">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card ">
-                                <h5 class="card-header">
-                                    Selecciona la <strong>fecha inicial</strong>, la <strong>fecha final</strong> y la <strong>sucursal</strong> correspondiente para generar el reporte de ventas
-                                </h5>
-                                <div class="card-body">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col selecciona">
-                                                <label for="">Fecha de inicio</label><br>
-                                                <input type="date">
-                                            </div>
-                                            <div class="col selecciona">
-                                                <label for="">Fecha de inicio</label><br>
-                                                <input type="date">
-                                            </div>
-                                            <div class="col selecciona">
-                                                <label for="">Selecciona la sucursal</label>
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected>Selecciona la sucursal</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                  </select>
-                                            </div>
-                                            <div class="col selecciona">
-                                                <a type="submit" class="btn btn-agregar mb-3"> <i class="fas fa-check"></i> Generar Reporte</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card">
-                                <table class="table">
-                                    <thead class="">
-                                      <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Hora</th>
-                                        <th scope="col">Partida</th>
-                                        <th scope="col">Destino</th>
-                                        <th scope="col">Chofer</th>
-                                        <th scope="col">Cliente</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <th scope="row">1</th>
-                                        <td>00/00/00</td>
-                                        <td>00:00:00</td>
-                                        <td>Partida</td>
-                                        <td>Destino</td>
-                                        <td>Chofer</td>
-                                        <td>Cliente</td>
-                                      </tr>
-                                     
-                                    </tbody>
-                                  </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </div>
+  <!-- BARRA LATERAL -->
+  <div id="sidebar-container" class="">
+    <div class="logo">
+      <img src="../../../../assets/img/user1.png" alt="" />
+      <h3 class="d-block p-1 border-0">Vendedor</h3>
+      <p class="d-block p-1 border-0">{{vendedor}}
+      <p>
+      <p class="d-block p-1 border-0">Cargo: {{cargo}}</p>
     </div>
+    <div class="menu">
+      <a [routerLink]="['/recientes']" class="d-block p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
+        Recientes</a>
+      <a [routerLink]="['/ventanilla']" class="d-block p-3 border-0"><i class="icon ion-md-cash lead mr-2"></i>
+        Ventas</a>
+      <a [routerLink]="['/imprimir']" class="d-block p-3 border-0"><i class="icon ion-md-qr-scanner lead mr-2"></i>
+        Imprimir</a>
+      <a [routerLink]="['/info']" class="d-block p-3 border-0"><i
+          class="icon ion-md-information-circle-outline lead mr-2"></i> Mas
+        información</a>
+    </div>
+  </div>
+  <!-- FIN BARRA LATERAL -->
+
+  <div class="w-100">
+    <nav class="header">
+      <div class="dato">
+        <a type="button" (click)="salir()" class="btn btn-terminar"><i class="fas fa-sign-out-alt"></i> Terminar
+          Turno</a>
+      </div>
+      <div class="dato">
+        <h1>Reportes de ventas</h1>
+      </div>
+      <div class="dato" *ngIf="reportes">
+        <button class="dato" printSectionId="check" styleSheetFile="assets/css/boletaje.css"
+          printTitle="Ticket de Compra" ngxPrint>
+          <a class="btn btn-seguir">
+            Imprimir
+          </a>
+        </button>
+      </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div id="content" class="w-100">
+      <div class="contenedor-general">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <h5 class="card-header">
+                  Selecciona la <strong>fecha inicial</strong>, la
+                  <strong>fecha final</strong> y la
+                  <strong>sucursal</strong> correspondiente para generar el
+                  reporte de ventas
+                </h5>
+                <div class="card-body">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col selecciona">
+                        <label for="">Fecha de inicio</label><br />
+                        <input type="date" [(ngModel)]="reporte.fechaInicio" />
+                      </div>
+                      <div class="col selecciona">
+                        <label>Fecha de inicio</label><br />
+                        <input type="date" [(ngModel)]="reporte.fechaFinal" />
+                      </div>
+                      <div class="col selecciona">
+                        <label>Selecciona la sucursal</label>
+                        <select name="Sucursal" [(ngModel)]="reporte.sucursal" class="elige" required>
+                          <option value="0" selected disabled>
+                            Selecciona tu sucursal
+                          </option>
+                          <option *ngFor="let sucsal of sucursal" value="{{ sucsal.Id_sucursal }}">
+                            {{ sucsal.Nombre }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="col selecciona">
+                        <a (click)="getReporte()" class="btn btn-agregar mb-3">
+                          <i class="fas fa-check"></i> Generar Reporte</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <main class="contenedorhoja" id="check" *ngIf="reportes">
+          <div class="hoja">
+            <div class="headerTable">
+              <h1 align="center">La Solteca S.C.L</h1>
+            </div>
+            <div class="tipoHoja">
+              <p>Reporte de ventas</p>
+            </div>
+            <div class="tipoHoja" *ngFor="let repor of reportes; let i = index;" [hidden]="i != 0">
+              <p>Total: ${{repor.Suma}}</p>
+              <p>Boletos vendidos: {{repor.Count}}</p>
+            </div>
+            <div class="hojaDetalles">
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Empleado:</th>
+                    <td>{{vendedor}}</td>
+                  </tr>
+                  <tr>
+                    <th>FECHA INICIAL:</th>
+                    <td>{{reporte.fechaInicio}}</td>
+                  </tr>
+                  <tr>
+                    <th>FECHA FINAL:</th>
+                    <td>{{reporte.fechaFinal}}</td>
+                  </tr>
+                  <tr>
+                    <th>SUCURSAL:</th>
+                    <td *ngFor="let sucurs of sucursal" [hidden]="sucurs.Id_sucursal != reporte.sucursal">
+                        {{sucurs.Direccion}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <hr class="line">
+            <div class="tablaDetalles">
+              <table class="tabla">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Partida</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Vendedor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let repor of reportes; let i = index;">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{repor.Fecha_salida}}</td>
+                    <td>{{repor.Hora_salida}}</td>
+                    <td>{{repor.Origen}}</td>
+                    <td>{{repor.Destino}}</td>
+                    <td>{{repor.Trabajador}}</td>
+                  </tr>
+                </tbody>
+              </table><br><br>
+              <div class="firmaHoja">
+                <div class="contenedorFirma">
+                  <hr class="lineFirma">
+                  <p>Firma del empleado</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </main>
+        <!-- <div class="container-fluid">
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <table class="table">
+                  <thead class="">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Hora</th>
+                      <th scope="col">Partida</th>
+                      <th scope="col">Destino</th>
+                      <th scope="col">Vendidos</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Vendedor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let repor of reportes; let i = index;">
+                      <th scope="row">{{i+1}}</th>
+                      <td>{{repor.Fecha_salida}}</td>
+                      <td>{{repor.Hora_salida}}</td>
+                      <td>{{repor.Origen}}</td>
+                      <td>{{repor.Destino}}</td>
+                      <td>{{repor.Count}}</td>
+                      <td>{{repor.Suma}}</td>
+                      <td>{{repor.Trabajador}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
             $nombre = $row['Nombre'];
             $sucursal = $row['Id_sucursal'];
             $pass = $row['Pass'];
+            $id = $row['Id_usuario'];
         }
 
 
@@ -34,6 +35,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
         $response->cargo = $cargo;
         $response->sucursal = $sucursal;
         $response->nombre = $nombre;
+        $response->id = $id;
     } else {
         $response->resultado = 'FAIL';
         $response->mensaje = 'Datos incorrectos';
