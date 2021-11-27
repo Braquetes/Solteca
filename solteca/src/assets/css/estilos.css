@@ -42,7 +42,7 @@
     
     .imagen {
         width: 100%;
-        background-image: url("/img/solteca1.jpg");
+        background-image: url("../img/solteca1.jpg");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: cover;
@@ -114,7 +114,7 @@
     }
     
     .usuario {
-        background-image: url("/img/iconos/user.png");
+        background-image: url("../img/user.png");
         background-position: 10px 10px;
         background-repeat: no-repeat;
         background-size: 20px;
@@ -122,7 +122,7 @@
     }
     
     .contraseña {
-        background-image: url("/img/iconos/passwird.png");
+        background-image: url("../icons/passwird.png");
         background-position: 10px 10px;
         background-repeat: no-repeat;
         background-size: 20px;
@@ -159,23 +159,3 @@
     .btn-ingresar:active {
         background-color: #5254c1;
     }
-    
-    aside {
-        background-color: #5254c1;
-    }
-    /* .ingresar {
-        border: none;
-        background-color: #5254c1;
-        width: 150px;
-        height: 30px;
-        color: #fff;
-        border-radius: 50px;
-        text-decoration: none;
-    }
-
-    .ingresar a{
-        width: 150px;
-        color: white;
-        text-decoration: none;
-    }
-    */
