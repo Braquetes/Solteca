@@ -72,6 +72,7 @@ export class RecientesComponent implements OnInit {
     localStorage.setItem('Destino', destino);
     localStorage.setItem('Fecha', fecha);
     localStorage.setItem('Hora', hora);
+    this.CS.set('Data', 'reciente');
     this.router.navigate(['ventanilla']);
   }
 

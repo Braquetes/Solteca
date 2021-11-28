@@ -45,6 +45,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
     Nombre: '',
     Id_usuario: ''
   };
+  vents: any;
 
   boletos: any | undefined;
   rutas: any | undefined;
@@ -863,33 +864,43 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       console.log('Agregar');
       console.log(asiento);
       this.venta.Asiento = asiento;
+      console.log(this.venta.Asiento);
       // this.venta.Numero_asiento += asiento + ', ';
       this.venta.Estado = this.estado;
       this.venta.Id_sucursal = this.CS.get('sucursal');
       this.venta.Id_venta = this.CS.get('Id_venta');
       this.venta.Nombre = this.CS.get('nombre');
       this.venta.Id_usuario = this.CS.get('id');
-      console.log(this.venta);
+      if (this.CS.get('Data')){
+        console.log('Data');
+        this.VS.cookies(this.venta.Nombre_cliente, this.venta.Origen, this.venta.Destino, this.venta.Tipo,
+                        this.venta.Escala, this.venta.Precio, this.venta.Fecha_salida, this.venta.Hora_salida,
+                        this.venta.Telefono, this.venta.Asiento, this.venta.Id_venta, this.venta.Estado,
+                        this.venta.Id_autobus, this.venta.Id_sucursal, this.venta.Referencia, this.venta.Nombre,
+                        this.venta.Id_usuario).subscribe((datos: ARequest) => {
+        if (datos.resultado === 'OK') {
+          console.log(datos.mensaje);
+          this.venta.Cantidad = this.venta.Cantidad * 1 + 1;
+          this.total = this.venta.Cantidad * this.venta.Precio;
+          } else {
+            // alert(datos.mensaje);
+            Swal.fire({
+              icon: 'info',
+              title: datos.mensaje,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            this.CS.delete('Data');
+            this.recargar();
+          }
+        });
+      }else{
       // tslint:disable-next-line: deprecation
       this.VS.carrito(this.venta).subscribe((datos: ARequest) => {
         if (datos.resultado === 'OK') {
           console.log(datos.mensaje);
           this.venta.Cantidad = this.venta.Cantidad * 1 + 1;
           this.total = this.venta.Cantidad * this.venta.Precio;
-        // } else if (datos.idventa === this.CS.get('Id_venta')){
-        //     console.log('Igual');
-        //     // tslint:disable-next-line: prefer-const
-        //     let idventa = this.CS.get('Id_venta');
-        //     console.log('clean');
-        //     // tslint:disable-next-line: no-shadowed-variable
-        //     this.VS.deleteVentanilla(this.venta.Asiento, idventa).subscribe((datos: ARequest) => {
-        //         if (datos.resultado === 'OK') {
-        //           console.log(datos.mensaje);
-        //         } else {
-        //           alert(datos.mensaje);
-        //         }
-        //       }
-        //     );
           } else {
             // alert(datos.mensaje);
             Swal.fire({
@@ -901,34 +912,10 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
             this.recargar();
           }
         });
+      }
     } else {
       console.log('Error');
-      // console.log('Agregar');
-      // console.log(asiento);
     }
-    // tslint:disable-next-line: deprecation
-    // this.VS.asientoPendiente(this.Camion).subscribe((datos: ARequest) => {
-    //   if (datos.resultado === 'OK') {
-    //     console.log(datos.mensaje);
-    //   }
-    // });
-    // this.CS.set(this.Camion.Corrida.toString() + this.Camion.Id_pendiente.toString(), JSON.stringify(this.Camion), 1, '/proof');
-    // this.persona = JSON.parse(localStorage.getItem('Asiento') || 'Default Value');
-    // this.contador.push({Id_pendiente: this.Camion.Id_pendiente, Corrida: this.Camion.Corrida, Asiento: this.Camion.Asiento, Estado: 1});
-    // console.log(this.contador);
-    // localStorage.setItem('Asiento', JSON.stringify(this.contador));
-    // if (this.boton1 === false) {
-    //   this.boton1 = true;
-    //   this.camion.Asiento = asiento;
-    //   this.camion.Corrida = this.corrida;
-    //   this.camion.Estado = 1;
-    //   // tslint:disable-next-line: deprecation
-    //   this.VS.asientoPendiente(this.camion).subscribe((datos: ARequest) => {
-    //     if (datos.resultado === 'OK') {
-    //       console.log(datos.mensaje);
-    //     }
-    //   });
-    // }
   }
 
   salir(): void {

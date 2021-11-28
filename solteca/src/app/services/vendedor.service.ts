@@ -68,6 +68,21 @@ export class VendedorService {
       );
   }
 
+  cookies(nombre: any, origen: any, destino: any, tipo: any, escala: any, precio: any, fecha: any,
+          hora: any, telefono: any, asiento: any, idVenta: any, estado: any, idAutobus: any, idSucursal: any,
+          referencia: any, trabajador: any, idUsuario: any): Observable<ARequest> {
+    return this.http
+      .post<ARequest>(`${this.URL}carro/carrito.php?nombre=${nombre}&origen=${origen}&destino=${destino}
+                        &tipo=${tipo}&escala=${escala}&precio=${precio}&fecha=${fecha}&hora=${hora}&telefono=${telefono}
+                        &asiento=${asiento}&idventa=${idVenta}&estado=${estado}&idautobus=${idAutobus}&idsucursal=${idSucursal}
+                        &referencia=${referencia}&trabajador=${trabajador}&idusuario=${idUsuario}`, nombre)
+      .pipe(
+        tap(() => {
+          this._refresh$.next();
+        })
+      );
+  }
+
   deletePendiente(id: number): Observable<ARequest> {
     return this.http
       .get<ARequest>(`${this.URL}delete.php?Id_carrito=${id}`)
@@ -141,7 +156,10 @@ export class VendedorService {
   }
 
   reportes(report: Reports): Observable<Report> {
-    return this.http.post<Report>(`${this.URL}reporte/getReporte.php`, JSON.stringify(report));
+    return this.http.post<Report>(
+      `${this.URL}reporte/getReporte.php`,
+      JSON.stringify(report)
+    );
   }
 
   empleados(): Observable<Empleado> {
@@ -149,7 +167,10 @@ export class VendedorService {
   }
 
   imprimir(report: Imprime): Observable<Report> {
-    return this.http.post<Report>(`${this.URL}info/imprimir.php`, JSON.stringify(report));
+    return this.http.post<Report>(
+      `${this.URL}info/imprimir.php`,
+      JSON.stringify(report)
+    );
   }
 
   boleta(id: number): Observable<Report> {
