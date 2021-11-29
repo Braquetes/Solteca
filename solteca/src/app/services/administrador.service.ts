@@ -51,6 +51,7 @@ export class AdministradorService {
     this.CS.delete('id');
     this.CS.delete('cargo');
     this.CS.delete('sucursal');
+    this.CS.delete('Data');
     // tslint:disable-next-line: no-unused-expression
     this.enviado === true;
     this.router.navigate(['/']);

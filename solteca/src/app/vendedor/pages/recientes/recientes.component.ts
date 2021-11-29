@@ -78,6 +78,7 @@ export class RecientesComponent implements OnInit {
 
   nueva(): void {
     localStorage.clear();
+    this.CS.delete('Data');
     this.router.navigate(['ventanilla']);
   }
 
