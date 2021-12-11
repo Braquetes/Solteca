@@ -7,6 +7,7 @@ import { Report } from 'src/app/models/vendedor/report';
 import { AdministradorService } from 'src/app/services/administrador.service';
 import { VendedorService } from 'src/app/services/vendedor.service';
 import { Lugares } from 'src/app/models/vendedor/lugares';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-imprimir',
@@ -67,6 +68,15 @@ export class ImprimirComponent implements OnInit {
     this.VS.imprimir(this.impresion).subscribe((data: Report) => {
       this.reportes = data;
       console.log(this.reportes);
+      if (this.reportes.length === 0) {
+        // alert(datos.mensaje);
+        Swal.fire({
+          icon: 'error',
+          title: 'No hay ningun registro',
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
     });
   }
 

@@ -79,24 +79,71 @@ export class EmpleadosComponent implements OnInit {
   }
 
   eliminar(id: number): void {
-    this.AS.deleteEmpleado(id).subscribe((datos: Respuesta) => {
-      if (datos.resultado === 'OK') {
-        Swal.fire({
-          icon: 'info',
-          title: datos.mensaje,
-          showConfirmButton: false,
-          timer: 1500,
+    Swal.fire({
+      title: 'Eliminar usuario',
+      text: '¿Estas seguro de eliminarlo?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminarlo'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.AS.deleteEmpleado(id).subscribe((datos: Respuesta) => {
+          if (datos.resultado === 'OK') {
+            Swal.fire({
+              icon: 'info',
+              title: datos.mensaje,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          } else {
+            // alert(datos.mensaje);
+            Swal.fire({
+              icon: 'info',
+              title: datos.mensaje,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+          this.getEmpledos();
         });
-      } else {
-        // alert(datos.mensaje);
-        Swal.fire({
-          icon: 'info',
-          title: datos.mensaje,
-          showConfirmButton: false,
-          timer: 1500,
+        }
+    });
+  }
+
+  restore(id: number, nombre: string): void{
+    console.log(id);
+    Swal.fire({
+      title: 'Restaurar contraseña',
+      text: `¿Quieres restaurar la contraseña de ${nombre}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, restaurar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.AS.restoreEmpleado(id).subscribe((datos: Respuesta) => {
+          if (datos.resultado === 'OK') {
+            Swal.fire({
+              icon: 'info',
+              title: datos.mensaje,
+              showConfirmButton: false,
+              timer: 10000,
+            });
+          } else {
+            // alert(datos.mensaje);
+            Swal.fire({
+              icon: 'info',
+              title: datos.mensaje,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+          this.getEmpledos();
         });
       }
-      this.getEmpledos();
     });
   }
 

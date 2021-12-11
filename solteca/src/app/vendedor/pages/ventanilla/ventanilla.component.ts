@@ -871,7 +871,8 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
       this.venta.Id_venta = this.CS.get('Id_venta');
       this.venta.Nombre = this.CS.get('nombre');
       this.venta.Id_usuario = this.CS.get('id');
-      if (this.CS.get('Data')){
+      const dataRecien = localStorage.getItem('Data');
+      if (dataRecien){
         console.log('Data');
         this.VS.cookies(this.venta.Nombre_cliente, this.venta.Origen, this.venta.Destino, this.venta.Tipo,
                         this.venta.Escala, this.venta.Precio, this.venta.Fecha_salida, this.venta.Hora_salida,
@@ -890,7 +891,7 @@ export class VentanillaComponent implements OnInit, PuedeDesactivar {
               showConfirmButton: false,
               timer: 1500,
             });
-            this.CS.delete('Data');
+            localStorage.removeItem('Data');
             this.recargar();
           }
         });

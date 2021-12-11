@@ -48,6 +48,15 @@
     background-color: var(--rojo);
     color: var(--blanco);
 }
+
+.btn-restore{
+    background-color: blue;
+    color: var(--blanco);
+    width: 50px;
+    border: none;
+    padding: 2px;
+    margin: 2px;
+}
 /*ESTILOS BARRA DE NAVEGACION*/
 nav {
     background-color: var(--morado) !important;

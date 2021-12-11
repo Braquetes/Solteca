@@ -44,6 +44,10 @@ export class AdministradorService {
     return this.http.get<Respuesta>(`${this.URL}empleados/deleteEmpleado.php?Id_usuario=${id}`);
   }
 
+  restoreEmpleado(id: number): Observable<Respuesta> {
+    return this.http.get<Respuesta>(`${this.URL}empleados/restoreEmpleado.php?Id_usuario=${id}`);
+  }
+
   logout(): void {
     this.CS.delete('client');
     this.CS.delete('nombre');

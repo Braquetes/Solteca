@@ -19,7 +19,7 @@
         >
 
         <a [routerLink]="['/imprimir']" class="d-block p-3 border-0"
-          ><i class="icon ion-md-qr-scanner lead mr-2"></i> Imprimir</a
+          ><i class="icon ion-md-print lead mr-2"></i> Imprimir</a
         >
         <a [routerLink]="['/info']" class="d-block p-3 border-0"
           ><i class="icon ion-md-information-circle-outline lead mr-2"></i> Mas
@@ -85,9 +85,11 @@
                             <td [hidden]="i == 0">{{recien.Origen}}</td>
                             <td [hidden]="i == 0">{{recien.Destino}}</td>
                             <td [hidden]="i == 0">
-                                <a (click)="seleccion(recien.Hora_salida, recien.Fecha_salida, recien.Origen, recien.Destino)" class="btn-añadir" type="submit"
+                              <div class="col selecciona">
+                                <a class="btn btn-añadir" (click)="seleccion(recien.Hora_salida, recien.Fecha_salida, recien.Origen, recien.Destino)" type="submit"
                                 >Generar Venta</a
                                 >
+                              </div>
                             </td>
                             </tr>
                         </tbody>

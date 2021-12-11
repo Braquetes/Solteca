@@ -6,6 +6,7 @@ import { VendedorService } from 'src/app/services/vendedor.service';
 import { Report } from 'src/app/models/vendedor/report';
 import { CookieService } from 'ngx-cookie-service';
 import { ThrowStmt } from '@angular/compiler';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reporte',
@@ -72,6 +73,15 @@ export class ReporteComponent implements OnInit {
     this.reporte.idEmpleado = this.CS.get('id');
     this.VS.reportes(this.reporte).subscribe((data: Report) => {
       this.reportes = data;
+      if (this.reportes.length === 0) {
+        // alert(datos.mensaje);
+        Swal.fire({
+          icon: 'error',
+          title: 'No hay ningun registro',
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
       // tslint:disable-next-line: only-arrow-functions typedef  space-before-function-paren
       this.reportes.sort(
         (

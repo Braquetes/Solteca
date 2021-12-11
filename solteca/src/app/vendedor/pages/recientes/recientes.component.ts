@@ -34,6 +34,9 @@ export class RecientesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (this.CS.get('access_token') === 'actualizar') {
+      this.router.navigate(['/actualizar']);
+    }
     const cookie = this.CS.check('access_token');
     const client = this.CS.get('client');
     if (cookie) {
@@ -72,13 +75,12 @@ export class RecientesComponent implements OnInit {
     localStorage.setItem('Destino', destino);
     localStorage.setItem('Fecha', fecha);
     localStorage.setItem('Hora', hora);
-    this.CS.set('Data', 'reciente');
+    localStorage.setItem('Data', 'reciente');
     this.router.navigate(['ventanilla']);
   }
 
   nueva(): void {
     localStorage.clear();
-    this.CS.delete('Data');
     this.router.navigate(['ventanilla']);
   }
 

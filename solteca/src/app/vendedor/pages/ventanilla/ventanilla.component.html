@@ -11,7 +11,7 @@
       </div>
       <div class="menu">
         <a [routerLink]="['/recientes']" class="d-block p-3 border-0"
-          ><i class="icon ion-md-cash lead mr-2"></i>Recientes</a
+          ><i class="icon ion-md-time lead mr-2"></i>Recientes</a
         >
 
         <a [routerLink]="['/reporte']" class="d-block p-3 border-0"
@@ -117,7 +117,7 @@
                               [(ngModel)]="venta.Nombre_cliente"
                               type="text"
                               class="input1"
-                              maxlength="15"
+                              maxlength="100"
                               required
                             />
                           </div>
@@ -356,10 +356,12 @@
                               >Numero telefonico</label
                             >
                             <input
-                              type="tel"
+                              type="number"
                               name="Telefono"
                               class="input1"
                               [(ngModel)]="venta.Telefono"
+                              minlength="10"
+                              maxlength="10"
                               required
                             />
                           </div>
